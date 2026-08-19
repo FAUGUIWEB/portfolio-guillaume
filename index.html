@@ -202,6 +202,55 @@
   color: #FF2B2B;
 }
 
+    .header-social {
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #aaa;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.header-social svg {
+  width: 18px;
+  height: 18px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.7;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  transition:
+    filter 0.3s ease;
+}
+
+.header-social:hover {
+  color: #FF2B2B;
+
+  transform: translateY(-2px);
+}
+
+.header-social:hover svg {
+  filter:
+    drop-shadow(-1px 0 rgba(255, 0, 80, 0.25))
+    drop-shadow(1px 0 rgba(0, 140, 255, 0.25));
+}
+
+.instagram-dot,
+.linkedin-dot {
+  fill: currentColor;
+  stroke: none;
+}
 
     /* =========================
        HERO
@@ -274,168 +323,114 @@
   flex-direction: column;
   align-items: center;
 
-  gap: 8px;
-
-  color: #666;
+  gap: 12px;
 
   background: none;
   border: none;
 
-  cursor: pointer;
+  color: #666;
 
-  transition: color 0.3s ease;
+  cursor: pointer;
 
   z-index: 5;
 }
 
+
+/* CADRE */
+
+.scroll-frame {
+  width: 30px;
+  height: 54px;
+
+  border: 1px solid #555;
+
+  border-radius: 999px;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 8px 0;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* PETIT TRAIT INTERIEUR */
+
+.scroll-line {
+  width: 2px;
+  height: 13px;
+
+  border-radius: 999px;
+
+  background: #666;
+
+  animation:
+    scrollLine 1.8s ease-in-out infinite;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* TEXTE */
+
 .scroll-label {
-  font-size: 10px;
+  font-size: 9px;
+
+  font-weight: bold;
 
   text-transform: uppercase;
 
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
 
   transition:
-    color 0.3s ease,
-    transform 0.3s ease;
+    color 0.3s ease;
+}
+
+
+/* ANIMATION */
+
+@keyframes scrollLine {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(24px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+
+}
+
+
+/* HOVER */
+
+.scroll-indicator:hover .scroll-frame {
+  border-color: #FF2B2B;
+
+  box-shadow:
+    0 0 18px rgba(255, 43, 43, 0.12);
+}
+
+.scroll-indicator:hover .scroll-line {
+  background: #FF2B2B;
+
+  box-shadow:
+    0 0 8px rgba(255, 43, 43, 0.45);
 }
 
 .scroll-indicator:hover .scroll-label {
   color: #FF2B2B;
-  transform: translateY(3px);
 }
-
-.chevrons {
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: flex-start;
-
-  gap: 0;
-
-  height: 52px;
-
-  overflow: visible;
-}
-
-.chevron {
-  font-family: Arial, sans-serif;
-
-  font-size: 24px;
-  font-weight: 300;
-
-  line-height: 14px;
-
-  height: 14px;
-
-  color: #555;
-
-  animation:
-    chevronDance 1.8s ease-in-out infinite;
-
-  transition:
-    color 0.2s ease;
-}
-
-
-/* CHEVRON 1 */
-
-.chevron:nth-child(1) {
-  animation-delay: 0s;
-}
-
-
-/* CHEVRON 2 */
-
-.chevron:nth-child(2) {
-  animation-delay: 0.12s;
-}
-
-
-/* CHEVRON 3 */
-
-.chevron:nth-child(3) {
-  animation-delay: 0.24s;
-}
-
-
-@keyframes chevronDance {
-
-  0% {
-
-    transform: translateY(0);
-
-    color: #555;
-
-  }
-
-  15% {
-
-    transform: translateY(6px);
-
-    color: #555;
-
-  }
-
-  30% {
-
-    transform: translateY(12px);
-
-    color: #555;
-
-  }
-
-  42% {
-
-    transform: translateY(6px);
-
-    color: #ffffff;
-
-  }
-
-  50% {
-
-    transform: translateY(0);
-
-    color: #ffffff;
-
-  }
-
-  58% {
-
-    transform: translateY(-6px);
-
-    color: #555;
-
-  }
-
-  72% {
-
-    transform: translateY(-12px);
-
-    color: #555;
-
-  }
-
-  85% {
-
-    transform: translateY(-6px);
-
-    color: #555;
-
-  }
-
-  100% {
-
-    transform: translateY(0);
-
-    color: #555;
-
-  }
-
-}
-
+    }
 
     /* =========================
        PROJECTS
@@ -711,15 +706,23 @@
 }
 
 .header-right {
-  gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .header-link {
   font-size: 8px;
 }
 
-.header-link:first-child {
-  display: none;
+.header-social {
+  width: 18px;
+  height: 18px;
+}
+
+.header-social svg {
+  width: 16px;
+  height: 16px;
 }
 
 .logo-placeholder {
@@ -798,31 +801,102 @@
 
     <div class="header-right">
 
-      <a
-        href="mailto:faucompre.guillaume@gmail.com"
-        class="header-link"
-      >
-        faucompre.guillaume@gmail.com
-      </a>
+    <a
+  href="mailto:faucompre.guillaume@gmail.com"
+  class="header-link"
+  aria-label="Envoyer un email"
+>
+  Contact
+</a>
 
-      <a
-        href="https://www.instagram.com/gui.mov_/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="header-link"
-      >
-        Instagram
-      </a>
+     <a
+  href="https://www.instagram.com/gui.mov_/"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="header-social"
+  aria-label="Instagram"
+>
 
-      <a
-        href="https://www.linkedin.com/in/guillaume-faucompr%C3%A9-b18381105/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="header-link"
-      >
-        LinkedIn
-      </a>
+  <svg
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
 
+    <rect
+      x="3"
+      y="3"
+      width="18"
+      height="18"
+      rx="5"
+    />
+
+    <circle
+      cx="12"
+      cy="12"
+      r="4"
+    />
+
+    <circle
+      cx="17.5"
+      cy="6.5"
+      r="1.1"
+      class="instagram-dot"
+    />
+
+  </svg>
+
+</a>
+
+
+<a
+  href="https://www.linkedin.com/in/guillaume-faucompr%C3%A9-b18381105/"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="header-social"
+  aria-label="LinkedIn"
+>
+
+  <svg
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+
+    <rect
+      x="3"
+      y="3"
+      width="18"
+      height="18"
+      rx="2"
+    />
+
+    <line
+      x1="8"
+      y1="10"
+      x2="8"
+      y2="17"
+    />
+
+    <circle
+      cx="8"
+      cy="7"
+      r="1"
+      class="linkedin-dot"
+    />
+
+    <path
+      d="M12 17v-4c0-2 1-3 3-3s3 1.2 3 3v4"
+    />
+
+    <line
+      x1="18"
+      y1="13"
+      x2="18"
+      y2="17"
+    />
+
+  </svg>
+
+</a>
     </div>
 
   </div>
@@ -863,16 +937,14 @@
   aria-label="Voir les réalisations"
 >
 
-  <span class="scroll-label">
-    Scroll
+  <span class="scroll-frame">
+
+    <span class="scroll-line"></span>
+
   </span>
 
-  <span class="chevrons">
-
-    <span class="chevron">⌄</span>
-    <span class="chevron">⌄</span>
-    <span class="chevron">⌄</span>
-
+  <span class="scroll-label">
+    Scroll
   </span>
 
 </button>
