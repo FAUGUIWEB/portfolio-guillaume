@@ -1201,48 +1201,45 @@
     }
 
 
-    .new-drop-grid {
-      display:
-        flex;
+ .new-drop-grid {
+  display: flex;
 
-      gap:
-        18px;
+  gap: 18px;
 
-      width:
-        100%;
+  width: 100%;
 
-      overflow-x:
-        auto;
+  overflow-x: auto;
+  overflow-y: hidden;
 
-      overflow-y:
-        hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 
-      scroll-behavior:
-        smooth;
+  scrollbar-width: none;
 
-      scroll-snap-type:
-        x mandatory;
+  -webkit-overflow-scrolling: touch;
 
-      scrollbar-width:
-        none;
+  padding: 4px 0 12px;
 
-      -webkit-overflow-scrolling:
-        touch;
-
-      padding:
-        4px
-        0
-        12px;
-
-      cursor:
-        grab;
-    }
+  cursor: grab;
+}
 
 
-    .new-drop-grid::-webkit-scrollbar {
-      display:
-        none;
-    }
+/* =========================================================
+   TAILLE DES PREVIEWS
+========================================================= */
+
+.new-drop-card {
+  flex: 0 0 calc((100% - 54px) / 4);
+
+  scroll-snap-align: start;
+}
+
+
+/* CACHE LA BARRE DE DÉFILEMENT */
+
+.new-drop-grid::-webkit-scrollbar {
+  display: none;
+}
 
 
     .new-drop-grid.dragging {
