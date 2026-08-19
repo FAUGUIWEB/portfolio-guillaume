@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Guillaume Faucompré — Vidéaste & Motion Designer</title>
 
-  <!-- Typographie -->
+  <!-- =========================
+       FONT
+  ========================= -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
 
-    /* =========================
+    /* =========================================================
        VARIABLES
-    ========================= */
+    ========================================================= */
 
     :root {
       --red: #FF2B2B;
@@ -26,9 +34,9 @@
     }
 
 
-    /* =========================
-       BASE
-    ========================= */
+    /* =========================================================
+       RESET / BASE
+    ========================================================= */
 
     * {
       box-sizing: border-box;
@@ -38,6 +46,7 @@
 
     html {
       scroll-behavior: smooth;
+      background: var(--black);
     }
 
     body {
@@ -53,458 +62,733 @@
     }
 
 
-    /* =========================
-       HEADER / LOGO
-    ========================= */
+    /* =========================================================
+       HEADER
+    ========================================================= */
 
     .site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 30px;
-  z-index: 100;
-  pointer-events: none;
-}
+      position: fixed;
+      top: 0;
+      left: 0;
 
-.header-glass {
-  width: min(760px, calc(100vw - 60px));
-  min-height: 58px;
+      width: 100%;
 
-  margin: 0 auto;
+      padding: 20px 0;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+      z-index: 1000;
 
-  padding: 8px 12px 8px 18px;
+      pointer-events: none;
+    }
 
-  background:
-    linear-gradient(
-      120deg,
-      rgba(90, 120, 180, 0.12),
-      rgba(20, 35, 65, 0.08)
-    );
+    .header-glass {
+      position: relative;
 
-  backdrop-filter: blur(28px) saturate(150%);
-  -webkit-backdrop-filter: blur(28px) saturate(150%);
+      width: min(760px, calc(100vw - 60px));
+      min-height: 58px;
 
-  border: 1px solid rgba(160, 190, 255, 0.16);
+      margin: 0 auto;
 
-  border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -1px 0 rgba(40, 70, 120, 0.08),
-    0 15px 50px rgba(0, 0, 0, 0.28);
+      padding: 8px 12px 8px 18px;
 
-  position: relative;
+      border-radius: 999px;
 
-  transition:
-    transform 0.5s ease,
-    border-color 0.5s ease,
-    box-shadow 0.5s ease;
-}
+      background:
+        linear-gradient(
+          120deg,
+          rgba(90, 120, 180, 0.12),
+          rgba(20, 35, 65, 0.08)
+        );
+
+      border: 1px solid rgba(160, 190, 255, 0.16);
+
+      backdrop-filter: blur(28px) saturate(150%);
+      -webkit-backdrop-filter: blur(28px) saturate(150%);
+
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(40, 70, 120, 0.08),
+        0 15px 50px rgba(0, 0, 0, 0.28);
+
+      pointer-events: auto;
+
+      transition:
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
+    }
+
+
+    /* Effet glass / aberration */
 
     .header-glass::before {
-  content: "";
+      content: "";
 
-  position: absolute;
-  inset: 0;
+      position: absolute;
+      inset: 0;
 
-  border-radius: inherit;
+      border-radius: inherit;
 
-  pointer-events: none;
+      pointer-events: none;
 
-  background:
-    linear-gradient(
-      90deg,
-      rgba(80, 140, 255, 0.05),
-      transparent 35%,
-      rgba(255, 80, 140, 0.04)
-    );
+      background:
+        linear-gradient(
+          90deg,
+          rgba(80, 140, 255, 0.05),
+          transparent 35%,
+          rgba(255, 80, 140, 0.04)
+        );
 
-      .header-glass > * {
-  position: relative;
-  z-index: 2;
-}
+      opacity: 0;
 
-  opacity: 0;
+      mix-blend-mode: screen;
 
-  transition: opacity 0.5s ease;
+      transition: opacity 0.5s ease;
+    }
 
-  mix-blend-mode: screen;
-}
+    .header-glass:hover {
+      border-color: rgba(120, 170, 255, 0.3);
 
-.header-glass:hover {
-  border-color: rgba(120, 170, 255, 0.3);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 20px 70px rgba(20, 80, 180, 0.12),
+        0 0 30px rgba(255, 40, 100, 0.04);
+    }
 
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 20px 70px rgba(20, 80, 180, 0.12),
-    0 0 30px rgba(255, 40, 100, 0.04);
-}
+    .header-glass:hover::before {
+      opacity: 1;
+    }
 
-.header-glass:hover::before {
-  opacity: 1;
-}
+    .header-glass > * {
+      position: relative;
+      z-index: 2;
+    }
 
-    .header-glass:hover .header-link {
-  text-shadow:
-    -0.5px 0 rgba(255, 0, 80, 0.35),
-    0.5px 0 rgba(0, 140, 255, 0.35);
-}
-    
-.logo-placeholder {
-  width: 90px;
-  height: 40px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    /* =========================================================
+       LOGO
+    ========================================================= */
 
-  color: #777;
+    .logo-placeholder {
+      width: 90px;
+      height: 40px;
 
-  font-size: 10px;
-  letter-spacing: 0.12em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  border: 1px solid #444;
+      color: #777;
 
-  transition:
-    color 0.3s ease,
-    border-color 0.3s ease;
-}
+      font-size: 10px;
+      letter-spacing: 0.12em;
 
-.logo-placeholder:hover {
-  color: #FF2B2B;
-  border-color: #FF2B2B;
-}
+      border: 1px solid #444;
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
+      transition:
+        color 0.3s ease,
+        border-color 0.3s ease;
+    }
 
-.header-link {
-  position: relative;
-  z-index: 3;
+    .logo-placeholder:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
 
-  color: #aaa;
 
-  text-decoration: none;
+    /* =========================================================
+       HEADER RIGHT
+    ========================================================= */
 
-  font-size: 10px;
-  font-weight: bold;
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-  text-transform: uppercase;
 
-  letter-spacing: 0.08em;
+    /* CONTACT */
 
-  transition:
-    color 0.3s ease,
-    opacity 0.3s ease,
-    text-shadow 0.3s ease;
-}
+    .header-link {
+      position: relative;
 
-.header-link:hover {
-  color: #FF2B2B;
+      color: #aaa;
 
-  text-shadow:
-    -0.5px 0 rgba(255, 0, 80, 0.35),
-    0.5px 0 rgba(0, 140, 255, 0.35);
-}
+      text-decoration: none;
 
-.header-link:hover {
-  color: #FF2B2B;
-}
+      font-size: 10px;
+      font-weight: bold;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.08em;
+
+      transition:
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+    }
+
+    .header-link:hover {
+      color: var(--red);
+
+      text-shadow:
+        -0.5px 0 rgba(255, 0, 80, 0.35),
+        0.5px 0 rgba(0, 140, 255, 0.35);
+    }
+
+
+    /* SOCIAL ICONS */
 
     .header-social {
-  width: 20px;
-  height: 20px;
+      width: 20px;
+      height: 20px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  color: #aaa;
+      color: #aaa;
 
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
-}
+      text-decoration: none;
 
-.header-social svg {
-  width: 18px;
-  height: 18px;
+      transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+    }
 
-  fill: none;
+    .header-social svg {
+      width: 18px;
+      height: 18px;
 
-  stroke: currentColor;
+      fill: none;
 
-  stroke-width: 1.7;
+      stroke: currentColor;
 
-  stroke-linecap: round;
-  stroke-linejoin: round;
+      stroke-width: 1.7;
 
-  transition:
-    filter 0.3s ease;
-}
+      stroke-linecap: round;
+      stroke-linejoin: round;
 
-.header-social:hover {
-  color: #FF2B2B;
+      transition: filter 0.3s ease;
+    }
 
-  transform: translateY(-2px);
-}
+    .header-social:hover {
+      color: var(--red);
 
-.header-social:hover svg {
-  filter:
-    drop-shadow(-1px 0 rgba(255, 0, 80, 0.25))
-    drop-shadow(1px 0 rgba(0, 140, 255, 0.25));
-}
+      transform: translateY(-2px);
+    }
 
-.instagram-dot,
-.linkedin-dot {
-  fill: currentColor;
-  stroke: none;
-}
+    .header-social:hover svg {
+      filter:
+        drop-shadow(-1px 0 rgba(255, 0, 80, 0.25))
+        drop-shadow(1px 0 rgba(0, 140, 255, 0.25));
+    }
 
-    /* =========================
+    .instagram-dot,
+    .linkedin-dot {
+      fill: currentColor;
+      stroke: none;
+    }
+
+
+    /* =========================================================
        HERO
-    ========================= */
+    ========================================================= */
 
+    .hero {
+      position: relative;
+
+      width: 100%;
+
+      height: 100vh;
+      height: 100svh;
+
+      min-height: 600px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding:
+        100px
+        5vw
+        60px;
+
+      overflow: hidden;
+    }
+
+
+    /* TITRE */
 
     .hero-title {
       font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(90px, 17vw, 270px);
+
+      font-size:
+        clamp(90px, 17vw, 270px);
+
       line-height: 0.78;
+
       letter-spacing: -0.015em;
+
       text-transform: uppercase;
+
       max-width: 1500px;
     }
 
+
+    /* SOUS TITRE */
+
     .hero-subtitle {
       margin-top: 45px;
+
       font-size: 16px;
+
       text-transform: uppercase;
+
       letter-spacing: 0.12em;
+
       color: var(--red);
+
       font-weight: bold;
     }
 
+
+    /* SHOWREEL */
+
     .showreel-button {
       margin-top: 45px;
+
       width: fit-content;
+
       padding: 15px 28px;
+
       border: 1px solid #555;
+
       border-radius: 100px;
+
       background: transparent;
+
       color: white;
+
       font-size: 12px;
+
       font-weight: bold;
+
       letter-spacing: 0.15em;
+
       cursor: pointer;
-      transition: all 0.3s ease;
+
+      transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .showreel-button:hover {
       background: var(--red);
+
       color: white;
+
       border-color: var(--red);
+
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(255, 43, 43, 0.2);
+
+      box-shadow:
+        0 10px 30px rgba(255, 43, 43, 0.2);
     }
 
 
-    /* =========================
+    /* =========================================================
        SCROLL INDICATOR
-    ========================= */
+    ========================================================= */
 
-   .scroll-indicator {
-  position: absolute;
+    .scroll-indicator {
+      position: absolute;
 
-  bottom: 28px;
-  left: 50%;
+      left: 50%;
+      bottom: 28px;
 
-  transform: translateX(-50%);
+      transform: translateX(-50%);
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-  gap: 12px;
+      gap: 12px;
 
-  background: none;
-  border: none;
+      background: transparent;
 
-  color: #666;
+      border: none;
 
-  cursor: pointer;
+      cursor: pointer;
 
-  z-index: 5;
-}
-
-
-/* CADRE */
-
-.scroll-frame {
-  width: 30px;
-  height: 54px;
-
-  border: 1px solid #555;
-
-  border-radius: 999px;
-
-  display: flex;
-  justify-content: center;
-
-  padding: 8px 0;
-
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-
-/* PETIT TRAIT INTERIEUR */
-
-.scroll-line {
-  width: 2px;
-  height: 13px;
-
-  border-radius: 999px;
-
-  background: #666;
-
-  animation:
-    scrollLine 1.8s ease-in-out infinite;
-
-  transition:
-    background 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-
-/* TEXTE */
-
-.scroll-label {
-  font-size: 9px;
-
-  font-weight: bold;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.22em;
-
-  transition:
-    color 0.3s ease;
-}
-
-
-/* ANIMATION */
-
-@keyframes scrollLine {
-
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(24px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-
-}
-
-
-/* HOVER */
-
-.scroll-indicator:hover .scroll-frame {
-  border-color: #FF2B2B;
-
-  box-shadow:
-    0 0 18px rgba(255, 43, 43, 0.12);
-}
-
-.scroll-indicator:hover .scroll-line {
-  background: #FF2B2B;
-
-  box-shadow:
-    0 0 8px rgba(255, 43, 43, 0.45);
-}
-
-.scroll-indicator:hover .scroll-label {
-  color: #FF2B2B;
-}
+      z-index: 20;
     }
 
-    /* =========================
+
+    /* CADRE */
+
+    .scroll-frame {
+      position: relative;
+
+      width: 30px;
+      height: 54px;
+
+      border-radius: 999px;
+
+      background: rgba(5, 5, 8, 0.25);
+
+      border: none;
+
+      isolation: isolate;
+
+      overflow: visible;
+    }
+
+
+    /* CONTOUR GRIS */
+
+    .scroll-liquid {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      overflow: visible;
+
+      pointer-events: none;
+    }
+
+    .scroll-outline {
+      fill: none;
+
+      stroke:
+        rgba(150, 150, 155, 0.55);
+
+      stroke-width: 0.8;
+    }
+
+
+    /* LIQUIDE IRISÉ */
+
+    .scroll-liquid-path {
+      fill: none;
+
+      stroke-width: 1.35;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
+
+      stroke: url(#scrollGradient);
+
+      opacity: 0.62;
+
+      filter:
+        drop-shadow(
+          0 0 2px
+          rgba(100, 100, 255, 0.25)
+        );
+
+      animation:
+        liquidWarp 5s ease-in-out infinite;
+    }
+
+
+    /* HALO */
+
+    .scroll-glow {
+      fill: none;
+
+      stroke: url(#scrollGradient);
+
+      stroke-width: 3;
+
+      stroke-linecap: round;
+
+      opacity: 0.14;
+
+      filter: blur(3px);
+
+      animation:
+        liquidWarpGlow 7s ease-in-out infinite;
+    }
+
+
+    /* TRAIT CENTRAL */
+
+    .scroll-line {
+      position: absolute;
+
+      top: 8px;
+      left: 50%;
+
+      width: 2px;
+      height: 13px;
+
+      transform: translateX(-50%);
+
+      border-radius: 999px;
+
+      background: #666;
+
+      animation:
+        scrollLine 1.8s ease-in-out infinite;
+
+      transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease;
+    }
+
+
+    /* LABEL */
+
+    .scroll-label {
+      color: #666;
+
+      font-size: 9px;
+
+      font-weight: bold;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.22em;
+
+      transition:
+        color 0.3s ease;
+    }
+
+
+    /* ANIMATION LIQUIDE */
+
+    @keyframes liquidWarp {
+
+      0% {
+        transform:
+          translate(0, 0)
+          scaleX(1)
+          scaleY(1);
+      }
+
+      25% {
+        transform:
+          translate(0.4px, -0.3px)
+          scaleX(1.015)
+          scaleY(0.985);
+      }
+
+      50% {
+        transform:
+          translate(-0.3px, 0.4px)
+          scaleX(0.985)
+          scaleY(1.015);
+      }
+
+      75% {
+        transform:
+          translate(0.3px, 0.2px)
+          scaleX(1.01)
+          scaleY(0.99);
+      }
+
+      100% {
+        transform:
+          translate(0, 0)
+          scaleX(1)
+          scaleY(1);
+      }
+
+    }
+
+    @keyframes liquidWarpGlow {
+
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.035);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+
+    }
+
+    @keyframes scrollLine {
+
+      0% {
+        transform:
+          translate(-50%, 0);
+      }
+
+      50% {
+        transform:
+          translate(-50%, 24px);
+      }
+
+      100% {
+        transform:
+          translate(-50%, 0);
+      }
+
+    }
+
+
+    /* HOVER */
+
+    .scroll-indicator:hover .scroll-frame {
+      box-shadow:
+        0 0 16px rgba(90, 110, 255, 0.08);
+    }
+
+    .scroll-indicator:hover .scroll-liquid-path {
+      filter:
+        drop-shadow(
+          0 0 3px
+          rgba(100, 120, 255, 0.45)
+        );
+    }
+
+    .scroll-indicator:hover .scroll-glow {
+      opacity: 0.25;
+    }
+
+    .scroll-indicator:hover .scroll-line {
+      background: #aaa;
+    }
+
+    .scroll-indicator:hover .scroll-label {
+      color: #aaa;
+    }
+
+
+    /* =========================================================
        PROJECTS
-    ========================= */
+    ========================================================= */
 
- .projects {
-  width: 100%;
+    .projects {
+      position: relative;
 
-  padding: 140px 5vw 180px;
+      width: 100%;
 
-  scroll-margin-top: 30px;
-}
+      padding:
+        140px
+        5vw
+        180px;
+
+      /*
+        IMPORTANT :
+        On ne met PAS de margin-top ici.
+        Le hero fait exactement un écran.
+      */
+
+      scroll-margin-top: 100px;
+    }
+
+
+    /* TITRE */
 
     .section-title {
       font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(80px, 13vw, 190px);
+
+      font-size:
+        clamp(80px, 13vw, 190px);
+
       line-height: 0.8;
+
       letter-spacing: -0.01em;
+
       text-transform: uppercase;
+
       margin-bottom: 55px;
     }
 
+
+    /* =========================================================
+       FILTERS
+    ========================================================= */
+
     .filters {
       display: flex;
+
       gap: 8px;
+
       margin-bottom: 60px;
     }
 
     .filter {
       border: 1px solid #333;
+
       background: transparent;
+
       color: #777;
+
       padding: 10px 20px;
+
       border-radius: 100px;
+
       cursor: pointer;
+
       font-size: 11px;
+
       font-weight: bold;
+
       letter-spacing: 0.12em;
+
       text-transform: uppercase;
-      transition: all 0.3s ease;
+
+      transition:
+        all 0.3s ease;
     }
 
     .filter:hover,
     .filter.active {
       background: var(--red);
+
       color: white;
+
       border-color: var(--red);
-      box-shadow: 0 8px 25px rgba(255, 43, 43, 0.15);
+
+      box-shadow:
+        0 8px 25px
+        rgba(255, 43, 43, 0.15);
     }
 
 
-    /* =========================
-       GRID
-    ========================= */
+    /* =========================================================
+       PROJECT GRID
+    ========================================================= */
 
     .grid {
+      width: 100%;
+
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 65px 20px;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        65px
+        20px;
     }
+
+
+    /* PROJECT */
 
     .project {
       cursor: pointer;
+
       opacity: 0;
-      transform: translateY(35px);
+
+      transform:
+        translateY(35px);
+
       transition:
         opacity 0.8s ease,
         transform 0.8s ease;
@@ -512,30 +796,52 @@
 
     .project.visible {
       opacity: 1;
-      transform: translateY(0);
+
+      transform:
+        translateY(0);
     }
 
     .project.hidden {
       display: none;
     }
 
+
+    /* IMAGE */
+
     .thumbnail-wrapper {
       overflow: hidden;
+
       background: #111;
+
       aspect-ratio: 16 / 9;
     }
 
     .thumbnail {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
+
       display: block;
-      transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+      transition:
+        transform
+        0.7s
+        cubic-bezier(
+          0.2,
+          0.7,
+          0.2,
+          1
+        );
     }
 
     .project:hover .thumbnail {
-      transform: scale(1.045);
+      transform:
+        scale(1.045);
     }
+
+
+    /* INFO */
 
     .project-info {
       margin-top: 18px;
@@ -543,68 +849,108 @@
 
     .project-title {
       font-family: "Bebas Neue", sans-serif;
+
       font-size: 28px;
+
       line-height: 1;
+
       letter-spacing: 0.01em;
+
       text-transform: uppercase;
     }
 
     .project-client {
       margin-top: 7px;
+
       font-size: 12px;
+
       color: #aaa;
+
       text-transform: uppercase;
+
       letter-spacing: 0.08em;
     }
 
     .project-tag {
       display: inline-block;
+
       margin-top: 8px;
+
       padding: 5px 9px;
+
       border-radius: 100px;
+
       background: var(--red);
+
       color: white;
+
       font-size: 9px;
+
       font-weight: bold;
+
       text-transform: uppercase;
+
       letter-spacing: 0.12em;
     }
 
 
-    /* =========================
+    /* =========================================================
        FOOTER
-    ========================= */
+    ========================================================= */
 
     footer {
-      padding: 80px 5vw 35px;
+      padding:
+        80px
+        5vw
+        35px;
     }
 
     .footer-title {
       font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(80px, 14vw, 210px);
+
+      font-size:
+        clamp(80px, 14vw, 210px);
+
       line-height: 0.78;
+
       letter-spacing: -0.01em;
+
       text-transform: uppercase;
+
       max-width: 1500px;
     }
 
     .footer-bottom {
       margin-top: 130px;
+
       padding-top: 25px;
-      border-top: 1px solid #222;
+
+      border-top:
+        1px solid #222;
+
       display: flex;
-      justify-content: space-between;
+
+      justify-content:
+        space-between;
+
       align-items: center;
+
       gap: 30px;
+
       font-size: 12px;
+
       text-transform: uppercase;
+
       letter-spacing: 0.08em;
     }
 
     .footer-email {
       color: white;
+
       text-decoration: none;
-      transition: opacity 0.3s ease;
+
+      transition:
+        color 0.3s ease;
     }
 
     .footer-email:hover {
@@ -613,16 +959,23 @@
 
     .socials {
       display: flex;
+
       gap: 25px;
     }
 
     .social-link {
       display: flex;
+
       align-items: center;
+
       gap: 8px;
+
       color: white;
+
       text-decoration: none;
-      transition: color 0.3s ease;
+
+      transition:
+        color 0.3s ease;
     }
 
     .social-link:hover {
@@ -632,25 +985,37 @@
     .social-icon {
       width: 15px;
       height: 15px;
+
       fill: currentColor;
     }
 
 
-    /* =========================
-       MODAL / POPUP VIDEO
-    ========================= */
+    /* =========================================================
+       VIDEO MODAL
+    ========================================================= */
 
     .modal {
       position: fixed;
+
       inset: 0;
-      background: rgba(0, 0, 0, 0.94);
-      z-index: 1000;
+
+      background:
+        rgba(0, 0, 0, 0.94);
+
+      z-index: 2000;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       padding: 30px;
+
       opacity: 0;
+
       visibility: hidden;
+
       transition:
         opacity 0.35s ease,
         visibility 0.35s ease;
@@ -658,156 +1023,168 @@
 
     .modal.open {
       opacity: 1;
+
       visibility: visible;
     }
 
     .modal-content {
-      width: min(1100px, 100%);
+      width:
+        min(1100px, 100%);
+
       position: relative;
     }
 
     .video-container {
       position: relative;
+
       width: 100%;
+
       aspect-ratio: 16 / 9;
+
       background: #000;
     }
 
     .video-container iframe {
       width: 100%;
       height: 100%;
+
       border: 0;
     }
 
     .close-modal {
       position: absolute;
+
       right: 0;
-      bottom: calc(100% + 15px);
+
+      bottom:
+        calc(100% + 15px);
+
       width: 42px;
       height: 42px;
-      border: 1px solid #444;
+
+      border:
+        1px solid #444;
+
       border-radius: 50%;
+
       background: transparent;
+
       color: white;
+
       font-size: 22px;
+
       cursor: pointer;
-      transition: all 0.3s ease;
+
+      transition:
+        all 0.3s ease;
     }
 
     .close-modal:hover {
       background: var(--red);
+
       border-color: var(--red);
-      color: white;
     }
 
 
-    /* =========================
+    /* =========================================================
        MOBILE
-    ========================= */
+    ========================================================= */
 
     @media (max-width: 800px) {
 
-  .site-header {
-  padding: 12px;
-}
+      .site-header {
+        padding: 12px 0;
+      }
 
-.header-glass {
-  width: calc(100vw - 24px);
-  min-height: 54px;
-  padding: 7px 10px 7px 14px;
-}
+      .header-glass {
+        width:
+          calc(100vw - 24px);
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
+        min-height: 54px;
 
-.header-link {
-  font-size: 8px;
-}
+        padding:
+          7px
+          12px
+          7px
+          14px;
+      }
 
-.header-social {
-  position: relative;
-  z-index: 3;
+      .header-right {
+        gap: 12px;
+      }
 
-  width: 20px;
-  height: 20px;
+      .header-link {
+        font-size: 8px;
+      }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      .header-social {
+        width: 18px;
+        height: 18px;
+      }
 
-  color: #aaa;
+      .header-social svg {
+        width: 16px;
+        height: 16px;
+      }
 
-  text-decoration: none;
+      .logo-placeholder {
+        width: 75px;
+        height: 34px;
+      }
 
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
-}
 
-.header-social svg {
-  width: 18px;
-  height: 18px;
-
-  fill: none;
-
-  stroke: currentColor;
-
-  stroke-width: 1.7;
-
-  stroke-linecap: round;
-  stroke-linejoin: round;
-
-  transition:
-    filter 0.3s ease;
-}
-
-.header-social:hover {
-  color: #FF2B2B;
-
-  transform: translateY(-2px);
-}
-
-.header-social:hover svg {
-  filter:
-    drop-shadow(-1px 0 rgba(255, 0, 80, 0.25))
-    drop-shadow(1px 0 rgba(0, 140, 255, 0.25));
-}
-.header-social svg {
-  width: 16px;
-  height: 16px;
-}
-
-.logo-placeholder {
-  width: 75px;
-  height: 34px;
-}
+      /* HERO */
 
       .hero {
-        padding: 100px 20px 60px;
+        height: 100svh;
+
+        min-height: 600px;
+
+        padding:
+          100px
+          20px
+          60px;
       }
 
       .hero-title {
-        font-size: clamp(75px, 22vw, 150px);
+        font-size:
+          clamp(
+            75px,
+            22vw,
+            150px
+          );
       }
 
       .hero-subtitle {
         font-size: 12px;
+
         margin-top: 35px;
       }
 
+
+      /* PROJECTS */
+
       .projects {
-        padding: 100px 20px 120px;
+        padding:
+          100px
+          20px
+          120px;
+
+        scroll-margin-top: 80px;
       }
 
       .section-title {
-        font-size: clamp(75px, 22vw, 150px);
+        font-size:
+          clamp(
+            75px,
+            22vw,
+            150px
+          );
       }
 
       .grid {
         grid-template-columns: 1fr;
+
         gap: 50px;
       }
 
@@ -815,837 +1192,49 @@
         font-size: 26px;
       }
 
+
+      /* FOOTER */
+
       footer {
-        padding: 60px 20px 25px;
+        padding:
+          60px
+          20px
+          25px;
       }
 
       .footer-title {
-        font-size: clamp(75px, 22vw, 150px);
+        font-size:
+          clamp(
+            75px,
+            22vw,
+            150px
+          );
       }
 
       .footer-bottom {
         margin-top: 90px;
-        align-items: flex-start;
-        flex-direction: column;
+
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
       }
+
+
+      /* MODAL */
 
       .modal {
         padding: 15px;
       }
 
+      .close-modal {
+        bottom:
+          calc(100% + 10px);
+      }
+
     }
-/* =========================
-   FINAL LAYOUT FIX
-========================= */
 
-.projects {
-  width: 100% !important;
-  padding-left: 5vw !important;
-  padding-right: 5vw !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-.grid {
-  width: 100% !important;
-}
-
-.section-title,
-.filters {
-  width: 100%;
-}
-    /* =========================
-   FINAL HEADER FIX
-========================= */
-
-.site-header {
-  position: fixed !important;
-
-  top: 0 !important;
-  left: 0 !important;
-
-  width: 100% !important;
-
-  padding: 20px 0 !important;
-
-  z-index: 1000 !important;
-
-  pointer-events: none;
-}
-
-.header-glass {
-  position: relative !important;
-
-  width: min(760px, calc(100vw - 60px)) !important;
-
-  margin: 0 auto !important;
-
-  pointer-events: auto !important;
-
-  border-radius: 999px !important;
-}
-
-.header-glass::before {
-  pointer-events: none !important;
-}
-
-.header-glass > * {
-  position: relative !important;
-  z-index: 5 !important;
-}
-
-.header-right {
-  display: flex !important;
-
-  align-items: center !important;
-
-  gap: 20px !important;
-}
-
-.header-link,
-.header-social {
-  position: relative !important;
-
-  z-index: 10 !important;
-
-  pointer-events: auto !important;
-}
-    .header-link {
-  color: #aaa !important;
-
-  text-decoration: none;
-
-  transition:
-    color 0.3s ease,
-    text-shadow 0.3s ease;
-}
-
-.header-link:hover {
-  color: #FF2B2B !important;
-
-  text-shadow:
-    -0.5px 0 rgba(255, 0, 80, 0.35),
-    0.5px 0 rgba(0, 140, 255, 0.35);
-}
-
-.header-social {
-  color: #aaa !important;
-
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.header-social:hover {
-  color: #FF2B2B !important;
-
-  transform: translateY(-2px);
-}
-
-.header-social svg {
-  stroke: currentColor !important;
-}
-    @media (max-width: 800px) {
-
-  .site-header {
-    padding: 12px 0 !important;
-  }
-
-  .header-glass {
-    width: calc(100vw - 24px) !important;
-
-    min-height: 54px;
-
-    padding: 7px 12px !important;
-  }
-
-  .header-right {
-    gap: 12px !important;
-  }
-
-  .header-link {
-    font-size: 8px;
-  }
-
-  .header-social {
-    width: 18px;
-    height: 18px;
-  }
-
-  .header-social svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .projects {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-
-}
-    /* =========================
-   SCROLL ARRIVAL
-========================= */
-
-.projects {
-  scroll-margin-top: 120px !important;
-}
-    /* =========================
-   IRIDESCENT SCROLL FRAME
-========================= */
-
-.scroll-frame {
-  position: relative;
-
-  isolation: isolate;
-
-  border-color: rgba(120, 120, 120, 0.65);
-
-  background: rgba(5, 5, 8, 0.18);
-
-  overflow: visible;
-
-  transition:
-    border-color 0.5s ease,
-    box-shadow 0.5s ease;
-}
-
-
-
-
-
-    .scroll-indicator:hover .scroll-frame {
-  border-color: rgba(255, 43, 43, 0.75);
-
-  box-shadow:
-    0 0 15px rgba(255, 43, 43, 0.10),
-    0 0 35px rgba(70, 100, 255, 0.06);
-}
-
-.scroll-indicator:hover .scroll-frame::before {
-  opacity: 0.30;
-
-  filter: blur(7px);
-
-  animation-duration: 4s;
-}
-
-.scroll-indicator:hover .scroll-frame::after {
-  opacity: 0.24;
-}
-
-.scroll-indicator:hover .scroll-line {
-  background: #FF2B2B;
-
-  box-shadow:
-    0 0 8px rgba(255, 43, 43, 0.45);
-}
-
-.scroll-indicator:hover .scroll-label {
-  color: #FF2B2B;
-}
-    /* ========================================
-   FINAL SCROLL DESIGN
-   Minimal / Iridescent / Liquid
-======================================== */
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-
-  background: transparent;
-  border: none;
-
-  cursor: pointer;
-
-  z-index: 20;
-}
-
-
-/* CADRE */
-
-.scroll-frame {
-  position: relative;
-
-  width: 30px;
-  height: 54px;
-
-  border-radius: 999px;
-
-  border: 1px solid rgba(180, 180, 190, 0.55);
-
-  background: rgba(8, 10, 15, 0.5);
-
-  overflow: hidden;
-
-  isolation: isolate;
-
-  box-shadow:
-    inset 0 0 12px rgba(255, 255, 255, 0.025);
-
-  transition:
-    border-color 0.5s ease,
-    box-shadow 0.5s ease;
-}
-
-
-/* LIQUIDE */
-
-.scroll-frame::before {
-  content: "";
-
-  position: absolute;
-  inset: -1px;
-
-  border-radius: 999px;
-
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent 0deg,
-      transparent 35deg,
-
-      rgba(40, 120, 255, 0.9) 65deg,
-      rgba(150, 50, 255, 0.95) 105deg,
-      rgba(255, 50, 160, 0.9) 140deg,
-      rgba(255, 70, 70, 0.8) 170deg,
-
-      transparent 210deg,
-      transparent 360deg
-    );
-
-  padding: 1px;
-
-  /*
-    On transforme le gradient
-    en contour uniquement
-  */
-
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-
-  -webkit-mask-composite: xor;
-
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-
-  mask-composite: exclude;
-
-  filter: blur(1.5px);
-
-  opacity: 0.45;
-
-  animation:
-    liquidBorder 6s linear infinite;
-
-  pointer-events: none;
-}
-
-
-.scroll-frame::after {
-  content: "";
-
-  position: absolute;
-  inset: -2px;
-
-  border-radius: 999px;
-
-  background:
-    conic-gradient(
-      from 180deg,
-      transparent 0deg,
-      transparent 45deg,
-
-      rgba(50, 150, 255, 0.35) 80deg,
-      rgba(180, 60, 255, 0.3) 120deg,
-      rgba(255, 60, 140, 0.3) 160deg,
-
-      transparent 205deg,
-      transparent 360deg
-    );
-
-  padding: 2px;
-
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-
-  -webkit-mask-composite: xor;
-
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-
-  mask-composite: exclude;
-
-  filter: blur(5px);
-
-  opacity: 0.25;
-
-  animation:
-    liquidBorderGlow 8s linear infinite;
-
-  pointer-events: none;
-}
-
-
-/* PETIT TRAIT */
-
-.scroll-line {
-  position: absolute;
-
-  top: 8px;
-  left: 50%;
-
-  width: 2px;
-  height: 13px;
-
-  transform: translateX(-50%);
-
-  border-radius: 999px;
-
-  background: #666;
-
-  animation:
-    scrollLine 1.8s ease-in-out infinite;
-
-  transition:
-    background 0.4s ease,
-    box-shadow 0.4s ease;
-}
-
-
-/* MOUVEMENT DU LIQUIDE */
-
-@keyframes liquidBorder {
-
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-
-}
-
-
-@keyframes liquidBorderGlow {
-
-  0% {
-    transform: rotate(360deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-
-}
-
-
-/* ANIMATION SCROLL */
-
-@keyframes scrollLine {
-
-  0% {
-    transform:
-      translate(-50%, 0);
-  }
-
-  50% {
-    transform:
-      translate(-50%, 24px);
-  }
-
-  100% {
-    transform:
-      translate(-50%, 0);
-  }
-
-}
-
-
-/* =========================
-   HOVER
-========================= */
-
-.scroll-indicator:hover .scroll-frame {
-  border-color: rgba(180, 180, 190, 0.65);
-
-  box-shadow:
-    0 0 18px rgba(80, 100, 255, 0.06);
-}
-
-.scroll-indicator:hover .scroll-frame::before {
-  opacity: 0.65;
-
-  filter: blur(1px);
-
-  animation-duration: 3.5s;
-}
-
-.scroll-indicator:hover .scroll-frame::after {
-  opacity: 0.38;
-
-  animation-duration: 5s;
-}
-
-.scroll-indicator:hover .scroll-line {
-  background: #aaa;
-
-  box-shadow:
-    0 0 8px rgba(255,255,255,0.15);
-}
-
-.scroll-indicator:hover .scroll-label {
-  color: #aaa;
-}
-
-
-.scroll-indicator:hover .scroll-frame::before {
-
-  opacity: 0.42;
-
-  filter: blur(7px);
-
-  animation-duration: 3.5s;
-}
-
-
-.scroll-indicator:hover .scroll-frame::after {
-
-  opacity: 0.30;
-}
-
-
-.scroll-indicator:hover .scroll-line {
-
-  background: #FF2B2B;
-
-  box-shadow:
-    0 0 6px rgba(255,43,43,0.5);
-}
-
-
-.scroll-indicator:hover .scroll-label {
-
-  color: #FF2B2B;
-}
-
-
-/* LABEL */
-
-.scroll-label {
-
-  color: #666;
-
-  font-size: 9px;
-
-  font-weight: bold;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.22em;
-
-  transition:
-    color 0.3s ease;
-}
-    /* ========================================
-   SCROLL — SVG LIQUID BORDER
-======================================== */
-
-.scroll-frame {
-  position: relative;
-
-  width: 30px;
-  height: 54px;
-
-  border-radius: 999px;
-
-  background: rgba(5, 5, 8, 0.25);
-
-  border: none;
-
-  overflow: visible;
-
-  isolation: isolate;
-}
-
-
-/* SVG */
-
-.scroll-liquid {
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  overflow: visible;
-
-  pointer-events: none;
-}
-
-
-/* CONTOUR GRIS */
-
-.scroll-outline {
-  fill: none;
-
-  stroke: rgba(150, 150, 155, 0.55);
-
-  stroke-width: 0.8;
-}
-
-
-/* LIQUIDE */
-
-.scroll-liquid-path {
-  fill: none;
-
-  stroke-width: 1.35;
-
-  stroke-linecap: round;
-  stroke-linejoin: round;
-
-  stroke: url(#scrollGradient);
-
-  opacity: 0.62;
-
-  filter:
-    drop-shadow(
-      0 0 2px
-      rgba(100, 100, 255, 0.25)
-    );
-
-  animation:
-    liquidWarp 5s ease-in-out infinite;
-}
-
-
-/* HALO */
-
-.scroll-glow {
-  fill: none;
-
-  stroke: url(#scrollGradient);
-
-  stroke-width: 3;
-
-  stroke-linecap: round;
-
-  opacity: 0.14;
-
-  filter: blur(3px);
-
-  animation:
-    liquidWarpGlow 7s ease-in-out infinite;
-}
-
-@keyframes liquidWarp {
-
-  0% {
-    transform:
-      translate(0, 0)
-      scaleX(1)
-      scaleY(1);
-  }
-
-  25% {
-    transform:
-      translate(0.4px, -0.3px)
-      scaleX(1.015)
-      scaleY(0.985);
-  }
-
-  50% {
-    transform:
-      translate(-0.3px, 0.4px)
-      scaleX(0.985)
-      scaleY(1.015);
-  }
-
-  75% {
-    transform:
-      translate(0.3px, 0.2px)
-      scaleX(1.01)
-      scaleY(0.99);
-  }
-
-  100% {
-    transform:
-      translate(0, 0)
-      scaleX(1)
-      scaleY(1);
-  }
-
-}
-
-
-@keyframes liquidWarpGlow {
-
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.035);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-
-}
-
-
-/* PETIT TRAIT CENTRAL */
-
-.scroll-line {
-
-  position: absolute;
-
-  top: 8px;
-  left: 50%;
-
-  width: 2px;
-  height: 13px;
-
-  transform:
-    translateX(-50%);
-
-  border-radius: 999px;
-
-  background: #666;
-
-  animation:
-    scrollLine 1.8s ease-in-out infinite;
-
-  transition:
-    background 0.4s ease,
-    box-shadow 0.4s ease;
-
-}
-
-
-/* ANIMATION DU TRAIT */
-
-@keyframes scrollLine {
-
-  0% {
-    transform:
-      translate(-50%, 0);
-  }
-
-  50% {
-    transform:
-      translate(-50%, 24px);
-  }
-
-  100% {
-    transform:
-      translate(-50%, 0);
-  }
-
-}
-
-
-/* LABEL */
-
-.scroll-label {
-
-  color: #666;
-
-  font-size: 9px;
-
-  font-weight: bold;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.22em;
-
-  transition:
-    color 0.3s ease;
-
-}
-
-
-/* HOVER — PAS DE ROUGE */
-
-.scroll-indicator:hover .scroll-frame {
-
-  box-shadow:
-    0 0 16px rgba(90, 110, 255, 0.08);
-
-}
-
-
-.scroll-indicator:hover .scroll-liquid-path {
-
-  filter:
-    drop-shadow(0 0 3px rgba(100, 120, 255, 0.45));
-
-}
-
-
-.scroll-indicator:hover .scroll-glow {
-
-  opacity: 0.25;
-
-}
-
-
-.scroll-indicator:hover .scroll-line {
-
-  background: #aaa;
-
-}
-
-
-.scroll-indicator:hover .scroll-label {
-
-  color: #aaa;
-
-}
-    /* ========================================
-   HERO — FULL SCREEN
-======================================== */
-
-.hero {
-   height: 100vh;
-  min-height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  padding: 100px 5vw 60px;
-
-  position: relative;
-}
-
-    /* ========================================
-   HERO / PROJECTS SEPARATION
-======================================== */
-
-
-
-.projects {
-  margin-top: 120px !important;
-  
-}
-    
   </style>
 </head>
 
@@ -1653,139 +1242,157 @@
 <body>
 
 
-  <!-- =========================
+  <!-- =========================================================
        HEADER
-  ========================= -->
+  ========================================================= -->
 
-<header class="site-header">
+  <header class="site-header">
 
-  <div class="header-glass">
+    <div class="header-glass">
 
-    <div class="logo-placeholder">
-      LOGO
+      <div class="logo-placeholder">
+        LOGO
+      </div>
+
+
+      <div class="header-right">
+
+        <!-- CONTACT -->
+
+        <a
+          href="mailto:faucompre.guillaume@gmail.com"
+          class="header-link"
+          aria-label="Envoyer un email"
+        >
+          Contact
+        </a>
+
+
+        <!-- INSTAGRAM -->
+
+        <a
+          href="https://www.instagram.com/gui.mov_/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="header-social"
+          aria-label="Instagram"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="5"
+            />
+
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+            />
+
+            <circle
+              cx="17.5"
+              cy="6.5"
+              r="1.1"
+              class="instagram-dot"
+            />
+
+          </svg>
+
+        </a>
+
+
+        <!-- LINKEDIN -->
+
+        <a
+          href="https://www.linkedin.com/in/guillaume-faucompr%C3%A9-b18381105/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="header-social"
+          aria-label="LinkedIn"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="2"
+            />
+
+            <line
+              x1="8"
+              y1="10"
+              x2="8"
+              y2="17"
+            />
+
+            <circle
+              cx="8"
+              cy="7"
+              r="1"
+              class="linkedin-dot"
+            />
+
+            <path
+              d="M12 17v-4c0-2 1-3 3-3s3 1.2 3 3v4"
+            />
+
+            <line
+              x1="18"
+              y1="13"
+              x2="18"
+              y2="17"
+            />
+
+          </svg>
+
+        </a>
+
+      </div>
+
     </div>
 
-    <div class="header-right">
-
-    <a
-  href="mailto:faucompre.guillaume@gmail.com"
-  class="header-link"
-  aria-label="Envoyer un email"
->
-  Contact
-</a>
-
-     <a
-  href="https://www.instagram.com/gui.mov_/"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="header-social"
-  aria-label="Instagram"
->
-
-  <svg
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
-
-    <rect
-      x="3"
-      y="3"
-      width="18"
-      height="18"
-      rx="5"
-    />
-
-    <circle
-      cx="12"
-      cy="12"
-      r="4"
-    />
-
-    <circle
-      cx="17.5"
-      cy="6.5"
-      r="1.1"
-      class="instagram-dot"
-    />
-
-  </svg>
-
-</a>
+  </header>
 
 
-<a
-  href="https://www.linkedin.com/in/guillaume-faucompr%C3%A9-b18381105/"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="header-social"
-  aria-label="LinkedIn"
->
-
-  <svg
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
-
-    <rect
-      x="3"
-      y="3"
-      width="18"
-      height="18"
-      rx="2"
-    />
-
-    <line
-      x1="8"
-      y1="10"
-      x2="8"
-      y2="17"
-    />
-
-    <circle
-      cx="8"
-      cy="7"
-      r="1"
-      class="linkedin-dot"
-    />
-
-    <path
-      d="M12 17v-4c0-2 1-3 3-3s3 1.2 3 3v4"
-    />
-
-    <line
-      x1="18"
-      y1="13"
-      x2="18"
-      y2="17"
-    />
-
-  </svg>
-
-</a>
-    </div>
-
-  </div>
-
-</header>
-
-
-  <!-- =========================
-       HERO
-  ========================= -->
+  <!-- =========================================================
+       MAIN
+  ========================================================= -->
 
   <main>
 
-    <section class="hero">
+
+    <!-- =======================================================
+         HERO
+    ======================================================= -->
+
+    <section class="hero" id="home">
 
       <h1 class="hero-title">
         Guillaume<br>
         Faucompré
       </h1>
 
+
       <p class="hero-subtitle">
         Vidéaste · Motion Designer
       </p>
+
+
+      <!-- SHOWREEL -->
 
       <button
         class="showreel-button"
@@ -1795,156 +1402,144 @@
       </button>
 
 
-      <!-- SCROLL -->
+      <!-- =====================================================
+           SCROLL
+      ===================================================== -->
 
-   <button
-  class="scroll-indicator"
-  onclick="scrollToProjects()"
-  aria-label="Voir les réalisations"
->
+      <button
+        class="scroll-indicator"
+        onclick="scrollToProjects()"
+        aria-label="Voir les réalisations"
+      >
 
-  <span class="scroll-frame">
+        <span class="scroll-frame">
 
-    <svg
-      class="scroll-liquid"
-      viewBox="0 0 30 54"
-      aria-hidden="true"
-    >
-      <defs>
+          <svg
+            class="scroll-liquid"
+            viewBox="0 0 30 54"
+            aria-hidden="true"
+          >
 
-<linearGradient
-  id="scrollGradient"
-  x1="0%"
-  y1="0%"
-  x2="100%"
-  y2="100%"
->
-  <stop offset="0%" stop-color="#246BFF">
-    <animate
-      attributeName="stop-color"
-      values="#246BFF;#8A3FFC;#FF3CA8;#246BFF"
-      dur="6s"
-      repeatCount="indefinite"
-    />
-  </stop>
+            <defs>
 
-  <stop offset="25%" stop-color="#8A3FFC">
-    <animate
-      attributeName="stop-color"
-      values="#8A3FFC;#FF3CA8;#246BFF;#8A3FFC"
-      dur="7s"
-      repeatCount="indefinite"
-    />
-  </stop>
+              <linearGradient
+                id="scrollGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
 
-  <stop offset="50%" stop-color="#FF3CA8">
-    <animate
-      attributeName="stop-color"
-      values="#FF3CA8;#FF5368;#8A3FFC;#FF3CA8"
-      dur="8s"
-      repeatCount="indefinite"
-    />
-  </stop>
+                <stop offset="0%">
+                  <animate
+                    attributeName="stop-color"
+                    values="#246BFF;#8A3FFC;#FF3CA8;#246BFF"
+                    dur="6s"
+                    repeatCount="indefinite"
+                  />
+                </stop>
 
-  <stop offset="75%" stop-color="#FF5368">
-    <animate
-      attributeName="stop-color"
-      values="#FF5368;#39D9FF;#FF3CA8;#FF5368"
-      dur="7.5s"
-      repeatCount="indefinite"
-    />
-  </stop>
+                <stop offset="25%">
+                  <animate
+                    attributeName="stop-color"
+                    values="#8A3FFC;#FF3CA8;#246BFF;#8A3FFC"
+                    dur="7s"
+                    repeatCount="indefinite"
+                  />
+                </stop>
 
-  <stop offset="100%" stop-color="#39D9FF">
-    <animate
-      attributeName="stop-color"
-      values="#39D9FF;#246BFF;#FF5368;#39D9FF"
-      dur="6.5s"
-      repeatCount="indefinite"
-    />
-  </stop>
-</linearGradient>
+                <stop offset="50%">
+                  <animate
+                    attributeName="stop-color"
+                    values="#FF3CA8;#FF5368;#8A3FFC;#FF3CA8"
+                    dur="8s"
+                    repeatCount="indefinite"
+                  />
+                </stop>
 
-    <stop
-      offset="0%"
-      stop-color="#2768ff"
-    />
+                <stop offset="75%">
+                  <animate
+                    attributeName="stop-color"
+                    values="#FF5368;#39D9FF;#FF3CA8;#FF5368"
+                    dur="7.5s"
+                    repeatCount="indefinite"
+                  />
+                </stop>
 
-    <stop
-      offset="25%"
-      stop-color="#8d3cff"
-    />
+                <stop offset="100%">
+                  <animate
+                    attributeName="stop-color"
+                    values="#39D9FF;#246BFF;#FF5368;#39D9FF"
+                    dur="6.5s"
+                    repeatCount="indefinite"
+                  />
+                </stop>
 
-    <stop
-      offset="50%"
-      stop-color="#ff4bb3"
-    />
+              </linearGradient>
 
-    <stop
-      offset="70%"
-      stop-color="#ff5368"
-    />
+            </defs>
 
-    <stop
-      offset="100%"
-      stop-color="#39d9ff"
-    />
 
-  </linearGradient>
+            <!-- contour gris -->
 
-</defs>
+            <rect
+              class="scroll-outline"
+              x="1"
+              y="1"
+              width="28"
+              height="52"
+              rx="14"
+              ry="14"
+            />
 
-      <!-- contour gris -->
-      <rect
-        class="scroll-outline"
-        x="1"
-        y="1"
-        width="28"
-        height="52"
-        rx="14"
-        ry="14"
-      />
 
-      <!-- halo -->
-      <rect
-        class="scroll-glow"
-        x="1"
-        y="1"
-        width="28"
-        height="52"
-        rx="14"
-        ry="14"
-      />
+            <!-- halo -->
 
-      <!-- matière irisée -->
-      <rect
-        class="scroll-liquid-path"
-        x="1"
-        y="1"
-        width="28"
-        height="52"
-        rx="14"
-        ry="14"
-      />
+            <rect
+              class="scroll-glow"
+              x="1"
+              y="1"
+              width="28"
+              height="52"
+              rx="14"
+              ry="14"
+            />
 
-    </svg>
 
-    <span class="scroll-line"></span>
+            <!-- matière irisée -->
 
-  </span>
+            <rect
+              class="scroll-liquid-path"
+              x="1"
+              y="1"
+              width="28"
+              height="52"
+              rx="14"
+              ry="14"
+            />
 
-  <span class="scroll-label">
-    Scroll
-  </span>
+          </svg>
 
-</button>
+
+          <!-- trait central -->
+
+          <span class="scroll-line"></span>
+
+        </span>
+
+
+        <span class="scroll-label">
+          Scroll
+        </span>
+
+      </button>
 
     </section>
 
 
-    <!-- =========================
+    <!-- =======================================================
          PROJECTS
-    ========================= -->
+    ======================================================= -->
 
     <section
       class="projects"
@@ -1955,6 +1550,8 @@
         Réalisations
       </h2>
 
+
+      <!-- FILTRES -->
 
       <div class="filters">
 
@@ -1982,10 +1579,14 @@
       </div>
 
 
+      <!-- GRILLE -->
+
       <div class="grid">
 
 
-        <!-- PROJECT 1 -->
+        <!-- =================================================
+             PROJECT 1
+        ================================================== -->
 
         <article
           class="project"
@@ -2003,7 +1604,6 @@
             >
 
           </div>
-
 
           <div class="project-info">
 
@@ -2024,7 +1624,9 @@
         </article>
 
 
-        <!-- PROJECT 2 -->
+        <!-- =================================================
+             PROJECT 2
+        ================================================== -->
 
         <article
           class="project"
@@ -2042,7 +1644,6 @@
             >
 
           </div>
-
 
           <div class="project-info">
 
@@ -2063,7 +1664,9 @@
         </article>
 
 
-        <!-- PROJECT 3 -->
+        <!-- =================================================
+             PROJECT 3
+        ================================================== -->
 
         <article
           class="project"
@@ -2081,7 +1684,6 @@
             >
 
           </div>
-
 
           <div class="project-info">
 
@@ -2102,7 +1704,9 @@
         </article>
 
 
-        <!-- PROJECT 4 -->
+        <!-- =================================================
+             PROJECT 4
+        ================================================== -->
 
         <article
           class="project"
@@ -2120,7 +1724,6 @@
             >
 
           </div>
-
 
           <div class="project-info">
 
@@ -2141,7 +1744,9 @@
         </article>
 
 
-        <!-- PROJECT 5 -->
+        <!-- =================================================
+             PROJECT 5
+        ================================================== -->
 
         <article
           class="project"
@@ -2159,7 +1764,6 @@
             >
 
           </div>
-
 
           <div class="project-info">
 
@@ -2187,9 +1791,9 @@
   </main>
 
 
-  <!-- =========================
+  <!-- =========================================================
        FOOTER
-  ========================= -->
+  ========================================================= -->
 
   <footer>
 
@@ -2325,7 +1929,6 @@
 
         </a>
 
-
       </div>
 
     </div>
@@ -2333,9 +1936,9 @@
   </footer>
 
 
-  <!-- =========================
+  <!-- =========================================================
        VIDEO MODAL
-  ========================= -->
+  ========================================================= -->
 
   <div
     class="modal"
@@ -2352,7 +1955,6 @@
       >
         ×
       </button>
-
 
       <div class="video-container">
 
@@ -2371,16 +1973,16 @@
   </div>
 
 
-  <!-- =========================
+  <!-- =========================================================
        JAVASCRIPT
-  ========================= -->
+  ========================================================= -->
 
   <script>
 
 
-    /* -------------------------
+    /* =========================================================
        VIDEO POPUP
-    ------------------------- */
+    ========================================================= */
 
     const modal =
       document.getElementById("videoModal");
@@ -2399,11 +2001,15 @@
       modal.classList.add("open");
 
       document.body.style.overflow = "hidden";
-
     }
 
 
     function closeVideo(event) {
+
+      /*
+        Si on clique à l'intérieur de la fenêtre vidéo,
+        on ne ferme pas.
+      */
 
       if (
         event &&
@@ -2417,13 +2023,12 @@
       player.src = "";
 
       document.body.style.overflow = "";
-
     }
 
 
-    /* -------------------------
+    /* =========================================================
        ESCAPE
-    ------------------------- */
+    ========================================================= */
 
     document.addEventListener(
       "keydown",
@@ -2436,174 +2041,254 @@
           player.src = "";
 
           document.body.style.overflow = "";
-
         }
 
       }
     );
 
 
-    /* -------------------------
+    /* =========================================================
        SMOOTH SCROLL
-    ------------------------- */
+    ========================================================= */
 
-   function scrollToProjects() {
+    function scrollToProjects() {
 
-  const target =
-    document.getElementById("realisations");
+      const target =
+        document.getElementById("realisations");
 
-  const start =
-    window.pageYOffset;
-
-  const targetPosition =
-    target.getBoundingClientRect().top +
-    window.pageYOffset -
-    120;
-
-  const distance =
-    targetPosition - start;
-
-  const duration = 1200;
-
-  let startTime = null;
+      if (!target) return;
 
 
-  function animation(currentTime) {
+      /*
+        Position réelle de la section
+      */
 
-    if (!startTime) {
-      startTime = currentTime;
+      const targetPosition =
+        target.getBoundingClientRect().top +
+        window.scrollY;
+
+
+      /*
+        Hauteur du header.
+        On laisse suffisamment de place
+        pour qu'il reste au-dessus du titre.
+      */
+
+      const header =
+        document.querySelector(".header-glass");
+
+      const headerHeight =
+        header
+          ? header.getBoundingClientRect().height
+          : 60;
+
+
+      const offset =
+        headerHeight + 35;
+
+
+      const finalPosition =
+        targetPosition - offset;
+
+
+      const start =
+        window.scrollY;
+
+
+      const distance =
+        finalPosition - start;
+
+
+      const duration =
+        1200;
+
+
+      let startTime = null;
+
+
+      function animation(currentTime) {
+
+        if (!startTime) {
+          startTime = currentTime;
+        }
+
+
+        const elapsed =
+          currentTime - startTime;
+
+
+        const progress =
+          Math.min(
+            elapsed / duration,
+            1
+          );
+
+
+        /*
+          Ease in / ease out
+        */
+
+        const ease =
+          progress < 0.5
+
+            ? 4 *
+              progress *
+              progress *
+              progress
+
+            : 1 -
+              Math.pow(
+                -2 * progress + 2,
+                3
+              ) / 2;
+
+
+        window.scrollTo(
+          0,
+          start +
+          distance *
+          ease
+        );
+
+
+        if (progress < 1) {
+
+          requestAnimationFrame(
+            animation
+          );
+
+        }
+
+      }
+
+
+      requestAnimationFrame(
+        animation
+      );
+
     }
 
-    const elapsed =
-      currentTime - startTime;
 
-    const progress =
-      Math.min(elapsed / duration, 1);
+    /* =========================================================
+       FILTERS
+    ========================================================= */
 
+    const filters =
+      document.querySelectorAll(
+        ".filter"
+      );
 
-    /*
-      Courbe :
-      démarrage doux
-      accélération
-      ralentissement doux
-      arrivée douce
-    */
-
-    const ease =
-      progress < 0.5
-        ? 4 * progress * progress * progress
-        : 1 -
-          Math.pow(
-            -2 * progress + 2,
-            3
-          ) / 2;
+    const projects =
+      document.querySelectorAll(
+        ".project"
+      );
 
 
-    window.scrollTo(
-      0,
-      start + distance * ease
+    filters.forEach(
+      function(filter) {
+
+        filter.addEventListener(
+          "click",
+          function() {
+
+            filters.forEach(
+              function(button) {
+
+                button.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+            filter.classList.add(
+              "active"
+            );
+
+
+            const selectedFilter =
+              filter.dataset.filter;
+
+
+            projects.forEach(
+              function(project) {
+
+                const category =
+                  project.dataset.category;
+
+
+                if (
+                  selectedFilter === "all" ||
+                  selectedFilter === category
+                ) {
+
+                  project.classList.remove(
+                    "hidden"
+                  );
+
+
+                  setTimeout(
+                    function() {
+
+                      project.classList.add(
+                        "visible"
+                      );
+
+                    },
+                    50
+                  );
+
+                } else {
+
+                  project.classList.remove(
+                    "visible"
+                  );
+
+                  project.classList.add(
+                    "hidden"
+                  );
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+      }
     );
 
 
-    if (progress < 1) {
-
-      requestAnimationFrame(animation);
-
-    }
-
-  }
-
-
-  requestAnimationFrame(animation);
-
-}
-
-    /* -------------------------
-       FILTRES
-    ------------------------- */
-
-    const filters =
-      document.querySelectorAll(".filter");
-
-    const projects =
-      document.querySelectorAll(".project");
-
-
-    filters.forEach(function(filter) {
-
-      filter.addEventListener(
-        "click",
-        function() {
-
-          filters.forEach(function(button) {
-
-            button.classList.remove("active");
-
-          });
-
-
-          filter.classList.add("active");
-
-
-          const selectedFilter =
-            filter.dataset.filter;
-
-
-          projects.forEach(function(project) {
-
-            const category =
-              project.dataset.category;
-
-
-            if (
-              selectedFilter === "all" ||
-              selectedFilter === category
-            ) {
-
-              project.classList.remove("hidden");
-
-              setTimeout(function() {
-
-                project.classList.add("visible");
-
-              }, 50);
-
-            } else {
-
-              project.classList.remove("visible");
-
-              project.classList.add("hidden");
-
-            }
-
-          });
-
-        }
-      );
-
-    });
-
-
-    /* -------------------------
-       APPARITION AU SCROLL
-    ------------------------- */
+    /* =========================================================
+       PROJECTS — APPEAR ON SCROLL
+    ========================================================= */
 
     const observer =
       new IntersectionObserver(
 
         function(entries) {
 
-          entries.forEach(function(entry) {
+          entries.forEach(
+            function(entry) {
 
-            if (entry.isIntersecting) {
+              if (
+                entry.isIntersecting
+              ) {
 
-              entry.target.classList.add("visible");
+                entry.target.classList.add(
+                  "visible"
+                );
 
-              observer.unobserve(entry.target);
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
 
             }
-
-          });
+          );
 
         },
 
@@ -2614,11 +2299,15 @@
       );
 
 
-    projects.forEach(function(project) {
+    projects.forEach(
+      function(project) {
 
-      observer.observe(project);
+        observer.observe(
+          project
+        );
 
-    });
+      }
+    );
 
 
   </script>
