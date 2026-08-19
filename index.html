@@ -1,72 +1,3820 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guillaume Faucompré — Vidéaste & Motion Designer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-<style>
-:root{--red:#FF2B2B;--black:#050505;--white:#fff}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;background:var(--black)}
-body{background:var(--black);color:var(--white);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
-button,a{font-family:inherit}
-.site-header{position:fixed;top:0;left:0;width:100%;padding:20px 0;z-index:1000;pointer-events:none;transition:padding .45s ease}
-.header-glass{position:relative;width:min(760px,calc(100vw - 40px));min-height:58px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:8px 16px 8px 18px;border-radius:999px;background:rgba(8,8,8,.58);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(18px) saturate(110%);-webkit-backdrop-filter:blur(18px) saturate(110%);box-shadow:0 12px 45px rgba(0,0,0,.22);opacity:.88;pointer-events:auto;transition:background .45s,border-color .45s,box-shadow .45s,opacity .45s,transform .45s}
-.header-glass:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.055),transparent 45%);opacity:.7}.header-glass>*{position:relative;z-index:2}.site-header.scrolled{padding-top:12px}.site-header.scrolled .header-glass{background:rgba(5,5,5,.82);border-color:rgba(255,255,255,.14);box-shadow:0 14px 50px rgba(0,0,0,.38);opacity:.96;transform:scale(.97)}
-.site-logo{width:90px;height:40px;display:flex;align-items:center;text-decoration:none;flex-shrink:0}.site-logo img{display:block;width:100%;height:100%;object-fit:contain;object-position:left center;transition:transform .3s,opacity .3s}.site-logo:hover img{transform:scale(1.035);opacity:.78}
-.header-right{display:flex;align-items:center;gap:20px}.header-link{position:relative;color:#aaa;text-decoration:none;font-size:10px;font-weight:bold;text-transform:uppercase;letter-spacing:.1em;transition:color .3s}.header-link:after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--red);transition:width .3s}.header-link:hover{color:#fff}.header-link:hover:after{width:100%}.header-social{width:20px;height:20px;display:flex;align-items:center;justify-content:center;color:#777;text-decoration:none;transition:color .3s,transform .3s}.header-social svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.header-social:hover{color:var(--red);transform:translateY(-2px)}.instagram-dot,.linkedin-dot{fill:currentColor;stroke:none}
-.hero{position:relative;width:100%;height:100vh;height:100svh;min-height:600px;display:flex;flex-direction:column;justify-content:center;padding:100px 5vw 60px;overflow:hidden;background:#050505}.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;filter:brightness(.72) contrast(1.05);transform:scale(1.01)}.hero-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.2) 55%,rgba(0,0,0,.35));box-shadow:inset 0 0 180px rgba(0,0,0,.45)}.hero-content{position:relative;z-index:2}.hero-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(90px,17vw,270px);line-height:.78;letter-spacing:-.015em;text-transform:uppercase;max-width:1500px;text-shadow:0 4px 30px rgba(0,0,0,.25)}.hero-subtitle{margin-top:45px;font-size:16px;text-transform:uppercase;letter-spacing:.12em;color:var(--red);font-weight:bold;text-shadow:0 2px 15px rgba(0,0,0,.5)}.showreel-button{margin-top:45px;width:fit-content;padding:15px 28px;border:1px solid rgba(255,255,255,.35);border-radius:100px;background:rgba(0,0,0,.15);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:white;font-size:12px;font-weight:bold;letter-spacing:.15em;cursor:pointer;transition:.3s}.showreel-button:hover{background:var(--red);border-color:var(--red);transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,43,43,.3)}
-.scroll-indicator{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;background:transparent;border:0;cursor:pointer;z-index:20}.scroll-frame{position:relative;width:30px;height:54px;border-radius:999px;background:rgba(5,5,8,.25);overflow:visible}.scroll-liquid{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}.scroll-outline{fill:none;stroke:rgba(150,150,155,.55);stroke-width:.8}.scroll-liquid-path{fill:none;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;stroke:url(#scrollGradient);opacity:.62;animation:liquidWarp 5s ease-in-out infinite}.scroll-glow{fill:none;stroke:url(#scrollGradient);stroke-width:3;stroke-linecap:round;opacity:.14;filter:blur(3px);animation:liquidWarpGlow 7s ease-in-out infinite}.scroll-line{position:absolute;top:8px;left:50%;width:2px;height:13px;transform:translateX(-50%);border-radius:999px;background:#666;animation:scrollLine 1.8s ease-in-out infinite}.scroll-label{color:#666;font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:.22em}
-@keyframes liquidWarp{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(.4px,-.3px) scale(1.015,.985)}50%{transform:translate(-.3px,.4px) scale(.985,1.015)}75%{transform:translate(.3px,.2px) scale(1.01,.99)}}@keyframes liquidWarpGlow{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}@keyframes scrollLine{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,24px)}}
-.projects{position:relative;width:100%;padding:140px 5vw 180px;scroll-margin-top:100px}.section-title,.new-drop-title,.footer-title{font-family:"Bebas Neue",sans-serif;text-transform:uppercase}.section-title{font-size:clamp(80px,13vw,190px);line-height:.8;letter-spacing:-.01em;margin-bottom:55px}.filters{display:flex;gap:8px;margin-bottom:60px}.filter{border:1px solid #333;background:transparent;color:#777;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:11px;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;transition:.3s}.filter:hover,.filter.active{background:var(--red);color:white;border-color:var(--red);box-shadow:0 8px 25px rgba(255,43,43,.15)}.grid{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:65px 20px}.project{cursor:pointer;opacity:0;transform:translateY(35px);transition:opacity .8s,transform .8s}.project.visible{opacity:1;transform:translateY(0)}.project.hidden{display:none}.thumbnail-wrapper{overflow:hidden;background:#111;aspect-ratio:16/9}.thumbnail{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}.project:hover .thumbnail{transform:scale(1.045)}.project-info{margin-top:18px}.project-title{font-family:"Bebas Neue",sans-serif;font-size:28px;line-height:1;text-transform:uppercase}.project-client{margin-top:7px;font-size:12px;color:#aaa;text-transform:uppercase;letter-spacing:.08em}.project-tag{display:inline-block;margin-top:8px;padding:5px 9px;border-radius:100px;background:var(--red);color:white;font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:.12em}
-/* NEW DROP CAROUSEL */
-.new-drop{position:relative;width:100%;padding:0 5vw 180px}.new-drop-title{font-size:clamp(80px,13vw,190px);line-height:.8;letter-spacing:-.01em;margin-bottom:55px}.new-drop-carousel{position:relative;width:100%}.new-drop-grid{display:flex;gap:20px;width:100%;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab;padding-bottom:5px}.new-drop-grid::-webkit-scrollbar{display:none}.new-drop-grid:active{cursor:grabbing}.new-drop-card{position:relative;display:block;flex:0 0 calc((100% - 60px)/4);aspect-ratio:9/16;overflow:hidden;background:#111;text-decoration:none;cursor:pointer;scroll-snap-align:start}.new-drop-card img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s}.new-drop-card:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.58),transparent 45%);opacity:0;transition:opacity .4s;pointer-events:none}.new-drop-instagram{position:absolute;left:16px;bottom:16px;z-index:2;display:flex;align-items:center;gap:8px;color:white;font-size:10px;font-weight:bold;text-transform:uppercase;letter-spacing:.12em;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}.new-drop-instagram svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.new-drop-card:hover img{transform:scale(1.045);filter:brightness(.82)}.new-drop-card:hover:after{opacity:1}.new-drop-card:hover .new-drop-instagram{opacity:1;transform:translateY(0)}.new-drop-arrow{position:absolute;top:50%;z-index:10;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.18);border-radius:50%;background:rgba(5,5,5,.72);color:white;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:pointer;transform:translateY(-50%);transition:.3s}.new-drop-arrow svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.new-drop-arrow:hover{background:var(--red);border-color:var(--red);transform:translateY(-50%) scale(1.06)}.new-drop-arrow-left{left:-24px}.new-drop-arrow-right{right:-24px}.new-drop-hint{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:18px;color:#555;font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:.18em}.new-drop-hint-line{width:35px;height:1px;background:#333}
-footer{padding:80px 5vw 35px}.footer-title{font-size:clamp(80px,14vw,210px);line-height:.78;letter-spacing:-.01em;max-width:1500px}.footer-bottom{margin-top:130px;padding-top:25px;border-top:1px solid #222;display:flex;justify-content:space-between;align-items:center;gap:30px;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.footer-email,.social-link{color:white;text-decoration:none;transition:color .3s}.footer-email:hover,.social-link:hover{color:var(--red)}.socials{display:flex;gap:25px}.social-link{display:flex;align-items:center;gap:8px}.social-icon{width:15px;height:15px;fill:currentColor}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:2000;display:flex;align-items:center;justify-content:center;padding:30px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}.modal.open{opacity:1;visibility:visible}.modal-content{width:min(1100px,100%);position:relative}.video-container{position:relative;width:100%;aspect-ratio:16/9;background:#000}.video-container iframe{width:100%;height:100%;border:0}.close-modal{position:absolute;right:0;bottom:calc(100% + 15px);width:42px;height:42px;border:1px solid #444;border-radius:50%;background:transparent;color:white;font-size:22px;cursor:pointer;transition:.3s}.close-modal:hover{background:var(--red);border-color:var(--red)}
-@media(max-width:1100px){.new-drop-card{flex-basis:calc((100% - 40px)/3)}}
-@media(max-width:800px){.site-header{padding:12px 0}.header-glass{width:calc(100vw - 24px);min-height:54px;padding:7px 12px 7px 14px}.header-right{gap:13px}.header-link{font-size:8px}.header-social{width:18px;height:18px}.header-social svg{width:16px;height:16px}.site-logo{width:75px;height:34px}.site-header.scrolled{padding-top:8px}.hero{height:100svh;min-height:600px;padding:100px 20px 60px}.hero-video{object-position:center;filter:brightness(.65) contrast(1.05)}.hero-overlay{background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.25))}.hero-title{font-size:clamp(75px,22vw,150px)}.hero-subtitle{font-size:12px;margin-top:35px}.projects{padding:100px 20px 120px}.section-title{font-size:clamp(75px,22vw,150px)}.filters{flex-wrap:wrap}.grid{grid-template-columns:1fr;gap:50px}.project-title{font-size:26px}footer{padding:60px 20px 25px}.footer-title{font-size:clamp(75px,22vw,150px)}.footer-bottom{margin-top:90px;align-items:flex-start;flex-direction:column}.modal{padding:15px}.close-modal{bottom:calc(100% + 10px)}.new-drop{padding:0 20px 120px}.new-drop-title{font-size:clamp(75px,22vw,150px);margin-bottom:45px}.new-drop-grid{gap:12px;margin-right:-20px;padding-right:20px}.new-drop-card{flex:0 0 calc((100% - 12px)/1.65)}.new-drop-arrow{display:none}.new-drop-hint{justify-content:flex-start;margin-top:16px}}
-</style>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Guillaume Faucompré — Vidéaste & Motion Designer
+  </title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    :root {
+      --red: #FF2B2B;
+      --black: #050505;
+      --white: #ffffff;
+    }
+
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+
+    button,
+    a {
+      font-family: inherit;
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .site-header {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+
+      padding: 20px 0;
+
+      z-index: 1000;
+
+      pointer-events: none;
+
+      transition:
+        padding 0.45s ease;
+    }
+
+
+    .header-glass {
+      position: relative;
+
+      width:
+        min(
+          760px,
+          calc(100vw - 40px)
+        );
+
+      min-height: 58px;
+
+      margin: 0 auto;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      padding:
+        8px
+        16px
+        8px
+        18px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(8, 8, 8, 0.58);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+      backdrop-filter:
+        blur(18px)
+        saturate(110%);
+
+      -webkit-backdrop-filter:
+        blur(18px)
+        saturate(110%);
+
+      box-shadow:
+        0 12px 45px
+        rgba(0, 0, 0, 0.22);
+
+      opacity: 0.88;
+
+      pointer-events: auto;
+
+      transition:
+        background 0.45s ease,
+        border-color 0.45s ease,
+        box-shadow 0.45s ease,
+        opacity 0.45s ease,
+        transform 0.45s ease;
+    }
+
+
+    .header-glass::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      border-radius: inherit;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.055),
+          transparent 45%
+        );
+
+      opacity: 0.7;
+    }
+
+
+    .header-glass > * {
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .site-header.scrolled {
+      padding-top: 12px;
+    }
+
+
+    .site-header.scrolled .header-glass {
+      background:
+        rgba(5, 5, 5, 0.82);
+
+      border-color:
+        rgba(255, 255, 255, 0.14);
+
+      box-shadow:
+        0 14px 50px
+        rgba(0, 0, 0, 0.38);
+
+      opacity: 0.96;
+
+      transform: scale(0.97);
+    }
+
+
+    /* =========================================================
+       LOGO
+    ========================================================= */
+
+    .site-logo {
+      width: 90px;
+      height: 40px;
+
+      display: flex;
+
+      align-items: center;
+
+      text-decoration: none;
+
+      flex-shrink: 0;
+    }
+
+
+    .site-logo img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      object-position: left center;
+
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+
+    .site-logo:hover img {
+      transform: scale(1.035);
+
+      opacity: 0.78;
+    }
+
+
+    /* =========================================================
+       HEADER RIGHT
+    ========================================================= */
+
+    .header-right {
+      display: flex;
+
+      align-items: center;
+
+      gap: 20px;
+    }
+
+
+    .header-link {
+      position: relative;
+
+      color: #aaa;
+
+      text-decoration: none;
+
+      font-size: 10px;
+
+      font-weight: bold;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.10em;
+
+      transition:
+        color 0.3s ease;
+    }
+
+
+    .header-link::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: -5px;
+
+      width: 0;
+      height: 1px;
+
+      background:
+        var(--red);
+
+      transition:
+        width 0.3s ease;
+    }
+
+
+    .header-link:hover {
+      color: #fff;
+    }
+
+
+    .header-link:hover::after {
+      width: 100%;
+    }
+
+
+    /* =========================================================
+       SOCIAL ICONS
+    ========================================================= */
+
+    .header-social {
+      width: 20px;
+      height: 20px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      color: #777;
+
+      text-decoration: none;
+
+      transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+    }
+
+
+    .header-social svg {
+      width: 17px;
+      height: 17px;
+
+      fill: none;
+
+      stroke: currentColor;
+
+      stroke-width: 1.6;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+
+    .header-social:hover {
+      color: var(--red);
+
+      transform:
+        translateY(-2px);
+    }
+
+
+    .instagram-dot,
+    .linkedin-dot {
+      fill: currentColor;
+
+      stroke: none;
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      position: relative;
+
+      width: 100%;
+
+      height: 100vh;
+
+      height: 100svh;
+
+      min-height: 600px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      padding:
+        100px
+        5vw
+        60px;
+
+      overflow: hidden;
+
+      background:
+        #050505;
+    }
+
+
+    .hero-video {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      z-index: 0;
+
+      pointer-events: none;
+
+      filter:
+        brightness(0.72)
+        contrast(1.05);
+
+      transform:
+        scale(1.01);
+    }
+
+
+    .hero-overlay {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 1;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.55) 0%,
+          rgba(0, 0, 0, 0.20) 55%,
+          rgba(0, 0, 0, 0.35) 100%
+        );
+
+      box-shadow:
+        inset
+        0 0 180px
+        rgba(0, 0, 0, 0.45);
+    }
+
+
+    .hero-content {
+      position: relative;
+
+      z-index: 2;
+    }
+
+
+    .hero-title {
+      font-family:
+        "Bebas Neue",
+        sans-serif;
+
+      font-size:
+        clamp(
+          90px,
+          17vw,
+          270px
+        );
+
+      line-height: 0.78;
+
+      letter-spacing:
+        -0.015em;
+
+      text-transform:
+        uppercase;
+
+      max-width:
+        1500px;
+
+      text-shadow:
+        0 4px 30px
+        rgba(0, 0, 0, 0.25);
+    }
+
+
+    .hero-subtitle {
+      margin-top: 45px;
+
+      font-size: 16px;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.12em;
+
+      color:
+        var(--red);
+
+      font-weight: bold;
+    }
+
+
+    .showreel-button {
+      margin-top: 45px;
+
+      width: fit-content;
+
+      padding:
+        15px 28px;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.35);
+
+      border-radius:
+        100px;
+
+      background:
+        rgba(0,0,0,0.15);
+
+      backdrop-filter:
+        blur(8px);
+
+      -webkit-backdrop-filter:
+        blur(8px);
+
+      color:
+        white;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      letter-spacing:
+        0.15em;
+
+      cursor: pointer;
+
+      transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+
+    .showreel-button:hover {
+      background:
+        var(--red);
+
+      color:
+        white;
+
+      border-color:
+        var(--red);
+
+      transform:
+        translateY(-3px);
+
+      box-shadow:
+        0 10px 30px
+        rgba(255, 43, 43, 0.3);
+    }
+
+
+    /* =========================================================
+       SCROLL INDICATOR
+    ========================================================= */
+
+    .scroll-indicator {
+      position: absolute;
+
+      left: 50%;
+      bottom: 28px;
+
+      transform:
+        translateX(-50%);
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 12px;
+
+      background: transparent;
+
+      border: none;
+
+      cursor: pointer;
+
+      z-index: 20;
+    }
+
+
+    .scroll-frame {
+      position: relative;
+
+      width: 30px;
+      height: 54px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(5, 5, 8, 0.25);
+
+      isolation: isolate;
+
+      overflow: visible;
+    }
+
+
+    .scroll-liquid {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      overflow: visible;
+
+      pointer-events: none;
+    }
+
+
+    .scroll-outline {
+      fill: none;
+
+      stroke:
+        rgba(150, 150, 155, 0.55);
+
+      stroke-width: 0.8;
+    }
+
+
+    .scroll-liquid-path {
+      fill: none;
+
+      stroke-width: 1.35;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
+
+      stroke:
+        url(#scrollGradient);
+
+      opacity: 0.62;
+
+      animation:
+        liquidWarp 5s ease-in-out infinite;
+    }
+
+
+    .scroll-glow {
+      fill: none;
+
+      stroke:
+        url(#scrollGradient);
+
+      stroke-width: 3;
+
+      stroke-linecap: round;
+
+      opacity: 0.14;
+
+      filter:
+        blur(3px);
+
+      animation:
+        liquidWarpGlow 7s ease-in-out infinite;
+    }
+
+
+    .scroll-line {
+      position: absolute;
+
+      top: 8px;
+      left: 50%;
+
+      width: 2px;
+      height: 13px;
+
+      transform:
+        translateX(-50%);
+
+      border-radius: 999px;
+
+      background:
+        #666;
+
+      animation:
+        scrollLine 1.8s ease-in-out infinite;
+    }
+
+
+    .scroll-label {
+      color: #666;
+
+      font-size: 9px;
+
+      font-weight: bold;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.22em;
+    }
+
+
+    @keyframes liquidWarp {
+
+      0% {
+        transform:
+          translate(0, 0)
+          scaleX(1)
+          scaleY(1);
+      }
+
+      25% {
+        transform:
+          translate(0.4px, -0.3px)
+          scaleX(1.015)
+          scaleY(0.985);
+      }
+
+      50% {
+        transform:
+          translate(-0.3px, 0.4px)
+          scaleX(0.985)
+          scaleY(1.015);
+      }
+
+      75% {
+        transform:
+          translate(0.3px, 0.2px)
+          scaleX(1.01)
+          scaleY(0.99);
+      }
+
+      100% {
+        transform:
+          translate(0, 0)
+          scaleX(1)
+          scaleY(1);
+      }
+
+    }
+
+
+    @keyframes liquidWarpGlow {
+
+      0% {
+        transform:
+          scale(1);
+      }
+
+      50% {
+        transform:
+          scale(1.035);
+      }
+
+      100% {
+        transform:
+          scale(1);
+      }
+
+    }
+
+
+    @keyframes scrollLine {
+
+      0% {
+        transform:
+          translate(-50%, 0);
+      }
+
+      50% {
+        transform:
+          translate(-50%, 24px);
+      }
+
+      100% {
+        transform:
+          translate(-50%, 0);
+      }
+
+    }
+
+
+    /* =========================================================
+       PROJECTS
+    ========================================================= */
+
+    .projects {
+      position: relative;
+
+      width: 100%;
+
+      padding:
+        140px
+        5vw
+        180px;
+
+      scroll-margin-top:
+        100px;
+    }
+
+
+    .section-title {
+      font-family:
+        "Bebas Neue",
+        sans-serif;
+
+      font-size:
+        clamp(
+          80px,
+          13vw,
+          190px
+        );
+
+      line-height:
+        0.8;
+
+      letter-spacing:
+        -0.01em;
+
+      text-transform:
+        uppercase;
+
+      margin-bottom:
+        55px;
+    }
+
+
+    /* =========================================================
+       FILTERS
+    ========================================================= */
+
+    .filters {
+      display: flex;
+
+      gap: 8px;
+
+      margin-bottom:
+        60px;
+    }
+
+
+    .filter {
+      border:
+        1px solid #333;
+
+      background:
+        transparent;
+
+      color:
+        #777;
+
+      padding:
+        10px 20px;
+
+      border-radius:
+        100px;
+
+      cursor:
+        pointer;
+
+      font-size:
+        11px;
+
+      font-weight:
+        bold;
+
+      letter-spacing:
+        0.12em;
+
+      text-transform:
+        uppercase;
+
+      transition:
+        all 0.3s ease;
+    }
+
+
+    .filter:hover,
+    .filter.active {
+      background:
+        var(--red);
+
+      color:
+        white;
+
+      border-color:
+        var(--red);
+    }
+
+
+    /* =========================================================
+       PROJECT GRID
+    ========================================================= */
+
+    .grid {
+      width: 100%;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        65px 20px;
+    }
+
+
+    .project {
+      cursor:
+        pointer;
+
+      opacity:
+        0;
+
+      transform:
+        translateY(35px);
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+    }
+
+
+    .project.visible {
+      opacity:
+        1;
+
+      transform:
+        translateY(0);
+    }
+
+
+    .project.hidden {
+      display:
+        none;
+    }
+
+
+    .thumbnail-wrapper {
+      overflow:
+        hidden;
+
+      background:
+        #111;
+
+      aspect-ratio:
+        16 / 9;
+    }
+
+
+    .thumbnail {
+      width: 100%;
+      height: 100%;
+
+      object-fit:
+        cover;
+
+      display:
+        block;
+
+      transition:
+        transform
+        0.7s
+        cubic-bezier(
+          0.2,
+          0.7,
+          0.2,
+          1
+        );
+    }
+
+
+    .project:hover .thumbnail {
+      transform:
+        scale(1.045);
+    }
+
+
+    .project-info {
+      margin-top:
+        18px;
+    }
+
+
+    .project-title {
+      font-family:
+        "Bebas Neue",
+        sans-serif;
+
+      font-size:
+        28px;
+
+      line-height:
+        1;
+
+      text-transform:
+        uppercase;
+    }
+
+
+    .project-client {
+      margin-top:
+        7px;
+
+      font-size:
+        12px;
+
+      color:
+        #aaa;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.08em;
+    }
+
+
+    .project-tag {
+      display:
+        inline-block;
+
+      margin-top:
+        8px;
+
+      padding:
+        5px 9px;
+
+      border-radius:
+        100px;
+
+      background:
+        var(--red);
+
+      color:
+        white;
+
+      font-size:
+        9px;
+
+      font-weight:
+        bold;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.12em;
+    }
+
+
+    /* =========================================================
+       NEW DROP
+    ========================================================= */
+
+    .new-drop {
+      position: relative;
+
+      width: 100%;
+
+      padding:
+        0
+        5vw
+        180px;
+    }
+
+
+    .new-drop-title {
+      font-family:
+        "Bebas Neue",
+        sans-serif;
+
+      font-size:
+        clamp(
+          80px,
+          13vw,
+          190px
+        );
+
+      line-height:
+        0.8;
+
+      letter-spacing:
+        -0.01em;
+
+      text-transform:
+        uppercase;
+
+      margin-bottom:
+        55px;
+    }
+
+
+    .new-drop-carousel {
+      position:
+        relative;
+
+      width:
+        100%;
+    }
+
+
+    .new-drop-grid {
+      display:
+        flex;
+
+      gap:
+        18px;
+
+      width:
+        100%;
+
+      overflow-x:
+        auto;
+
+      overflow-y:
+        hidden;
+
+      scroll-behavior:
+        smooth;
+
+      scroll-snap-type:
+        x mandatory;
+
+      scrollbar-width:
+        none;
+
+      -webkit-overflow-scrolling:
+        touch;
+
+      padding:
+        4px
+        0
+        12px;
+
+      cursor:
+        grab;
+    }
+
+
+    .new-drop-grid::-webkit-scrollbar {
+      display:
+        none;
+    }
+
+
+    .new-drop-grid.dragging {
+      cursor:
+        grabbing;
+
+      scroll-behavior:
+        auto;
+
+      scroll-snap-type:
+        none;
+    }
+
+
+    /* =========================================================
+       NEW DROP CARDS
+    ========================================================= */
+
+    .new-drop-card {
+      position:
+        relative;
+
+      flex:
+        0 0
+        calc(
+          (100% - 54px) / 4
+        );
+
+      aspect-ratio:
+        9 / 16;
+
+      overflow:
+        hidden;
+
+      background:
+        #111;
+
+      text-decoration:
+        none;
+
+      cursor:
+        pointer;
+
+      scroll-snap-align:
+        start;
+    }
+
+
+    .new-drop-card img {
+      width:
+        100%;
+
+      height:
+        100%;
+
+      display:
+        block;
+
+      object-fit:
+        cover;
+
+      transition:
+        transform 0.7s
+        cubic-bezier(
+          0.2,
+          0.7,
+          0.2,
+          1
+        ),
+        filter 0.5s ease;
+    }
+
+
+    .new-drop-card::after {
+      content:
+        "";
+
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,0.65),
+          transparent 48%
+        );
+
+      opacity:
+        0;
+
+      transition:
+        opacity 0.4s ease;
+
+      pointer-events:
+        none;
+    }
+
+
+    .new-drop-instagram {
+      position:
+        absolute;
+
+      left:
+        14px;
+
+      bottom:
+        14px;
+
+      z-index:
+        2;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
+
+      color:
+        white;
+
+      font-size:
+        9px;
+
+      font-weight:
+        bold;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.10em;
+
+      opacity:
+        0;
+
+      transform:
+        translateY(8px);
+
+      transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+    }
+
+
+    .new-drop-instagram svg {
+      width:
+        15px;
+
+      height:
+        15px;
+
+      fill:
+        none;
+
+      stroke:
+        currentColor;
+
+      stroke-width:
+        1.8;
+
+      stroke-linecap:
+        round;
+
+      stroke-linejoin:
+        round;
+    }
+
+
+    .new-drop-card:hover img {
+      transform:
+        scale(1.045);
+
+      filter:
+        brightness(0.82);
+    }
+
+
+    .new-drop-card:hover::after {
+      opacity:
+        1;
+    }
+
+
+    .new-drop-card:hover
+    .new-drop-instagram {
+      opacity:
+        1;
+
+      transform:
+        translateY(0);
+    }
+
+
+    /* =========================================================
+       NEW DROP ARROWS
+    ========================================================= */
+
+    .new-drop-arrow {
+      position:
+        absolute;
+
+      top:
+        50%;
+
+      z-index:
+        20;
+
+      width:
+        48px;
+
+      height:
+        48px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.18);
+
+      border-radius:
+        50%;
+
+      background:
+        rgba(5,5,5,0.78);
+
+      backdrop-filter:
+        blur(12px);
+
+      -webkit-backdrop-filter:
+        blur(12px);
+
+      color:
+        white;
+
+      cursor:
+        pointer;
+
+      transform:
+        translateY(-50%);
+
+      transition:
+        all 0.3s ease;
+    }
+
+
+    .new-drop-arrow svg {
+      width:
+        18px;
+
+      height:
+        18px;
+
+      fill:
+        none;
+
+      stroke:
+        currentColor;
+
+      stroke-width:
+        1.8;
+
+      stroke-linecap:
+        round;
+
+      stroke-linejoin:
+        round;
+    }
+
+
+    .new-drop-arrow.left {
+      left:
+        -24px;
+    }
+
+
+    .new-drop-arrow.right {
+      right:
+        -24px;
+    }
+
+
+    .new-drop-arrow:hover {
+      background:
+        var(--red);
+
+      border-color:
+        var(--red);
+
+      transform:
+        translateY(-50%)
+        scale(1.06);
+    }
+
+
+    .new-drop-arrow.disabled {
+      opacity:
+        0.2;
+
+      pointer-events:
+        none;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      padding:
+        80px
+        5vw
+        35px;
+    }
+
+
+    .footer-title {
+      font-family:
+        "Bebas Neue",
+        sans-serif;
+
+      font-size:
+        clamp(
+          80px,
+          14vw,
+          210px
+        );
+
+      line-height:
+        0.78;
+
+      letter-spacing:
+        -0.01em;
+
+      text-transform:
+        uppercase;
+
+      max-width:
+        1500px;
+    }
+
+
+    .footer-bottom {
+      margin-top:
+        130px;
+
+      padding-top:
+        25px;
+
+      border-top:
+        1px solid #222;
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      gap:
+        30px;
+
+      font-size:
+        12px;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.08em;
+    }
+
+
+    .footer-email {
+      color:
+        white;
+
+      text-decoration:
+        none;
+    }
+
+
+    .footer-email:hover {
+      color:
+        var(--red);
+    }
+
+
+    .socials {
+      display:
+        flex;
+
+      gap:
+        25px;
+    }
+
+
+    .social-link {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      color:
+        white;
+
+      text-decoration:
+        none;
+    }
+
+
+    .social-link:hover {
+      color:
+        var(--red);
+    }
+
+
+    .social-icon {
+      width:
+        15px;
+
+      height:
+        15px;
+    }
+
+
+    /* =========================================================
+       MODAL
+    ========================================================= */
+
+    .modal {
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      background:
+        rgba(0,0,0,0.94);
+
+      z-index:
+        2000;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      padding:
+        30px;
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+      transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+    }
+
+
+    .modal.open {
+      opacity:
+        1;
+
+      visibility:
+        visible;
+    }
+
+
+    .modal-content {
+      width:
+        min(
+          1100px,
+          100%
+        );
+
+      position:
+        relative;
+    }
+
+
+    .video-container {
+      position:
+        relative;
+
+      width:
+        100%;
+
+      aspect-ratio:
+        16 / 9;
+
+      background:
+        #000;
+    }
+
+
+    .video-container iframe {
+      width:
+        100%;
+
+      height:
+        100%;
+
+      border:
+        0;
+    }
+
+
+    .close-modal {
+      position:
+        absolute;
+
+      right:
+        0;
+
+      bottom:
+        calc(100% + 15px);
+
+      width:
+        42px;
+
+      height:
+        42px;
+
+      border:
+        1px solid #444;
+
+      border-radius:
+        50%;
+
+      background:
+        transparent;
+
+      color:
+        white;
+
+      font-size:
+        22px;
+
+      cursor:
+        pointer;
+    }
+
+
+    .close-modal:hover {
+      background:
+        var(--red);
+
+      border-color:
+        var(--red);
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 800px) {
+
+      .site-header {
+        padding:
+          12px 0;
+      }
+
+
+      .header-glass {
+        width:
+          calc(100vw - 24px);
+
+        min-height:
+          54px;
+
+        padding:
+          7px
+          12px
+          7px
+          14px;
+      }
+
+
+      .header-right {
+        gap:
+          13px;
+      }
+
+
+      .header-link {
+        font-size:
+          8px;
+      }
+
+
+      .header-social {
+        width:
+          18px;
+
+        height:
+          18px;
+      }
+
+
+      .site-logo {
+        width:
+          75px;
+
+        height:
+          34px;
+      }
+
+
+      .hero {
+        height:
+          100svh;
+
+        min-height:
+          600px;
+
+        padding:
+          100px
+          20px
+          60px;
+      }
+
+
+      .hero-video {
+        object-position:
+          center center;
+
+        filter:
+          brightness(0.65)
+          contrast(1.05);
+      }
+
+
+      .hero-title {
+        font-size:
+          clamp(
+            75px,
+            22vw,
+            150px
+          );
+      }
+
+
+      .hero-subtitle {
+        font-size:
+          12px;
+
+        margin-top:
+          35px;
+      }
+
+
+      .projects {
+        padding:
+          100px
+          20px
+          120px;
+      }
+
+
+      .section-title {
+        font-size:
+          clamp(
+            75px,
+            22vw,
+            150px
+          );
+      }
+
+
+      .filters {
+        flex-wrap:
+          wrap;
+      }
+
+
+      .grid {
+        grid-template-columns:
+          1fr;
+
+        gap:
+          50px;
+      }
+
+
+      .project-title {
+        font-size:
+          26px;
+      }
+
+
+      .new-drop {
+        padding:
+          0
+          20px
+          120px;
+      }
+
+
+      .new-drop-title {
+        font-size:
+          clamp(
+            75px,
+            22vw,
+            150px
+          );
+
+        margin-bottom:
+          45px;
+      }
+
+
+      .new-drop-grid {
+        gap:
+          14px;
+      }
+
+
+      .new-drop-card {
+        flex:
+          0 0 72vw;
+      }
+
+
+      .new-drop-arrow {
+        width:
+          42px;
+
+        height:
+          42px;
+      }
+
+
+      .new-drop-arrow.left {
+        left:
+          -10px;
+      }
+
+
+      .new-drop-arrow.right {
+        right:
+          -10px;
+      }
+
+
+      .new-drop-instagram {
+        opacity:
+          1;
+
+        transform:
+          translateY(0);
+      }
+
+
+      footer {
+        padding:
+          60px
+          20px
+          25px;
+      }
+
+
+      .footer-title {
+        font-size:
+          clamp(
+            75px,
+            22vw,
+            150px
+          );
+      }
+
+
+      .footer-bottom {
+        margin-top:
+          90px;
+
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+      }
+
+
+      .modal {
+        padding:
+          15px;
+      }
+
+    }
+
+  </style>
+
 </head>
+
+
 <body>
-<header class="site-header"><div class="header-glass"><a href="#home" class="site-logo" aria-label="Accueil"><img src="logo.svg" alt="Guillaume Faucompré"></a><div class="header-right"><a href="mailto:faucompre.guillaume@gmail.com" class="header-link">Contact</a><a href="https://www.instagram.com/gui.mov_/" target="_blank" rel="noopener noreferrer" class="header-social" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" class="instagram-dot"/></svg></a><a href="https://www.linkedin.com/in/guillaume-faucompr%C3%A9-b18381105/" target="_blank" rel="noopener noreferrer" class="header-social" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="10" x2="8" y2="17"/><circle cx="8" cy="7" r="1" class="linkedin-dot"/><path d="M12 17v-4c0-2 1-3 3-3s3 1.2 3 3v4"/><line x1="18" y1="13" x2="18" y2="17"/></svg></a></div></div></header>
-<main>
-<section class="hero" id="home"><video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true"><source src="3dcube-v3.mp4" type="video/mp4"></video><div class="hero-overlay"></div><div class="hero-content"><h1 class="hero-title">Guillaume<br>Faucompré</h1><p class="hero-subtitle">Vidéaste · Motion Designer</p><button class="showreel-button" onclick="openVideo('8zoBIHigQSQ')">SHOWREEL</button></div><button class="scroll-indicator" onclick="scrollToProjects()" aria-label="Voir les réalisations"><span class="scroll-frame"><svg class="scroll-liquid" viewBox="0 0 30 54"><defs><linearGradient id="scrollGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%"><animate attributeName="stop-color" values="#246BFF;#8A3FFC;#FF3CA8;#246BFF" dur="6s" repeatCount="indefinite"/></stop><stop offset="25%"><animate attributeName="stop-color" values="#8A3FFC;#FF3CA8;#246BFF;#8A3FFC" dur="7s" repeatCount="indefinite"/></stop><stop offset="50%"><animate attributeName="stop-color" values="#FF3CA8;#FF5368;#8A3FFC;#FF3CA8" dur="8s" repeatCount="indefinite"/></stop><stop offset="75%"><animate attributeName="stop-color" values="#FF5368;#39D9FF;#FF3CA8;#FF5368" dur="7.5s" repeatCount="indefinite"/></stop><stop offset="100%"><animate attributeName="stop-color" values="#39D9FF;#246BFF;#FF5368;#39D9FF" dur="6.5s" repeatCount="indefinite"/></stop></linearGradient></defs><rect class="scroll-outline" x="1" y="1" width="28" height="52" rx="14"/><rect class="scroll-glow" x="1" y="1" width="28" height="52" rx="14"/><rect class="scroll-liquid-path" x="1" y="1" width="28" height="52" rx="14"/></svg><span class="scroll-line"></span></span><span class="scroll-label">Scroll</span></button></section>
-<section class="projects" id="realisations"><h2 class="section-title">Réalisations</h2><div class="filters"><button class="filter active" data-filter="all">Tout</button><button class="filter" data-filter="motion">Motion</button><button class="filter" data-filter="video">Vidéo</button></div><div class="grid">
-<article class="project" data-category="motion" onclick="openVideo('OjJqzi2OK-8')"><div class="thumbnail-wrapper"><img class="thumbnail" src="https://img.youtube.com/vi/OjJqzi2OK-8/maxresdefault.jpg" alt="Rebranding FILL UP MEDIA" loading="lazy"></div><div class="project-info"><div class="project-title">Rebranding FILL UP MEDIA</div><div class="project-client">FILL UP MEDIA</div><div class="project-tag">Motion Design</div></div></article>
-<article class="project" data-category="video" onclick="openVideo('r4-cx2gnhwU')"><div class="thumbnail-wrapper"><img class="thumbnail" src="https://img.youtube.com/vi/r4-cx2gnhwU/maxresdefault.jpg" alt="Survivor HC" loading="lazy"></div><div class="project-info"><div class="project-title">Survivor HC</div><div class="project-client">SURVIVOR HC</div><div class="project-tag">Tournage · Montage</div></div></article>
-<article class="project" data-category="motion" onclick="openVideo('tV3w-UNNDi8')"><div class="thumbnail-wrapper"><img class="thumbnail" src="https://img.youtube.com/vi/tV3w-UNNDi8/maxresdefault.jpg" alt="Safehear Louis" loading="lazy"></div><div class="project-info"><div class="project-title">Safehear Louis</div><div class="project-client">SAFEHEAR</div><div class="project-tag">Motion Design</div></div></article>
-<article class="project" data-category="video" onclick="openVideo('87RnFxTAbqk')"><div class="thumbnail-wrapper"><img class="thumbnail" src="https://img.youtube.com/vi/87RnFxTAbqk/maxresdefault.jpg" alt="Trailer Café Terroir" loading="lazy"></div><div class="project-info"><div class="project-title">Trailer Café Terroir</div><div class="project-client">GASTRONOM'IT</div><div class="project-tag">Montage</div></div></article>
-<article class="project" data-category="video" onclick="openVideo('nQXRruZp7MY')"><div class="thumbnail-wrapper"><img class="thumbnail" src="https://img.youtube.com/vi/nQXRruZp7MY/maxresdefault.jpg" alt="AfterWork Speed" loading="lazy"></div><div class="project-info"><div class="project-title">AfterWork Speed</div><div class="project-client">HEAD</div><div class="project-tag">Tournage · Montage</div></div></article>
-</div></section>
-<section class="new-drop" id="new-drop"><h2 class="new-drop-title">New Drop</h2><div class="new-drop-carousel"><button class="new-drop-arrow new-drop-arrow-left" type="button" aria-label="Précédent" onclick="newDropScroll(-1)"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><div class="new-drop-grid" id="newDropTrack">
-<a class="new-drop-card" href="https://www.instagram.com/p/DbTP2cxj9c9/" target="_blank" rel="noopener noreferrer"><img src="Insta_PETZL_2.png" alt="Petzl — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-<a class="new-drop-card" href="https://www.instagram.com/p/DaYA6LsCA9p/" target="_blank" rel="noopener noreferrer"><img src="Insta_PETZL_1.png" alt="Petzl — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-<a class="new-drop-card" href="https://www.instagram.com/p/DIJnYNmi-hq/" target="_blank" rel="noopener noreferrer"><img src="Insta_TBS_2.png" alt="TBS — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-<a class="new-drop-card" href="https://www.instagram.com/p/DITy1lMCDCE/" target="_blank" rel="noopener noreferrer"><img src="Insta_TBS_1_minia.png" alt="TBS — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-<a class="new-drop-card" href="https://www.instagram.com/p/DVq86IgC1RI/" target="_blank" rel="noopener noreferrer"><img src="Insta_ALL_3.png" alt="À La Lyonnaise — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-<a class="new-drop-card" href="https://www.instagram.com/p/DU055tJAgGH/" target="_blank" rel="noopener noreferrer"><img src="Insta_ALL_2.png" alt="À La Lyonnaise — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-<a class="new-drop-card" href="https://www.instagram.com/p/DT25XpJAt7G/" target="_blank" rel="noopener noreferrer"><img src="Insta_ALL_1.png" alt="À La Lyonnaise — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-<a class="new-drop-card" href="https://www.instagram.com/p/DXo4hGgDKFx/" target="_blank" rel="noopener noreferrer"><img src="Insta_SPN_4.png" alt="Supernatifs — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-<a class="new-drop-card" href="https://www.instagram.com/p/DadIRQ5seW2/" target="_blank" rel="noopener noreferrer"><img src="Insta_SPN_3.png" alt="Supernatifs — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-<a class="new-drop-card" href="https://www.instagram.com/p/DScrWdqDF9m/" target="_blank" rel="noopener noreferrer"><img src="Insta_SPN_2.png" alt="Supernatifs — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-<a class="new-drop-card" href="https://www.instagram.com/p/DO8x3aSjLYd/" target="_blank" rel="noopener noreferrer"><img src="Insta_SPN_1.png" alt="Supernatifs — Instagram" loading="lazy"><span class="new-drop-instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Voir sur Instagram</span></a>
-</div><button class="new-drop-arrow new-drop-arrow-right" type="button" aria-label="Suivant" onclick="newDropScroll(1)"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div><div class="new-drop-hint"><span class="new-drop-hint-line"></span>Glisser pour découvrir</div></section>
-</main>
-<footer><h2 class="footer-title">On parle de<br>votre projet&nbsp;?</h2><div class="footer-bottom"><a class="footer-email" href="mailto:faucompre.guillaume@gmail.com">faucompre.guillaume@gmail.com</a><div class="socials"><a class="social-link" href="https://www.instagram.com/gui.mov_/" target="_blank" rel="noopener noreferrer"><svg class="social-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</a><a class="social-link" href="https://www.linkedin.com/in/guillaume-faucompr%C3%A9-b18381105/" target="_blank" rel="noopener noreferrer"><svg class="social-icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="8" y1="10" x2="8" y2="17" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="7" r="1" fill="currentColor"/><path d="M12 17v-4c0-2 1-3 3-3s3 1.2 3 3v4" fill="none" stroke="currentColor" stroke-width="2"/><line x1="18" y1="13" x2="18" y2="17" stroke="currentColor" stroke-width="2"/></svg>LinkedIn</a></div></div></footer>
-<div class="modal" id="videoModal" onclick="closeVideo(event)"><div class="modal-content"><button class="close-modal" onclick="closeVideo()" aria-label="Fermer">×</button><div class="video-container"><iframe id="youtubePlayer" src="" title="Vidéo YouTube" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div></div>
-<script>
-const modal=document.getElementById('videoModal'),player=document.getElementById('youtubePlayer');
-function openVideo(videoId){player.src='https://www.youtube.com/embed/'+videoId+'?autoplay=1&rel=0';modal.classList.add('open');document.body.style.overflow='hidden'}
-function closeVideo(event){if(event&&event.target!==modal)return;modal.classList.remove('open');player.src='';document.body.style.overflow=''}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){modal.classList.remove('open');player.src='';document.body.style.overflow=''}});
-function scrollToProjects(){const target=document.getElementById('realisations');if(!target)return;const header=document.querySelector('.header-glass');const offset=(header?header.getBoundingClientRect().height:60)+35;window.scrollTo({top:target.getBoundingClientRect().top+window.scrollY-offset,behavior:'smooth'})}
-const filters=document.querySelectorAll('.filter'),projects=document.querySelectorAll('.project');filters.forEach(filter=>filter.addEventListener('click',()=>{filters.forEach(b=>b.classList.remove('active'));filter.classList.add('active');const selected=filter.dataset.filter;projects.forEach(project=>{const show=selected==='all'||project.dataset.category===selected;if(show){project.classList.remove('hidden');setTimeout(()=>project.classList.add('visible'),50)}else{project.classList.remove('visible');project.classList.add('hidden')}})}));
-const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});projects.forEach(p=>observer.observe(p));
-const siteHeader=document.querySelector('.site-header');function updateHeader(){siteHeader.classList.toggle('scrolled',window.scrollY>40)}window.addEventListener('scroll',updateHeader,{passive:true});updateHeader();
-function newDropScroll(direction){const track=document.getElementById('newDropTrack');if(!track)return;const card=track.querySelector('.new-drop-card');if(!card)return;const gap=20;track.scrollBy({left:(card.offsetWidth+gap)*direction*2,behavior:'smooth'})}
-</script>
+
+
+  <!-- =========================================================
+       HEADER
+  ========================================================= -->
+
+  <header class="site-header">
+
+    <div class="header-glass">
+
+      <a
+        href="#home"
+        class="site-logo"
+        aria-label="Accueil"
+      >
+
+        <img
+          src="logo.svg"
+          alt="Guillaume Faucompré"
+        >
+
+      </a>
+
+
+      <div class="header-right">
+
+        <a
+          href="mailto:faucompre.guillaume@gmail.com"
+          class="header-link"
+        >
+          Contact
+        </a>
+
+
+        <a
+          href="https://www.instagram.com/gui.mov_/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="header-social"
+          aria-label="Instagram"
+        >
+
+          <svg viewBox="0 0 24 24">
+
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="5"
+            />
+
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+            />
+
+            <circle
+              cx="17.5"
+              cy="6.5"
+              r="1.1"
+              class="instagram-dot"
+            />
+
+          </svg>
+
+        </a>
+
+
+        <a
+          href="https://www.linkedin.com/in/guillaume-faucompr%C3%A9-b18381105/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="header-social"
+          aria-label="LinkedIn"
+        >
+
+          <svg viewBox="0 0 24 24">
+
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="2"
+            />
+
+            <line
+              x1="8"
+              y1="10"
+              x2="8"
+              y2="17"
+            />
+
+            <circle
+              cx="8"
+              cy="7"
+              r="1"
+              class="linkedin-dot"
+            />
+
+            <path
+              d="M12 17v-4c0-2 1-3 3-3s3 1.2 3 3v4"
+            />
+
+            <line
+              x1="18"
+              y1="13"
+              x2="18"
+              y2="17"
+            />
+
+          </svg>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================================================
+       MAIN
+  ========================================================= -->
+
+  <main>
+
+
+    <!-- =======================================================
+         HERO
+    ======================================================== -->
+
+    <section
+      class="hero"
+      id="home"
+    >
+
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+      >
+
+        <source
+          src="3dcube-v3.mp4"
+          type="video/mp4"
+        >
+
+      </video>
+
+
+      <div class="hero-overlay"></div>
+
+
+      <div class="hero-content">
+
+        <h1 class="hero-title">
+
+          Guillaume<br>
+
+          Faucompré
+
+        </h1>
+
+
+        <p class="hero-subtitle">
+
+          Vidéaste · Motion Designer
+
+        </p>
+
+
+        <button
+          class="showreel-button"
+          onclick="openVideo('8zoBIHigQSQ')"
+        >
+
+          SHOWREEL
+
+        </button>
+
+      </div>
+
+
+      <button
+        class="scroll-indicator"
+        onclick="scrollToProjects()"
+        aria-label="Voir les réalisations"
+      >
+
+        <span class="scroll-frame">
+
+          <svg
+            class="scroll-liquid"
+            viewBox="0 0 30 54"
+            aria-hidden="true"
+          >
+
+            <defs>
+
+              <linearGradient
+                id="scrollGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+
+                <stop offset="0%">
+                  <animate
+                    attributeName="stop-color"
+                    values="#246BFF;#8A3FFC;#FF3CA8;#246BFF"
+                    dur="6s"
+                    repeatCount="indefinite"
+                  />
+                </stop>
+
+                <stop offset="25%">
+                  <animate
+                    attributeName="stop-color"
+                    values="#8A3FFC;#FF3CA8;#246BFF;#8A3FFC"
+                    dur="7s"
+                    repeatCount="indefinite"
+                  />
+                </stop>
+
+                <stop offset="50%">
+                  <animate
+                    attributeName="stop-color"
+                    values="#FF3CA8;#FF5368;#8A3FFC;#FF3CA8"
+                    dur="8s"
+                    repeatCount="indefinite"
+                  />
+                </stop>
+
+                <stop offset="75%">
+                  <animate
+                    attributeName="stop-color"
+                    values="#FF5368;#39D9FF;#FF3CA8;#FF5368"
+                    dur="7.5s"
+                    repeatCount="indefinite"
+                  />
+                </stop>
+
+                <stop offset="100%">
+                  <animate
+                    attributeName="stop-color"
+                    values="#39D9FF;#246BFF;#FF5368;#39D9FF"
+                    dur="6.5s"
+                    repeatCount="indefinite"
+                  />
+                </stop>
+
+              </linearGradient>
+
+            </defs>
+
+
+            <rect
+              class="scroll-outline"
+              x="1"
+              y="1"
+              width="28"
+              height="52"
+              rx="14"
+              ry="14"
+            />
+
+
+            <rect
+              class="scroll-glow"
+              x="1"
+              y="1"
+              width="28"
+              height="52"
+              rx="14"
+              ry="14"
+            />
+
+
+            <rect
+              class="scroll-liquid-path"
+              x="1"
+              y="1"
+              width="28"
+              height="52"
+              rx="14"
+              ry="14"
+            />
+
+          </svg>
+
+
+          <span class="scroll-line"></span>
+
+        </span>
+
+
+        <span class="scroll-label">
+          Scroll
+        </span>
+
+      </button>
+
+    </section>
+
+
+    <!-- =======================================================
+         PROJECTS
+    ======================================================== -->
+
+    <section
+      class="projects"
+      id="realisations"
+    >
+
+      <h2 class="section-title">
+        Réalisations
+      </h2>
+
+
+      <div class="filters">
+
+        <button
+          class="filter active"
+          data-filter="all"
+        >
+          Tout
+        </button>
+
+        <button
+          class="filter"
+          data-filter="motion"
+        >
+          Motion
+        </button>
+
+        <button
+          class="filter"
+          data-filter="video"
+        >
+          Vidéo
+        </button>
+
+      </div>
+
+
+      <div class="grid">
+
+
+        <article
+          class="project"
+          data-category="motion"
+          onclick="openVideo('OjJqzi2OK-8')"
+        >
+
+          <div class="thumbnail-wrapper">
+
+            <img
+              class="thumbnail"
+              src="https://img.youtube.com/vi/OjJqzi2OK-8/maxresdefault.jpg"
+              alt="Rebranding FILL UP MEDIA"
+              loading="lazy"
+            >
+
+          </div>
+
+
+          <div class="project-info">
+
+            <div class="project-title">
+              Rebranding FILL UP MEDIA
+            </div>
+
+            <div class="project-client">
+              FILL UP MEDIA
+            </div>
+
+            <div class="project-tag">
+              Motion Design
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="project"
+          data-category="video"
+          onclick="openVideo('r4-cx2gnhwU')"
+        >
+
+          <div class="thumbnail-wrapper">
+
+            <img
+              class="thumbnail"
+              src="https://img.youtube.com/vi/r4-cx2gnhwU/maxresdefault.jpg"
+              alt="Survivor HC"
+              loading="lazy"
+            >
+
+          </div>
+
+
+          <div class="project-info">
+
+            <div class="project-title">
+              Survivor HC
+            </div>
+
+            <div class="project-client">
+              SURVIVOR HC
+            </div>
+
+            <div class="project-tag">
+              Tournage · Montage
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="project"
+          data-category="motion"
+          onclick="openVideo('tV3w-UNNDi8')"
+        >
+
+          <div class="thumbnail-wrapper">
+
+            <img
+              class="thumbnail"
+              src="https://img.youtube.com/vi/tV3w-UNNDi8/maxresdefault.jpg"
+              alt="Safehear Louis"
+              loading="lazy"
+            >
+
+          </div>
+
+
+          <div class="project-info">
+
+            <div class="project-title">
+              Safehear Louis
+            </div>
+
+            <div class="project-client">
+              SAFEHEAR
+            </div>
+
+            <div class="project-tag">
+              Motion Design
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="project"
+          data-category="video"
+          onclick="openVideo('87RnFxTAbqk')"
+        >
+
+          <div class="thumbnail-wrapper">
+
+            <img
+              class="thumbnail"
+              src="https://img.youtube.com/vi/87RnFxTAbqk/maxresdefault.jpg"
+              alt="Trailer Café Terroir"
+              loading="lazy"
+            >
+
+          </div>
+
+
+          <div class="project-info">
+
+            <div class="project-title">
+              Trailer Café Terroir
+            </div>
+
+            <div class="project-client">
+              GASTRONOM'IT
+            </div>
+
+            <div class="project-tag">
+              Montage
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="project"
+          data-category="video"
+          onclick="openVideo('nQXRruZp7MY')"
+        >
+
+          <div class="thumbnail-wrapper">
+
+            <img
+              class="thumbnail"
+              src="https://img.youtube.com/vi/nQXRruZp7MY/maxresdefault.jpg"
+              alt="AfterWork Speed"
+              loading="lazy"
+            >
+
+          </div>
+
+
+          <div class="project-info">
+
+            <div class="project-title">
+              AfterWork Speed
+            </div>
+
+            <div class="project-client">
+              HEAD
+            </div>
+
+            <div class="project-tag">
+              Tournage · Montage
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         NEW DROP
+    ======================================================== -->
+
+    <section
+      class="new-drop"
+      id="new-drop"
+    >
+
+      <h2 class="new-drop-title">
+        New Drop
+      </h2>
+
+
+      <div class="new-drop-carousel">
+
+
+        <!-- FLECHE GAUCHE -->
+
+        <button
+          class="new-drop-arrow left"
+          id="newDropPrev"
+          type="button"
+          aria-label="Voir les posts précédents"
+        >
+
+          <svg viewBox="0 0 24 24">
+
+            <path d="M15 5l-7 7 7 7"/>
+
+          </svg>
+
+        </button>
+
+
+        <!-- POSTS -->
+
+        <div
+          class="new-drop-grid"
+          id="newDropGrid"
+        >
+
+
+          <!-- PETZL 01 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DbTP2cxj9c9/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_PETZL_2.png"
+              alt="Petzl — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+
+          <!-- PETZL 02 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DaYA6LsCA9p/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_PETZL_1.png"
+              alt="Petzl — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+
+          <!-- TBS 01 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DIJnYNmi-hq/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_TBS_2.png"
+              alt="TBS — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+
+          <!-- TBS 02 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DITy1lMCDCE/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_TBS_1_minia.png"
+              alt="TBS — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+
+          <!-- A LA LYONNAISE 01 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DVq86IgC1RI/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_ALL_3.png"
+              alt="À La Lyonnaise — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+
+          <!-- A LA LYONNAISE 02 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DU055tJAgGH/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_ALL_2.png"
+              alt="À La Lyonnaise — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+
+          <!-- A LA LYONNAISE 03 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DT25XpJAt7G/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_ALL_1.png"
+              alt="À La Lyonnaise — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+
+          <!-- SUPERNATIFS 01 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DXo4hGgDKFx/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_SPN_4.png"
+              alt="Supernatifs — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+
+          <!-- SUPERNATIFS 02 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DadIRQ5seW2/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_SPN_3.png"
+              alt="Supernatifs — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+
+          <!-- SUPERNATIFS 03 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DScrWdqDF9m/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_SPN_2.png"
+              alt="Supernatifs — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+
+          <!-- SUPERNATIFS 04 -->
+
+          <a
+            class="new-drop-card"
+            href="https://www.instagram.com/p/DO8x3aSjLYd/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <img
+              src="Insta_SPN_1.png"
+              alt="Supernatifs — Instagram"
+              loading="lazy"
+            >
+
+            <span class="new-drop-instagram">
+
+              <svg viewBox="0 0 24 24">
+
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                />
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+
+              </svg>
+
+              Voir sur Instagram
+
+            </span>
+
+          </a>
+
+        </div>
+
+
+        <!-- FLECHE DROITE -->
+
+        <button
+          class="new-drop-arrow right"
+          id="newDropNext"
+          type="button"
+          aria-label="Voir les posts suivants"
+        >
+
+          <svg viewBox="0 0 24 24">
+
+            <path d="M9 5l7 7-7 7"/>
+
+          </svg>
+
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+
+  <footer>
+
+    <h2 class="footer-title">
+
+      On parle de<br>
+
+      votre projet&nbsp;?
+
+    </h2>
+
+
+    <div class="footer-bottom">
+
+      <a
+        class="footer-email"
+        href="mailto:faucompre.guillaume@gmail.com"
+      >
+
+        faucompre.guillaume@gmail.com
+
+      </a>
+
+
+      <div class="socials">
+
+        <a
+          class="social-link"
+          href="https://www.instagram.com/gui.mov_/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          Instagram
+
+        </a>
+
+
+        <a
+          class="social-link"
+          href="https://www.linkedin.com/in/guillaume-faucompr%C3%A9-b18381105/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          LinkedIn
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       VIDEO MODAL
+  ========================================================= -->
+
+  <div
+    class="modal"
+    id="videoModal"
+    onclick="closeVideo(event)"
+  >
+
+    <div class="modal-content">
+
+      <button
+        class="close-modal"
+        onclick="closeVideo()"
+        aria-label="Fermer"
+      >
+
+        ×
+
+      </button>
+
+
+      <div class="video-container">
+
+        <iframe
+          id="youtubePlayer"
+          src=""
+          title="Vidéo YouTube"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
+
+  <script>
+
+    /* =========================================================
+       VIDEO MODAL
+    ========================================================= */
+
+    const modal =
+      document.getElementById(
+        "videoModal"
+      );
+
+
+    const player =
+      document.getElementById(
+        "youtubePlayer"
+      );
+
+
+    function openVideo(videoId) {
+
+      player.src =
+        "https://www.youtube.com/embed/" +
+        videoId +
+        "?autoplay=1&rel=0";
+
+      modal.classList.add(
+        "open"
+      );
+
+      document.body.style.overflow =
+        "hidden";
+    }
+
+
+    function closeVideo(event) {
+
+      if (
+        event &&
+        event.target !== modal
+      ) {
+
+        return;
+
+      }
+
+
+      modal.classList.remove(
+        "open"
+      );
+
+      player.src =
+        "";
+
+      document.body.style.overflow =
+        "";
+    }
+
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          modal.classList.remove(
+            "open"
+          );
+
+          player.src =
+            "";
+
+          document.body.style.overflow =
+            "";
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       SMOOTH SCROLL
+    ========================================================= */
+
+    function scrollToProjects() {
+
+      const target =
+        document.getElementById(
+          "realisations"
+        );
+
+
+      if (!target) return;
+
+
+      const targetPosition =
+        target.getBoundingClientRect().top +
+        window.scrollY;
+
+
+      const header =
+        document.querySelector(
+          ".header-glass"
+        );
+
+
+      const headerHeight =
+        header
+          ? header.getBoundingClientRect().height
+          : 60;
+
+
+      const finalPosition =
+        targetPosition -
+        headerHeight -
+        35;
+
+
+      window.scrollTo({
+
+        top:
+          finalPosition,
+
+        behavior:
+          "smooth"
+
+      });
+
+    }
+
+
+    /* =========================================================
+       FILTERS
+    ========================================================= */
+
+    const filters =
+      document.querySelectorAll(
+        ".filter"
+      );
+
+
+    const projects =
+      document.querySelectorAll(
+        ".project"
+      );
+
+
+    filters.forEach(
+      function(filter) {
+
+        filter.addEventListener(
+          "click",
+          function() {
+
+            filters.forEach(
+              function(button) {
+
+                button.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+            filter.classList.add(
+              "active"
+            );
+
+
+            const selectedFilter =
+              filter.dataset.filter;
+
+
+            projects.forEach(
+              function(project) {
+
+                const category =
+                  project.dataset.category;
+
+
+                if (
+                  selectedFilter === "all" ||
+                  selectedFilter === category
+                ) {
+
+                  project.classList.remove(
+                    "hidden"
+                  );
+
+
+                  setTimeout(
+                    function() {
+
+                      project.classList.add(
+                        "visible"
+                      );
+
+                    },
+                    50
+                  );
+
+                }
+
+                else {
+
+                  project.classList.remove(
+                    "visible"
+                  );
+
+                  project.classList.add(
+                    "hidden"
+                  );
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       PROJECTS — APPEAR ON SCROLL
+    ========================================================= */
+
+    const observer =
+      new IntersectionObserver(
+
+        function(entries) {
+
+          entries.forEach(
+            function(entry) {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target.classList.add(
+                  "visible"
+                );
+
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
+
+            }
+          );
+
+        },
+
+        {
+          threshold: 0.12
+        }
+
+      );
+
+
+    projects.forEach(
+      function(project) {
+
+        observer.observe(
+          project
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       HEADER — SCROLL
+    ========================================================= */
+
+    const siteHeader =
+      document.querySelector(
+        ".site-header"
+      );
+
+
+    function updateHeader() {
+
+      if (
+        window.scrollY > 40
+      ) {
+
+        siteHeader.classList.add(
+          "scrolled"
+        );
+
+      }
+
+      else {
+
+        siteHeader.classList.remove(
+          "scrolled"
+        );
+
+      }
+
+    }
+
+
+    window.addEventListener(
+      "scroll",
+      updateHeader,
+      {
+        passive: true
+      }
+    );
+
+
+    updateHeader();
+
+
+    /* =========================================================
+       NEW DROP — CAROUSEL
+    ========================================================= */
+
+    const newDropGrid =
+      document.getElementById(
+        "newDropGrid"
+      );
+
+
+    const newDropPrev =
+      document.getElementById(
+        "newDropPrev"
+      );
+
+
+    const newDropNext =
+      document.getElementById(
+        "newDropNext"
+      );
+
+
+    function updateNewDropArrows() {
+
+      if (!newDropGrid) return;
+
+
+      const maxScroll =
+        newDropGrid.scrollWidth -
+        newDropGrid.clientWidth;
+
+
+      const currentScroll =
+        newDropGrid.scrollLeft;
+
+
+      if (
+        currentScroll <= 5
+      ) {
+
+        newDropPrev.classList.add(
+          "disabled"
+        );
+
+      }
+
+      else {
+
+        newDropPrev.classList.remove(
+          "disabled"
+        );
+
+      }
+
+
+      if (
+        currentScroll >=
+        maxScroll - 5
+      ) {
+
+        newDropNext.classList.add(
+          "disabled"
+        );
+
+      }
+
+      else {
+
+        newDropNext.classList.remove(
+          "disabled"
+        );
+
+      }
+
+    }
+
+
+    function getNewDropStep() {
+
+      const card =
+        newDropGrid.querySelector(
+          ".new-drop-card"
+        );
+
+
+      if (!card) return 0;
+
+
+      const style =
+        window.getComputedStyle(
+          newDropGrid
+        );
+
+
+      const gap =
+        parseFloat(
+          style.columnGap
+        ) || 18;
+
+
+      return (
+        card.offsetWidth +
+        gap
+      );
+
+    }
+
+
+    newDropPrev.addEventListener(
+      "click",
+      function() {
+
+        newDropGrid.scrollBy({
+
+          left:
+            -getNewDropStep() * 4,
+
+          behavior:
+            "smooth"
+
+        });
+
+      }
+    );
+
+
+    newDropNext.addEventListener(
+      "click",
+      function() {
+
+        newDropGrid.scrollBy({
+
+          left:
+            getNewDropStep() * 4,
+
+          behavior:
+            "smooth"
+
+        });
+
+      }
+    );
+
+
+    newDropGrid.addEventListener(
+      "scroll",
+      updateNewDropArrows,
+      {
+        passive: true
+      }
+    );
+
+
+    window.addEventListener(
+      "resize",
+      updateNewDropArrows
+    );
+
+
+    /* =========================================================
+       NEW DROP — DRAG DESKTOP
+    ========================================================= */
+
+    let isDragging =
+      false;
+
+    let dragStartX =
+      0;
+
+    let dragScrollLeft =
+      0;
+
+
+    newDropGrid.addEventListener(
+      "mousedown",
+      function(event) {
+
+        isDragging =
+          true;
+
+        newDropGrid.classList.add(
+          "dragging"
+        );
+
+        dragStartX =
+          event.pageX -
+          newDropGrid.offsetLeft;
+
+        dragScrollLeft =
+          newDropGrid.scrollLeft;
+
+      }
+    );
+
+
+    newDropGrid.addEventListener(
+      "mouseleave",
+      function() {
+
+        isDragging =
+          false;
+
+        newDropGrid.classList.remove(
+          "dragging"
+        );
+
+      }
+    );
+
+
+    newDropGrid.addEventListener(
+      "mouseup",
+      function() {
+
+        isDragging =
+          false;
+
+        newDropGrid.classList.remove(
+          "dragging"
+        );
+
+      }
+    );
+
+
+    newDropGrid.addEventListener(
+      "mousemove",
+      function(event) {
+
+        if (!isDragging) return;
+
+
+        event.preventDefault();
+
+
+        const x =
+          event.pageX -
+          newDropGrid.offsetLeft;
+
+
+        const walk =
+          (x - dragStartX) * 1.2;
+
+
+        newDropGrid.scrollLeft =
+          dragScrollLeft - walk;
+
+      }
+    );
+
+
+    /* =========================================================
+       INIT
+    ========================================================= */
+
+    updateNewDropArrows();
+
+  </script>
+
+
 </body>
+
 </html>
