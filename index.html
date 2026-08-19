@@ -1175,6 +1175,298 @@
 .scroll-indicator:hover .scroll-label {
   color: #FF2B2B;
 }
+    /* ========================================
+   FINAL SCROLL DESIGN
+   Minimal / Iridescent / Liquid
+======================================== */
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+
+  z-index: 20;
+}
+
+
+/* CADRE */
+
+.scroll-frame {
+  position: relative;
+
+  width: 30px;
+  height: 54px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(180, 180, 190, 0.55);
+
+  background: rgba(8, 10, 15, 0.5);
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  box-shadow:
+    inset 0 0 12px rgba(255, 255, 255, 0.025);
+
+  transition:
+    border-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+
+/* LIQUIDE */
+
+.scroll-frame::before {
+  content: "";
+
+  position: absolute;
+
+  width: 90px;
+  height: 90px;
+
+  left: -30px;
+  top: -20px;
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      from 0deg,
+      #2367ff,
+      #8c3cff,
+      #ff3ca6,
+      #ff3c4f,
+      #3ce6ff,
+      #2367ff
+    );
+
+  filter: blur(10px);
+
+  opacity: 0.18;
+
+  animation:
+    liquidMove 7s linear infinite;
+
+  z-index: -1;
+}
+
+
+/* DEUXIÈME REFLET */
+
+.scroll-frame::after {
+  content: "";
+
+  position: absolute;
+
+  width: 55px;
+  height: 100px;
+
+  left: -12px;
+  top: -25px;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,255,255,0.18),
+      transparent 65%
+    );
+
+  filter: blur(8px);
+
+  opacity: 0.15;
+
+  animation:
+    liquidFloat 4s ease-in-out infinite alternate;
+
+  z-index: -1;
+}
+
+
+/* PETIT TRAIT */
+
+.scroll-line {
+  position: absolute;
+
+  top: 8px;
+  left: 50%;
+
+  width: 2px;
+  height: 13px;
+
+  transform: translateX(-50%);
+
+  border-radius: 999px;
+
+  background: #666;
+
+  animation:
+    scrollLine 1.8s ease-in-out infinite;
+
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+
+/* MOUVEMENT DU LIQUIDE */
+
+@keyframes liquidMove {
+
+  0% {
+    transform:
+      translate(-20px, -5px)
+      rotate(0deg)
+      scale(1);
+  }
+
+  25% {
+    transform:
+      translate(15px, 5px)
+      rotate(90deg)
+      scale(1.15);
+  }
+
+  50% {
+    transform:
+      translate(0, 18px)
+      rotate(180deg)
+      scale(0.95);
+  }
+
+  75% {
+    transform:
+      translate(-15px, 5px)
+      rotate(270deg)
+      scale(1.12);
+  }
+
+  100% {
+    transform:
+      translate(-20px, -5px)
+      rotate(360deg)
+      scale(1);
+  }
+
+}
+
+
+@keyframes liquidFloat {
+
+  0% {
+    transform:
+      translateY(-8px)
+      scale(0.9);
+  }
+
+  100% {
+    transform:
+      translateY(12px)
+      scale(1.15);
+  }
+
+}
+
+
+/* ANIMATION SCROLL */
+
+@keyframes scrollLine {
+
+  0% {
+    transform:
+      translate(-50%, 0);
+  }
+
+  50% {
+    transform:
+      translate(-50%, 24px);
+  }
+
+  100% {
+    transform:
+      translate(-50%, 0);
+  }
+
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.scroll-indicator:hover .scroll-frame {
+
+  border-color:
+    rgba(255, 43, 43, 0.85);
+
+  box-shadow:
+    0 0 12px rgba(255, 43, 43, 0.15),
+    0 0 30px rgba(70, 100, 255, 0.08),
+    inset 0 0 15px rgba(255,255,255,0.04);
+}
+
+
+.scroll-indicator:hover .scroll-frame::before {
+
+  opacity: 0.42;
+
+  filter: blur(7px);
+
+  animation-duration: 3.5s;
+}
+
+
+.scroll-indicator:hover .scroll-frame::after {
+
+  opacity: 0.30;
+}
+
+
+.scroll-indicator:hover .scroll-line {
+
+  background: #FF2B2B;
+
+  box-shadow:
+    0 0 6px rgba(255,43,43,0.5);
+}
+
+
+.scroll-indicator:hover .scroll-label {
+
+  color: #FF2B2B;
+}
+
+
+/* LABEL */
+
+.scroll-label {
+
+  color: #666;
+
+  font-size: 9px;
+
+  font-weight: bold;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.22em;
+
+  transition:
+    color 0.3s ease;
+}
   </style>
 </head>
 
