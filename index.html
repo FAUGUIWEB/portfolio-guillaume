@@ -298,99 +298,193 @@
        HERO
     ========================================================= */
 
-    .hero {
-      position: relative;
+    /* =========================================================
+   HERO — VIDEO BACKGROUND
+========================================================= */
 
-      width: 100%;
+.hero {
+  position: relative;
 
-      height: 100vh;
-      height: 100svh;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
 
-      min-height: 600px;
+  min-height: 600px;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-      padding:
-        100px
-        5vw
-        60px;
+  padding:
+    100px
+    5vw
+    60px;
 
-      overflow: hidden;
-    }
+  overflow: hidden;
 
-    .hero-title {
-      font-family: "Bebas Neue", sans-serif;
+  background: #050505;
+}
 
-      font-size:
-        clamp(90px, 17vw, 270px);
 
-      line-height: 0.78;
+/* =========================================================
+   VIDEO
+========================================================= */
 
-      letter-spacing: -0.015em;
+.hero-video {
+  position: absolute;
 
-      text-transform: uppercase;
+  inset: 0;
 
-      max-width: 1500px;
-    }
+  width: 100%;
+  height: 100%;
 
-    .hero-subtitle {
-      margin-top: 45px;
+  object-fit: cover;
 
-      font-size: 16px;
+  z-index: 0;
 
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+  pointer-events: none;
 
-      color: var(--red);
+  filter:
+    brightness(0.72)
+    contrast(1.05);
 
-      font-weight: bold;
-    }
+  transform: scale(1.01);
+}
 
-    .showreel-button {
-      margin-top: 45px;
 
-      width: fit-content;
+/* =========================================================
+   OVERLAY
+========================================================= */
 
-      padding: 15px 28px;
+.hero-overlay {
+  position: absolute;
 
-      border: 1px solid #555;
-      border-radius: 100px;
+  inset: 0;
 
-      background: transparent;
+  z-index: 1;
 
-      color: white;
+  pointer-events: none;
 
-      font-size: 12px;
-      font-weight: bold;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.20) 55%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
 
-      letter-spacing: 0.15em;
+  box-shadow:
+    inset 0 0 180px rgba(0, 0, 0, 0.45);
+}
 
-      cursor: pointer;
 
-      transition:
-        background 0.3s ease,
-        color 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    }
+/* =========================================================
+   CONTENU HERO
+========================================================= */
 
-    .showreel-button:hover {
-      background: var(--red);
+.hero-content {
+  position: relative;
 
-      color: white;
+  z-index: 2;
+}
 
-      border-color: var(--red);
 
-      transform: translateY(-3px);
+/* =========================================================
+   TITRE
+========================================================= */
 
-      box-shadow:
-        0 10px 30px
-        rgba(255, 43, 43, 0.2);
-    }
+.hero-title {
+  font-family: "Bebas Neue", sans-serif;
 
+  font-size:
+    clamp(90px, 17vw, 270px);
+
+  line-height: 0.78;
+
+  letter-spacing: -0.015em;
+
+  text-transform: uppercase;
+
+  max-width: 1500px;
+
+  text-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   SOUS TITRE
+========================================================= */
+
+.hero-subtitle {
+  margin-top: 45px;
+
+  font-size: 16px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
+
+  color: var(--red);
+
+  font-weight: bold;
+
+  text-shadow:
+    0 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================================
+   SHOWREEL
+========================================================= */
+
+.showreel-button {
+  margin-top: 45px;
+
+  width: fit-content;
+
+  padding: 15px 28px;
+
+  border: 1px solid rgba(255,255,255,0.35);
+
+  border-radius: 100px;
+
+  background: rgba(0,0,0,0.15);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  color: white;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 0.15em;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.showreel-button:hover {
+  background: var(--red);
+
+  color: white;
+
+  border-color: var(--red);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 30px
+    rgba(255, 43, 43, 0.3);
+}
 
     /* =========================================================
        SCROLL INDICATOR
@@ -1052,31 +1146,52 @@
 
       /* HERO */
 
-      .hero {
-        height: 100svh;
+    
 
-        min-height: 600px;
+  .hero {
+    height: 100svh;
 
-        padding:
-          100px
-          20px
-          60px;
-      }
+    min-height: 600px;
 
-      .hero-title {
-        font-size:
-          clamp(
-            75px,
-            22vw,
-            150px
-          );
-      }
+    padding:
+      100px
+      20px
+      60px;
+  }
 
-      .hero-subtitle {
-        font-size: 12px;
+  .hero-video {
+    object-position: center center;
 
-        margin-top: 35px;
-      }
+    filter:
+      brightness(0.65)
+      contrast(1.05);
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.25)
+      );
+  }
+
+  .hero-title {
+    font-size:
+      clamp(
+        75px,
+        22vw,
+        150px
+      );
+  }
+
+  .hero-subtitle {
+    font-size: 12px;
+
+    margin-top: 35px;
+  }
+
+
 
 
       /* PROJECTS */
@@ -1300,146 +1415,164 @@
 
     <!-- HERO -->
 
-    <section
-      class="hero"
-      id="home"
+  <section class="hero" id="home">
+
+  <!-- VIDÉO DE FOND -->
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+  >
+    <source src="3dcube-v3.mp4" type="video/mp4">
+  </video>
+
+  <!-- VOILE DE CONTRASTE -->
+  <div class="hero-overlay"></div>
+
+  <!-- CONTENU -->
+  <div class="hero-content">
+
+    <h1 class="hero-title">
+      Guillaume<br>
+      Faucompré
+    </h1>
+
+    <p class="hero-subtitle">
+      Vidéaste · Motion Designer
+    </p>
+
+    <button
+      class="showreel-button"
+      onclick="openVideo('8zoBIHigQSQ')"
     >
+      SHOWREEL
+    </button>
 
-      <h1 class="hero-title">
-        Guillaume<br>
-        Faucompré
-      </h1>
-
-      <p class="hero-subtitle">
-        Vidéaste · Motion Designer
-      </p>
-
-      <button
-        class="showreel-button"
-        onclick="openVideo('8zoBIHigQSQ')"
-      >
-        SHOWREEL
-      </button>
+  </div>
 
 
-      <!-- SCROLL -->
+  <!-- SCROLL -->
 
-      <button
-        class="scroll-indicator"
-        onclick="scrollToProjects()"
-        aria-label="Voir les réalisations"
+  <button
+    class="scroll-indicator"
+    onclick="scrollToProjects()"
+    aria-label="Voir les réalisations"
+  >
+
+    <span class="scroll-frame">
+
+      <svg
+        class="scroll-liquid"
+        viewBox="0 0 30 54"
+        aria-hidden="true"
       >
 
-        <span class="scroll-frame">
+        <defs>
 
-          <svg
-            class="scroll-liquid"
-            viewBox="0 0 30 54"
-            aria-hidden="true"
+          <linearGradient
+            id="scrollGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
           >
 
-            <defs>
+            <stop offset="0%">
+              <animate
+                attributeName="stop-color"
+                values="#246BFF;#8A3FFC;#FF3CA8;#246BFF"
+                dur="6s"
+                repeatCount="indefinite"
+              />
+            </stop>
 
-              <linearGradient
-                id="scrollGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
+            <stop offset="25%">
+              <animate
+                attributeName="stop-color"
+                values="#8A3FFC;#FF3CA8;#246BFF;#8A3FFC"
+                dur="7s"
+                repeatCount="indefinite"
+              />
+            </stop>
 
-                <stop offset="0%">
-                  <animate
-                    attributeName="stop-color"
-                    values="#246BFF;#8A3FFC;#FF3CA8;#246BFF"
-                    dur="6s"
-                    repeatCount="indefinite"
-                  />
-                </stop>
+            <stop offset="50%">
+              <animate
+                attributeName="stop-color"
+                values="#FF3CA8;#FF5368;#8A3FFC;#FF3CA8"
+                dur="8s"
+                repeatCount="indefinite"
+              />
+            </stop>
 
-                <stop offset="25%">
-                  <animate
-                    attributeName="stop-color"
-                    values="#8A3FFC;#FF3CA8;#246BFF;#8A3FFC"
-                    dur="7s"
-                    repeatCount="indefinite"
-                  />
-                </stop>
+            <stop offset="75%">
+              <animate
+                attributeName="stop-color"
+                values="#FF5368;#39D9FF;#FF3CA8;#FF5368"
+                dur="7.5s"
+                repeatCount="indefinite"
+              />
+            </stop>
 
-                <stop offset="50%">
-                  <animate
-                    attributeName="stop-color"
-                    values="#FF3CA8;#FF5368;#8A3FFC;#FF3CA8"
-                    dur="8s"
-                    repeatCount="indefinite"
-                  />
-                </stop>
+            <stop offset="100%">
+              <animate
+                attributeName="stop-color"
+                values="#39D9FF;#246BFF;#FF5368;#39D9FF"
+                dur="6.5s"
+                repeatCount="indefinite"
+              />
+            </stop>
 
-                <stop offset="75%">
-                  <animate
-                    attributeName="stop-color"
-                    values="#FF5368;#39D9FF;#FF3CA8;#FF5368"
-                    dur="7.5s"
-                    repeatCount="indefinite"
-                  />
-                </stop>
+          </linearGradient>
 
-                <stop offset="100%">
-                  <animate
-                    attributeName="stop-color"
-                    values="#39D9FF;#246BFF;#FF5368;#39D9FF"
-                    dur="6.5s"
-                    repeatCount="indefinite"
-                  />
-                </stop>
+        </defs>
 
-              </linearGradient>
+        <rect
+          class="scroll-outline"
+          x="1"
+          y="1"
+          width="28"
+          height="52"
+          rx="14"
+          ry="14"
+        />
 
-            </defs>
+        <rect
+          class="scroll-glow"
+          x="1"
+          y="1"
+          width="28"
+          height="52"
+          rx="14"
+          ry="14"
+        />
 
-            <rect
-              class="scroll-outline"
-              x="1"
-              y="1"
-              width="28"
-              height="52"
-              rx="14"
-              ry="14"
-            />
+        <rect
+          class="scroll-liquid-path"
+          x="1"
+          y="1"
+          width="28"
+          height="52"
+          rx="14"
+          ry="14"
+        />
 
-            <rect
-              class="scroll-glow"
-              x="1"
-              y="1"
-              width="28"
-              height="52"
-              rx="14"
-              ry="14"
-            />
+      </svg>
 
-            <rect
-              class="scroll-liquid-path"
-              x="1"
-              y="1"
-              width="28"
-              height="52"
-              rx="14"
-              ry="14"
-            />
+      <span class="scroll-line"></span>
 
-          </svg>
+    </span>
 
-          <span class="scroll-line"></span>
+    <span class="scroll-label">
+      Scroll
+    </span>
 
-        </span>
+  </button>
 
-        <span class="scroll-label">
-          Scroll
-        </span>
-
-      </button>
-
-    </section>
+</section>
 
 
     <!-- =========================================================
