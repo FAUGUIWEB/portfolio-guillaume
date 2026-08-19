@@ -1268,7 +1268,217 @@
       }
 
     }
+/* =========================================================
+   NEW DROP
+========================================================= */
 
+.new-drop {
+  width: 100%;
+  padding: 0 5vw 180px;
+}
+
+.new-drop-title {
+  font-family: "Bebas Neue", sans-serif;
+
+  font-size: clamp(80px, 13vw, 190px);
+
+  line-height: 0.8;
+
+  letter-spacing: -0.01em;
+
+  text-transform: uppercase;
+
+  margin-bottom: 55px;
+}
+
+
+/* GRILLE */
+
+.new-drop-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+
+/* CARTE */
+
+.new-drop-card {
+  position: relative;
+
+  display: block;
+
+  overflow: hidden;
+
+  aspect-ratio: 9 / 16;
+
+  background: #111;
+
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+
+/* IMAGE */
+
+.new-drop-card img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 0.5s ease;
+}
+
+
+/* OVERLAY */
+
+.new-drop-card::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.55),
+      transparent 45%
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+
+  pointer-events: none;
+}
+
+
+/* INSTAGRAM */
+
+.new-drop-instagram {
+  position: absolute;
+
+  left: 16px;
+  bottom: 16px;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: white;
+
+  font-size: 10px;
+
+  font-weight: bold;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
+
+  opacity: 0;
+
+  transform: translateY(8px);
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+
+/* ICON */
+
+.new-drop-instagram svg {
+  width: 16px;
+  height: 16px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.8;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+}
+
+
+/* HOVER */
+
+.new-drop-card:hover img {
+  transform: scale(1.045);
+
+  filter: brightness(0.82);
+}
+
+.new-drop-card:hover::after {
+  opacity: 1;
+}
+
+.new-drop-card:hover .new-drop-instagram {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   NEW DROP — TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .new-drop-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+/* =========================================================
+   NEW DROP — MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .new-drop {
+    padding:
+      0
+      20px
+      120px;
+  }
+
+  .new-drop-title {
+    font-size:
+      clamp(
+        75px,
+        22vw,
+        150px
+      );
+
+    margin-bottom: 45px;
+  }
+
+  .new-drop-grid {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+  }
+
+}
   </style>
 </head>
 
@@ -1814,7 +2024,392 @@
       </div>
 
     </section>
+<!-- =========================================================
+     NEW DROP
+========================================================= -->
 
+<section class="new-drop" id="new-drop">
+
+  <h2 class="new-drop-title">
+    New Drop
+  </h2>
+
+
+  <div class="new-drop-grid">
+
+
+    <!-- PETZL 01 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DbTP2cxj9c9/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="Petzl — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect
+            x="3"
+            y="3"
+            width="18"
+            height="18"
+            rx="5"
+          />
+
+          <circle
+            cx="12"
+            cy="12"
+            r="4"
+          />
+
+          <circle
+            cx="17.5"
+            cy="6.5"
+            r="1"
+            fill="currentColor"
+            stroke="none"
+          />
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+
+    <!-- PETZL 02 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DaaltyQjcJz/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="Petzl — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+
+    <!-- TBS 01 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DIJnYNmi-hq/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="TBS — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+
+    <!-- TBS 02 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DITy1lMCDCE/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="TBS — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+
+    <!-- A LA LYONNAISE 01 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DVq86IgC1RI/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="À La Lyonnaise — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+
+    <!-- A LA LYONNAISE 02 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DU055tJAgGH/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="À La Lyonnaise — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+
+    <!-- A LA LYONNAISE 03 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DT25XpJAt7G/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="À La Lyonnaise — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+
+    <!-- SUPERNATIFS 01 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DXo4hGgDKFx/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="Supernatifs — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+
+    <!-- SUPERNATIFS 02 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DadIRQ5seW2/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="Supernatifs — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+
+    <!-- SUPERNATIFS 03 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DScrWdqDF9m/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="Supernatifs — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+
+    <!-- SUPERNATIFS 04 -->
+
+    <a
+      class="new-drop-card"
+      href="https://www.instagram.com/p/DO8x3aSjLYd/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <img
+        src="Insta_TBS_1_minia.png"
+        alt="Supernatifs — Instagram"
+        loading="lazy"
+      >
+
+      <span class="new-drop-instagram">
+
+        <svg viewBox="0 0 24 24">
+
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+
+        </svg>
+
+        Voir sur Instagram
+
+      </span>
+
+    </a>
+
+  </div>
+
+</section>
   </main>
 
 
