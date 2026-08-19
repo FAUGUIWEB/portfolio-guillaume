@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Guillaume Faucompré — Vidéaste & Motion Designer</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #050505;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 100px);
+      font-weight: 400;
+      letter-spacing: -0.05em;
+    }
+
+    .hero p {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #999;
+    }
+
+    .showreel-button {
+      margin-top: 50px;
+      padding: 16px 30px;
+      border: 1px solid #444;
+      border-radius: 100px;
+      background: transparent;
+      color: white;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .showreel-button:hover {
+      background: white;
+      color: black;
+    }
+
+    .projects {
+      padding: 120px 5vw;
+    }
+
+    .projects h2 {
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 400;
+      letter-spacing: -0.05em;
+      margin-bottom: 40px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 50px;
+    }
+
+    .filter {
+      border: 1px solid #333;
+      background: transparent;
+      color: #999;
+      padding: 10px 18px;
+      border-radius: 100px;
+      cursor: pointer;
+    }
+
+    .filter.active,
+    .filter:hover {
+      background: white;
+      color: black;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px 20px;
+    }
+
+    .project {
+      cursor: pointer;
+    }
+
+    .thumbnail {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #111;
+      transition: transform 0.5s ease;
+    }
+
+    .project:hover .thumbnail {
+      transform: scale(1.02);
+    }
+
+    .project-info {
+      margin-top: 14px;
+    }
+
+    .project-title {
+      font-size: 18px;
+    }
+
+    .project-meta {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    footer {
+      padding: 180px 5vw 40px;
+    }
+
+    footer h2 {
+      max-width: 900px;
+      font-size: clamp(50px, 9vw, 140px);
+      font-weight: 400;
+      letter-spacing: -0.06em;
+      line-height: 0.9;
+    }
+
+    .footer-bottom {
+      margin-top: 100px;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      color: #777;
+    }
+
+    .footer-bottom a {
+      color: white;
+      text-decoration: none;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <h1>Guillaume Faucompré</h1>
+    <p>Vidéaste · Motion Designer</p>
+
+    <button class="showreel-button">
+      SHOWREEL
+    </button>
+  </section>
+
+  <section class="projects">
+    <h2>Réalisations</h2>
+
+    <div class="filters">
+      <button class="filter active">Tout</button>
+      <button class="filter">Motion</button>
+      <button class="filter">Vidéo</button>
+    </div>
+
+    <div class="grid">
+
+      <article class="project">
+        <img
+          class="thumbnail"
+          src="https://img.youtube.com/vi/OjJqzi2OK-8/maxresdefault.jpg"
+          alt="Rebranding FILL UP MEDIA"
+        >
+        <div class="project-info">
+          <div class="project-title">Rebranding FILL UP MEDIA</div>
+          <div class="project-meta">FILL UP MEDIA · MOTION</div>
+        </div>
+      </article>
+
+      <article class="project">
+        <img
+          class="thumbnail"
+          src="https://img.youtube.com/vi/r4-cx2gnhwU/maxresdefault.jpg"
+          alt="Survivor HC"
+        >
+        <div class="project-info">
+          <div class="project-title">Survivor HC</div>
+          <div class="project-meta">TOURNAGE · MONTAGE · VIDÉO</div>
+        </div>
+      </article>
+
+      <article class="project">
+        <img
+          class="thumbnail"
+          src="https://img.youtube.com/vi/tV3w-UNNDi8/maxresdefault.jpg"
+          alt="Safehear Louis"
+        >
+        <div class="project-info">
+          <div class="project-title">Safehear Louis</div>
+          <div class="project-meta">SAFEHEAR · MOTION</div>
+        </div>
+      </article>
+
+      <article class="project">
+        <img
+          class="thumbnail"
+          src="https://img.youtube.com/vi/87RnFxTAbqk/maxresdefault.jpg"
+          alt="Trailer Café Terroir"
+        >
+        <div class="project-info">
+          <div class="project-title">Trailer Café Terroir</div>
+          <div class="project-meta">GASTRONOM'IT · VIDÉO</div>
+        </div>
+      </article>
+
+      <article class="project">
+        <img
+          class="thumbnail"
+          src="https://img.youtube.com/vi/nQXRruZp7MY/maxresdefault.jpg"
+          alt="AfterWork Speed"
+        >
+        <div class="project-info">
+          <div class="project-title">AfterWork Speed</div>
+          <div class="project-meta">HEAD · VIDÉO</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    <h2>On parle de votre projet&nbsp;?</h2>
+
+    <div class="footer-bottom">
+      <a href="mailto:TONEMAIL@EXEMPLE.FR">
+        TONEMAIL@EXEMPLE.FR
+      </a>
+
+      <div>
+        <a href="#" target="_blank">Instagram</a>
+        &nbsp; · &nbsp;
+        <a href="#" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
