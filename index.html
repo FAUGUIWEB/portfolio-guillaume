@@ -14,6 +14,19 @@
   <style>
 
     /* =========================
+       VARIABLES
+    ========================= */
+
+    :root {
+      --red: #FF2B2B;
+      --black: #050505;
+      --white: #ffffff;
+      --grey: #777777;
+      --dark-grey: #222222;
+    }
+
+
+    /* =========================
        BASE
     ========================= */
 
@@ -28,8 +41,8 @@
     }
 
     body {
-      background: #050505;
-      color: #ffffff;
+      background: var(--black);
+      color: var(--white);
       font-family: Arial, Helvetica, sans-serif;
       overflow-x: hidden;
     }
@@ -95,7 +108,8 @@
       font-size: 16px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: #999;
+      color: var(--red);
+      font-weight: bold;
     }
 
     .showreel-button {
@@ -114,20 +128,58 @@
     }
 
     .showreel-button:hover {
-      background: white;
-      color: black;
-      border-color: white;
-      transform: translateY(-2px);
+      background: var(--red);
+      color: white;
+      border-color: var(--red);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 43, 43, 0.2);
     }
+
+
+    /* =========================
+       SCROLL INDICATOR
+    ========================= */
 
     .scroll-indicator {
       position: absolute;
       bottom: 30px;
-      right: 5vw;
-      font-size: 11px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
       color: #666;
-      letter-spacing: 0.12em;
+      font-size: 11px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: color 0.3s ease;
+    }
+
+    .scroll-indicator:hover {
+      color: var(--red);
+    }
+
+    .scroll-arrow {
+      font-size: 22px;
+      line-height: 1;
+      animation: scrollArrow 1.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollArrow {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(8px);
+      }
+
     }
 
 
@@ -137,6 +189,7 @@
 
     .projects {
       padding: 140px 5vw 180px;
+      scroll-margin-top: 30px;
     }
 
     .section-title {
@@ -170,9 +223,10 @@
 
     .filter:hover,
     .filter.active {
-      background: white;
-      color: black;
-      border-color: white;
+      background: var(--red);
+      color: white;
+      border-color: var(--red);
+      box-shadow: 0 8px 25px rgba(255, 43, 43, 0.15);
     }
 
 
@@ -243,9 +297,14 @@
     }
 
     .project-tag {
-      margin-top: 5px;
-      font-size: 10px;
-      color: #555;
+      display: inline-block;
+      margin-top: 8px;
+      padding: 5px 9px;
+      border-radius: 100px;
+      background: var(--red);
+      color: white;
+      font-size: 9px;
+      font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 0.12em;
     }
@@ -288,7 +347,7 @@
     }
 
     .footer-email:hover {
-      opacity: 0.5;
+      color: var(--red);
     }
 
     .socials {
@@ -296,14 +355,23 @@
       gap: 25px;
     }
 
-    .socials a {
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       color: white;
       text-decoration: none;
-      transition: opacity 0.3s ease;
+      transition: color 0.3s ease;
     }
 
-    .socials a:hover {
-      opacity: 0.5;
+    .social-link:hover {
+      color: var(--red);
+    }
+
+    .social-icon {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
     }
 
 
@@ -322,7 +390,9 @@
       padding: 30px;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.35s ease, visibility 0.35s ease;
+      transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
     }
 
     .modal.open {
@@ -364,8 +434,9 @@
     }
 
     .close-modal:hover {
-      background: white;
-      color: black;
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
     }
 
 
@@ -435,14 +506,17 @@
 
 <body>
 
+
   <!-- =========================
        HEADER
   ========================= -->
 
   <header class="site-header">
+
     <div class="logo-placeholder">
       LOGO
     </div>
+
   </header>
 
 
@@ -470,9 +544,22 @@
         SHOWREEL
       </button>
 
-      <div class="scroll-indicator">
-        ↓ Scroll
-      </div>
+
+      <!-- SCROLL -->
+
+      <button
+        class="scroll-indicator"
+        onclick="scrollToProjects()"
+        aria-label="Voir les réalisations"
+      >
+
+        <span>Scroll</span>
+
+        <span class="scroll-arrow">
+          ↓
+        </span>
+
+      </button>
 
     </section>
 
@@ -481,11 +568,15 @@
          PROJECTS
     ========================= -->
 
-    <section class="projects" id="realisations">
+    <section
+      class="projects"
+      id="realisations"
+    >
 
       <h2 class="section-title">
         Réalisations
       </h2>
+
 
       <div class="filters">
 
@@ -525,15 +616,19 @@
         >
 
           <div class="thumbnail-wrapper">
+
             <img
               class="thumbnail"
               src="https://img.youtube.com/vi/OjJqzi2OK-8/maxresdefault.jpg"
               alt="Rebranding FILL UP MEDIA"
               loading="lazy"
             >
+
           </div>
 
+
           <div class="project-info">
+
             <div class="project-title">
               Rebranding FILL UP MEDIA
             </div>
@@ -545,6 +640,7 @@
             <div class="project-tag">
               Motion Design
             </div>
+
           </div>
 
         </article>
@@ -559,26 +655,31 @@
         >
 
           <div class="thumbnail-wrapper">
+
             <img
               class="thumbnail"
               src="https://img.youtube.com/vi/r4-cx2gnhwU/maxresdefault.jpg"
               alt="Survivor HC"
               loading="lazy"
             >
+
           </div>
 
+
           <div class="project-info">
+
             <div class="project-title">
               Survivor HC
             </div>
 
             <div class="project-client">
-              Survivor HC
+              SURVIVOR HC
             </div>
 
             <div class="project-tag">
               Tournage · Montage
             </div>
+
           </div>
 
         </article>
@@ -593,15 +694,19 @@
         >
 
           <div class="thumbnail-wrapper">
+
             <img
               class="thumbnail"
               src="https://img.youtube.com/vi/tV3w-UNNDi8/maxresdefault.jpg"
               alt="Safehear Louis"
               loading="lazy"
             >
+
           </div>
 
+
           <div class="project-info">
+
             <div class="project-title">
               Safehear Louis
             </div>
@@ -613,6 +718,7 @@
             <div class="project-tag">
               Motion Design
             </div>
+
           </div>
 
         </article>
@@ -627,15 +733,19 @@
         >
 
           <div class="thumbnail-wrapper">
+
             <img
               class="thumbnail"
               src="https://img.youtube.com/vi/87RnFxTAbqk/maxresdefault.jpg"
               alt="Trailer Café Terroir"
               loading="lazy"
             >
+
           </div>
 
+
           <div class="project-info">
+
             <div class="project-title">
               Trailer Café Terroir
             </div>
@@ -647,6 +757,7 @@
             <div class="project-tag">
               Montage
             </div>
+
           </div>
 
         </article>
@@ -661,15 +772,19 @@
         >
 
           <div class="thumbnail-wrapper">
+
             <img
               class="thumbnail"
               src="https://img.youtube.com/vi/nQXRruZp7MY/maxresdefault.jpg"
               alt="AfterWork Speed"
               loading="lazy"
             >
+
           </div>
 
+
           <div class="project-info">
+
             <div class="project-title">
               AfterWork Speed
             </div>
@@ -681,6 +796,7 @@
             <div class="project-tag">
               Tournage · Montage
             </div>
+
           </div>
 
         </article>
@@ -704,6 +820,7 @@
       votre projet&nbsp;?
     </h2>
 
+
     <div class="footer-bottom">
 
       <a
@@ -713,23 +830,123 @@
         faucompre.guillaume@gmail.com
       </a>
 
+
       <div class="socials">
 
+
+        <!-- INSTAGRAM -->
+
         <a
+          class="social-link"
           href="https://www.instagram.com/gui.mov_/"
           target="_blank"
           rel="noopener noreferrer"
         >
+
+          <svg
+            class="social-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+
+            <circle
+              cx="17.5"
+              cy="6.5"
+              r="1"
+              fill="currentColor"
+            />
+
+          </svg>
+
           Instagram
+
         </a>
 
+
+        <!-- LINKEDIN -->
+
         <a
+          class="social-link"
           href="https://www.linkedin.com/in/guillaume-faucompr%C3%A9-b18381105/"
           target="_blank"
           rel="noopener noreferrer"
         >
+
+          <svg
+            class="social-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <rect
+              x="4"
+              y="4"
+              width="16"
+              height="16"
+              rx="2"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+
+            <line
+              x1="8"
+              y1="10"
+              x2="8"
+              y2="17"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+
+            <circle
+              cx="8"
+              cy="7"
+              r="1"
+              fill="currentColor"
+            />
+
+            <path
+              d="M12 17v-4c0-2 1-3 3-3s3 1.2 3 3v4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+
+            <line
+              x1="18"
+              y1="13"
+              x2="18"
+              y2="17"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+
+          </svg>
+
           LinkedIn
+
         </a>
+
 
       </div>
 
@@ -758,6 +975,7 @@
         ×
       </button>
 
+
       <div class="video-container">
 
         <iframe
@@ -781,12 +999,17 @@
 
   <script>
 
+
     /* -------------------------
        VIDEO POPUP
     ------------------------- */
 
-    const modal = document.getElementById("videoModal");
-    const player = document.getElementById("youtubePlayer");
+    const modal =
+      document.getElementById("videoModal");
+
+    const player =
+      document.getElementById("youtubePlayer");
+
 
     function openVideo(videoId) {
 
@@ -798,6 +1021,7 @@
       modal.classList.add("open");
 
       document.body.style.overflow = "hidden";
+
     }
 
 
@@ -815,22 +1039,45 @@
       player.src = "";
 
       document.body.style.overflow = "";
+
     }
 
 
     /* -------------------------
-       ESCAPE POUR FERMER
+       ESCAPE
     ------------------------- */
 
-    document.addEventListener("keydown", function(event) {
+    document.addEventListener(
+      "keydown",
+      function(event) {
 
-      if (event.key === "Escape") {
-        modal.classList.remove("open");
-        player.src = "";
-        document.body.style.overflow = "";
+        if (event.key === "Escape") {
+
+          modal.classList.remove("open");
+
+          player.src = "";
+
+          document.body.style.overflow = "";
+
+        }
+
       }
+    );
 
-    });
+
+    /* -------------------------
+       SMOOTH SCROLL
+    ------------------------- */
+
+    function scrollToProjects() {
+
+      document
+        .getElementById("realisations")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    }
 
 
     /* -------------------------
@@ -846,45 +1093,55 @@
 
     filters.forEach(function(filter) {
 
-      filter.addEventListener("click", function() {
+      filter.addEventListener(
+        "click",
+        function() {
 
-        filters.forEach(function(button) {
-          button.classList.remove("active");
-        });
+          filters.forEach(function(button) {
 
-        filter.classList.add("active");
+            button.classList.remove("active");
 
-        const selectedFilter =
-          filter.dataset.filter;
-
-
-        projects.forEach(function(project) {
-
-          const category =
-            project.dataset.category;
+          });
 
 
-          if (
-            selectedFilter === "all" ||
-            selectedFilter === category
-          ) {
+          filter.classList.add("active");
 
-            project.classList.remove("hidden");
 
-            setTimeout(function() {
-              project.classList.add("visible");
-            }, 50);
+          const selectedFilter =
+            filter.dataset.filter;
 
-          } else {
 
-            project.classList.remove("visible");
-            project.classList.add("hidden");
+          projects.forEach(function(project) {
 
-          }
+            const category =
+              project.dataset.category;
 
-        });
 
-      });
+            if (
+              selectedFilter === "all" ||
+              selectedFilter === category
+            ) {
+
+              project.classList.remove("hidden");
+
+              setTimeout(function() {
+
+                project.classList.add("visible");
+
+              }, 50);
+
+            } else {
+
+              project.classList.remove("visible");
+
+              project.classList.add("hidden");
+
+            }
+
+          });
+
+        }
+      );
 
     });
 
@@ -895,6 +1152,7 @@
 
     const observer =
       new IntersectionObserver(
+
         function(entries) {
 
           entries.forEach(function(entry) {
@@ -910,14 +1168,18 @@
           });
 
         },
+
         {
           threshold: 0.12
         }
+
       );
 
 
     projects.forEach(function(project) {
+
       observer.observe(project);
+
     });
 
 
