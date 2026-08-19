@@ -273,14 +273,14 @@
        HERO
     ========================= */
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 100px 5vw 60px;
-      position: relative;
-    }
+.hero {
+  min-height: 100vh;
+  height: 100vh;
+
+  position: relative;
+
+  overflow: hidden;
+}
 
     .hero-title {
       font-family: "Bebas Neue", sans-serif;
@@ -1625,6 +1625,18 @@
 
   color: #aaa;
 
+}
+    /* ========================================
+   HERO — FULL SCREEN
+======================================== */
+
+.hero {
+  min-height: 100vh !important;
+  height: 100vh !important;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
 }
   </style>
 </head>
