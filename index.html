@@ -58,27 +58,91 @@
     ========================= */
 
     .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 28px 35px;
-      z-index: 100;
-      pointer-events: none;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 30px;
+  z-index: 100;
+  pointer-events: none;
+}
 
-    .logo-placeholder {
-      width: 90px;
-      height: 45px;
-      border: 1px solid #444;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #777;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      pointer-events: auto;
-    }
+.header-glass {
+  width: 100%;
+  min-height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 14px 10px 18px;
+
+  background: rgba(20, 20, 20, 0.45);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.25);
+
+  pointer-events: auto;
+}
+
+.logo-placeholder {
+  width: 90px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #777;
+
+  font-size: 10px;
+  letter-spacing: 0.12em;
+
+  border: 1px solid #444;
+
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.logo-placeholder:hover {
+  color: #FF2B2B;
+  border-color: #FF2B2B;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.header-link {
+  color: #aaa;
+
+  text-decoration: none;
+
+  font-size: 10px;
+  font-weight: bold;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.header-link:hover {
+  color: #FF2B2B;
+}
 
 
     /* =========================
@@ -140,47 +204,121 @@
        SCROLL INDICATOR
     ========================= */
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: #666;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      background: none;
-      border: none;
-      transition: color 0.3s ease;
-    }
+   .scroll-indicator {
+  position: absolute;
 
-    .scroll-indicator:hover {
-      color: var(--red);
-    }
+  bottom: 28px;
+  left: 50%;
 
-    .scroll-arrow {
-      font-size: 22px;
-      line-height: 1;
-      animation: scrollArrow 1.5s ease-in-out infinite;
-    }
+  transform: translateX(-50%);
 
-    @keyframes scrollArrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-      0%,
-      100% {
-        transform: translateY(0);
-      }
+  gap: 8px;
 
-      50% {
-        transform: translateY(8px);
-      }
+  color: #666;
 
-    }
+  background: none;
+  border: none;
+
+  cursor: pointer;
+
+  transition: color 0.3s ease;
+
+  z-index: 5;
+}
+
+.scroll-label {
+  font-size: 10px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.2em;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.scroll-indicator:hover .scroll-label {
+  color: #FF2B2B;
+  transform: translateY(3px);
+}
+
+.chevrons {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  height: 48px;
+
+  overflow: hidden;
+}
+
+.chevron {
+  font-family: Arial, sans-serif;
+
+  font-size: 22px;
+
+  line-height: 15px;
+
+  height: 15px;
+
+  opacity: 0;
+
+  transform: translateY(-15px);
+
+  animation:
+    chevronFlow 1.8s infinite;
+}
+
+.chevron:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.chevron:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.chevron:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+@keyframes chevronFlow {
+
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+    color: #666;
+  }
+
+  20% {
+    opacity: 1;
+    color: #666;
+  }
+
+  45% {
+    opacity: 1;
+    transform: translateY(12px);
+    color: #FF2B2B;
+  }
+
+  65% {
+    opacity: 0;
+    transform: translateY(25px);
+    color: #FF2B2B;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(25px);
+    color: #666;
+  }
+
+}
 
 
     /* =========================
@@ -446,9 +584,31 @@
 
     @media (max-width: 800px) {
 
-      .site-header {
-        padding: 20px;
-      }
+  .site-header {
+  padding: 12px;
+}
+
+.header-glass {
+  min-height: 58px;
+  padding: 8px 10px 8px 12px;
+}
+
+.header-right {
+  gap: 12px;
+}
+
+.header-link {
+  font-size: 8px;
+}
+
+.header-link:first-child {
+  display: none;
+}
+
+.logo-placeholder {
+  width: 75px;
+  height: 34px;
+}
 
       .hero {
         padding: 100px 20px 60px;
@@ -511,13 +671,46 @@
        HEADER
   ========================= -->
 
-  <header class="site-header">
+<header class="site-header">
+
+  <div class="header-glass">
 
     <div class="logo-placeholder">
       LOGO
     </div>
 
-  </header>
+    <div class="header-right">
+
+      <a
+        href="mailto:faucompre.guillaume@gmail.com"
+        class="header-link"
+      >
+        faucompre.guillaume@gmail.com
+      </a>
+
+      <a
+        href="https://www.instagram.com/gui.mov_/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="header-link"
+      >
+        Instagram
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/guillaume-faucompr%C3%A9-b18381105/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="header-link"
+      >
+        LinkedIn
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
 
 
   <!-- =========================
@@ -547,19 +740,25 @@
 
       <!-- SCROLL -->
 
-      <button
-        class="scroll-indicator"
-        onclick="scrollToProjects()"
-        aria-label="Voir les réalisations"
-      >
+    <button
+  class="scroll-indicator"
+  onclick="scrollToProjects()"
+  aria-label="Voir les réalisations"
+>
 
-        <span>Scroll</span>
+  <span class="scroll-label">
+    Scroll
+  </span>
 
-        <span class="scroll-arrow">
-          ↓
-        </span>
+  <span class="chevrons">
 
-      </button>
+    <span class="chevron">⌄</span>
+    <span class="chevron">⌄</span>
+    <span class="chevron">⌄</span>
+
+  </span>
+
+</button>
 
     </section>
 
@@ -1069,16 +1268,76 @@
        SMOOTH SCROLL
     ------------------------- */
 
-    function scrollToProjects() {
+   function scrollToProjects() {
 
-      document
-        .getElementById("realisations")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
+  const target =
+    document.getElementById("realisations");
+
+  const start =
+    window.pageYOffset;
+
+  const targetPosition =
+    target.getBoundingClientRect().top +
+    window.pageYOffset -
+    20;
+
+  const distance =
+    targetPosition - start;
+
+  const duration = 1200;
+
+  let startTime = null;
+
+
+  function animation(currentTime) {
+
+    if (!startTime) {
+      startTime = currentTime;
+    }
+
+    const elapsed =
+      currentTime - startTime;
+
+    const progress =
+      Math.min(elapsed / duration, 1);
+
+
+    /*
+      Courbe :
+      démarrage doux
+      accélération
+      ralentissement doux
+      arrivée douce
+    */
+
+    const ease =
+      progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 -
+          Math.pow(
+            -2 * progress + 2,
+            3
+          ) / 2;
+
+
+    window.scrollTo(
+      0,
+      start + distance * ease
+    );
+
+
+    if (progress < 1) {
+
+      requestAnimationFrame(animation);
 
     }
 
+  }
+
+
+  requestAnimationFrame(animation);
+
+}
 
     /* -------------------------
        FILTRES
