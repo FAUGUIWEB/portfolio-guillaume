@@ -1420,39 +1420,31 @@
 /* LIQUIDE */
 
 .scroll-liquid-path {
-
   fill: none;
 
-  stroke-width: 1.8;
+  stroke-width: 1.35;
 
   stroke-linecap: round;
-
   stroke-linejoin: round;
-
-  /*
-    Une petite portion seulement
-    du contour est visible.
-  */
-
-  stroke-dasharray: 14 150;
-
-  stroke-dashoffset: 0;
 
   stroke: url(#scrollGradient);
 
-  animation:
-    liquidTravel 7s linear infinite;
+  opacity: 0.62;
 
   filter:
-    drop-shadow(0 0 2px rgba(90, 100, 255, 0.35));
+    drop-shadow(
+      0 0 2px
+      rgba(100, 100, 255, 0.25)
+    );
 
+  animation:
+    liquidWarp 5s ease-in-out infinite;
 }
 
 
 /* HALO */
 
 .scroll-glow {
-
   fill: none;
 
   stroke: url(#scrollGradient);
@@ -1461,30 +1453,66 @@
 
   stroke-linecap: round;
 
-  stroke-dasharray: 14 150;
-
-  stroke-dashoffset: 0;
-
-  opacity: 0.18;
+  opacity: 0.14;
 
   filter: blur(3px);
 
   animation:
-    liquidTravel 7s linear infinite;
+    liquidWarpGlow 7s ease-in-out infinite;
+}
+
+@keyframes liquidWarp {
+
+  0% {
+    transform:
+      translate(0, 0)
+      scaleX(1)
+      scaleY(1);
+  }
+
+  25% {
+    transform:
+      translate(0.4px, -0.3px)
+      scaleX(1.015)
+      scaleY(0.985);
+  }
+
+  50% {
+    transform:
+      translate(-0.3px, 0.4px)
+      scaleX(0.985)
+      scaleY(1.015);
+  }
+
+  75% {
+    transform:
+      translate(0.3px, 0.2px)
+      scaleX(1.01)
+      scaleY(0.99);
+  }
+
+  100% {
+    transform:
+      translate(0, 0)
+      scaleX(1)
+      scaleY(1);
+  }
 
 }
 
 
-/* ANIMATION */
+@keyframes liquidWarpGlow {
 
-@keyframes liquidTravel {
-
-  from {
-    stroke-dashoffset: 0;
+  0% {
+    transform: scale(1);
   }
 
-  to {
-    stroke-dashoffset: -164;
+  50% {
+    transform: scale(1.035);
+  }
+
+  100% {
+    transform: scale(1);
   }
 
 }
@@ -1764,13 +1792,58 @@
     >
       <defs>
 
-  <linearGradient
-    id="scrollGradient"
-    x1="0%"
-    y1="0%"
-    x2="100%"
-    y2="100%"
-  >
+<linearGradient
+  id="scrollGradient"
+  x1="0%"
+  y1="0%"
+  x2="100%"
+  y2="100%"
+>
+  <stop offset="0%" stop-color="#246BFF">
+    <animate
+      attributeName="stop-color"
+      values="#246BFF;#8A3FFC;#FF3CA8;#246BFF"
+      dur="6s"
+      repeatCount="indefinite"
+    />
+  </stop>
+
+  <stop offset="25%" stop-color="#8A3FFC">
+    <animate
+      attributeName="stop-color"
+      values="#8A3FFC;#FF3CA8;#246BFF;#8A3FFC"
+      dur="7s"
+      repeatCount="indefinite"
+    />
+  </stop>
+
+  <stop offset="50%" stop-color="#FF3CA8">
+    <animate
+      attributeName="stop-color"
+      values="#FF3CA8;#FF5368;#8A3FFC;#FF3CA8"
+      dur="8s"
+      repeatCount="indefinite"
+    />
+  </stop>
+
+  <stop offset="75%" stop-color="#FF5368">
+    <animate
+      attributeName="stop-color"
+      values="#FF5368;#39D9FF;#FF3CA8;#FF5368"
+      dur="7.5s"
+      repeatCount="indefinite"
+    />
+  </stop>
+
+  <stop offset="100%" stop-color="#39D9FF">
+    <animate
+      attributeName="stop-color"
+      values="#39D9FF;#246BFF;#FF5368;#39D9FF"
+      dur="6.5s"
+      repeatCount="indefinite"
+    />
+  </stop>
+</linearGradient>
 
     <stop
       offset="0%"
