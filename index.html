@@ -1583,7 +1583,227 @@
       max-width:
         1500px;
     }
+/* =========================================================
+   FOOTER — PROJET INTERACTIF
+========================================================= */
 
+.footer-project-link {
+  display: block;
+
+  width: fit-content;
+
+  color: white;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease;
+}
+
+
+/* Ligne "On parle de" */
+
+.footer-static {
+  display: block;
+}
+
+
+/* Ligne "votre projet ?" */
+
+.footer-wave {
+  display: flex;
+
+  width: fit-content;
+
+  align-items: flex-end;
+
+  perspective: 500px;
+}
+
+
+/* Chaque lettre */
+
+.footer-wave span {
+  display: inline-block;
+
+  will-change: transform;
+
+  transition:
+    color 0.3s ease;
+}
+
+
+/* =========================================================
+   ANIMATION AU SURVOL
+========================================================= */
+
+.footer-project-link:hover .footer-wave span {
+  animation:
+    footerProjectWave 0.9s
+    cubic-bezier(0.2, 0.7, 0.2, 1)
+    both;
+}
+
+
+/* Décalage progressif des lettres */
+
+.footer-project-link:hover .footer-wave span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(2) {
+  animation-delay: 0.04s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(3) {
+  animation-delay: 0.08s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(4) {
+  animation-delay: 0.12s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(5) {
+  animation-delay: 0.16s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(6) {
+  animation-delay: 0.20s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(7) {
+  animation-delay: 0.24s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(8) {
+  animation-delay: 0.28s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(9) {
+  animation-delay: 0.32s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(10) {
+  animation-delay: 0.36s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(11) {
+  animation-delay: 0.40s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(12) {
+  animation-delay: 0.44s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(13) {
+  animation-delay: 0.48s;
+}
+
+.footer-project-link:hover .footer-wave span:nth-child(14) {
+  animation-delay: 0.52s;
+}
+
+
+/* =========================================================
+   VAGUE
+========================================================= */
+
+@keyframes footerProjectWave {
+
+  0% {
+    transform:
+      translateY(0)
+      rotateZ(0deg);
+  }
+
+  35% {
+    transform:
+      translateY(-18px)
+      rotateZ(-2deg);
+  }
+
+  65% {
+    transform:
+      translateY(6px)
+      rotateZ(1deg);
+  }
+
+  100% {
+    transform:
+      translateY(0)
+      rotateZ(0deg);
+  }
+
+}
+
+
+/* =========================================================
+   EFFET ROUGE AU SURVOL
+========================================================= */
+
+.footer-project-link:hover {
+  color: var(--red);
+}
+
+
+/* =========================================================
+   LIGNE ROUGE
+========================================================= */
+
+.footer-wave {
+  position: relative;
+}
+
+
+.footer-wave::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: -12px;
+
+  width: 100%;
+
+  height: 3px;
+
+  background: var(--red);
+
+  transform:
+    scaleX(0);
+
+  transform-origin: left center;
+
+  transition:
+    transform 0.5s
+    cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  box-shadow:
+    0 0 18px
+    rgba(255, 43, 43, 0.25);
+}
+
+
+.footer-project-link:hover .footer-wave::after {
+  transform:
+    scaleX(1);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .footer-wave::after {
+    bottom: -8px;
+  }
+
+}
 
     .footer-bottom {
       margin-top:
@@ -3231,13 +3451,32 @@
 
   <footer>
 
-    <h2 class="footer-title">
+   <a
+  href="mailto:faucompre.guillaume@gmail.com"
+  class="footer-title footer-project-link"
+  aria-label="Écrire un mail pour parler de votre projet"
+>
+  <span class="footer-static">
+    On parle de
+  </span>
 
-      On parle de<br>
-
-      votre projet&nbsp;?
-
-    </h2>
+  <span class="footer-wave" aria-hidden="true">
+    <span>v</span>
+    <span>o</span>
+    <span>t</span>
+    <span>r</span>
+    <span>e</span>
+    <span>&nbsp;</span>
+    <span>p</span>
+    <span>r</span>
+    <span>o</span>
+    <span>j</span>
+    <span>e</span>
+    <span>t</span>
+    <span>&nbsp;</span>
+    <span>?</span>
+  </span>
+</a>
 
 
     <div class="footer-bottom">
