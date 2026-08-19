@@ -124,6 +124,11 @@
       rgba(255, 80, 140, 0.04)
     );
 
+      .header-glass > * {
+  position: relative;
+  z-index: 2;
+}
+
   opacity: 0;
 
   transition: opacity 0.5s ease;
@@ -182,6 +187,9 @@
 }
 
 .header-link {
+  position: relative;
+  z-index: 3;
+
   color: #aaa;
 
   text-decoration: none;
@@ -195,7 +203,16 @@
 
   transition:
     color 0.3s ease,
-    opacity 0.3s ease;
+    opacity 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+.header-link:hover {
+  color: #FF2B2B;
+
+  text-shadow:
+    -0.5px 0 rgba(255, 0, 80, 0.35),
+    0.5px 0 rgba(0, 140, 255, 0.35);
 }
 
 .header-link:hover {
@@ -436,10 +453,13 @@
        PROJECTS
     ========================= */
 
-    .projects {
-      padding: 140px 5vw 180px;
-      scroll-margin-top: 30px;
-    }
+ .projects {
+  width: 100%;
+
+  padding: 140px 5vw 180px;
+
+  scroll-margin-top: 30px;
+}
 
     .section-title {
       font-family: "Bebas Neue", sans-serif;
@@ -716,10 +736,53 @@
 }
 
 .header-social {
-  width: 18px;
-  height: 18px;
+  position: relative;
+  z-index: 3;
+
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #aaa;
+
+  text-decoration: none;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
+.header-social svg {
+  width: 18px;
+  height: 18px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.7;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  transition:
+    filter 0.3s ease;
+}
+
+.header-social:hover {
+  color: #FF2B2B;
+
+  transform: translateY(-2px);
+}
+
+.header-social:hover svg {
+  filter:
+    drop-shadow(-1px 0 rgba(255, 0, 80, 0.25))
+    drop-shadow(1px 0 rgba(0, 140, 255, 0.25));
+}
 .header-social svg {
   width: 16px;
   height: 16px;
