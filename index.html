@@ -991,6 +991,190 @@
   }
 
 }
+    /* =========================
+   SCROLL ARRIVAL
+========================= */
+
+.projects {
+  scroll-margin-top: 90px !important;
+}
+    /* =========================
+   IRIDESCENT SCROLL FRAME
+========================= */
+
+.scroll-frame {
+  position: relative;
+
+  isolation: isolate;
+
+  border-color: rgba(120, 120, 120, 0.65);
+
+  background: rgba(5, 5, 8, 0.18);
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+
+/* MATIÈRE IRISÉE */
+
+.scroll-frame::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -35%;
+
+  z-index: -1;
+
+  background:
+    conic-gradient(
+      from 180deg,
+      transparent 0deg,
+      rgba(30, 100, 255, 0.18) 50deg,
+      rgba(130, 50, 255, 0.22) 100deg,
+      rgba(255, 40, 150, 0.18) 145deg,
+      rgba(255, 50, 50, 0.15) 190deg,
+      rgba(30, 200, 255, 0.16) 240deg,
+      transparent 310deg
+    );
+
+  filter: blur(9px);
+
+  opacity: 0.18;
+
+  transform: rotate(0deg);
+
+  animation:
+    liquidDrift 8s linear infinite;
+
+  transition:
+    opacity 0.6s ease,
+    filter 0.6s ease;
+}
+
+
+/* DEUXIÈME COUCHE */
+
+.scroll-frame::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -25%;
+
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      ellipse at 30% 20%,
+      rgba(60, 120, 255, 0.14),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 70% 80%,
+      rgba(255, 30, 100, 0.12),
+      transparent 45%
+    );
+
+  filter: blur(12px);
+
+  opacity: 0.15;
+
+  animation:
+    liquidFloat 6s ease-in-out infinite alternate;
+
+  transition:
+    opacity 0.6s ease;
+}
+
+
+/* MOUVEMENT PRINCIPAL */
+
+@keyframes liquidDrift {
+
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.08);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+
+}
+
+
+/* MOUVEMENT ORGANIQUE */
+
+@keyframes liquidFloat {
+
+  0% {
+    transform:
+      translate(-8%, -5%)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(5%, 4%)
+      scale(1.08);
+  }
+
+  100% {
+    transform:
+      translate(-3%, 7%)
+      scale(1.04);
+  }
+
+}
+    /* =========================
+   SUBTLE LIQUID EFFECT
+========================= */
+
+.scroll-frame::before {
+  opacity: 0.10;
+}
+
+.scroll-frame::after {
+  opacity: 0.08;
+}
+    .scroll-indicator:hover .scroll-frame {
+  border-color: rgba(255, 43, 43, 0.75);
+
+  box-shadow:
+    0 0 15px rgba(255, 43, 43, 0.10),
+    0 0 35px rgba(70, 100, 255, 0.06);
+}
+
+.scroll-indicator:hover .scroll-frame::before {
+  opacity: 0.30;
+
+  filter: blur(7px);
+
+  animation-duration: 4s;
+}
+
+.scroll-indicator:hover .scroll-frame::after {
+  opacity: 0.24;
+}
+
+.scroll-indicator:hover .scroll-line {
+  background: #FF2B2B;
+
+  box-shadow:
+    0 0 8px rgba(255, 43, 43, 0.45);
+}
+
+.scroll-indicator:hover .scroll-label {
+  color: #FF2B2B;
+}
   </style>
 </head>
 
