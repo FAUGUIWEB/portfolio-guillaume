@@ -1,27 +1,25 @@
-```yaml
 name: Deploy to OVH
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
-    name: Deploy website to OVH
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get latest code
-        uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Deploy to OVH
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ftp.cluster129.hosting.ovh.net
-          protocol: ftp
-          port: 21
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
           server-dir: /www/
-```
