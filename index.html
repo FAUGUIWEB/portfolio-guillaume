@@ -282,7 +282,6 @@
       stroke: none;
     }
 
-
     /* =========================================================
        HERO — SHOWREEL 2026
     ========================================================= */
@@ -290,23 +289,21 @@
     .hero {
       position: relative;
       width: 100%;
-      height: 100vh;
-      height: 100svh;
-      min-height: 720px;
+      min-height: 100svh;
       display: flex;
       align-items: center;
-      padding: 110px 5vw 72px;
+      padding: 105px 5vw 72px;
       overflow: hidden;
       background:
         radial-gradient(
           circle at 78% 46%,
-          rgba(255,43,43,.08),
-          transparent 28%
+          rgba(255,43,43,.055),
+          transparent 25%
         ),
         radial-gradient(
-          circle at 24% 30%,
-          rgba(255,255,255,.025),
-          transparent 32%
+          circle at 18% 25%,
+          rgba(255,255,255,.022),
+          transparent 30%
         ),
         var(--black);
     }
@@ -321,24 +318,23 @@
           115deg,
           rgba(255,255,255,.018),
           transparent 30%,
-          rgba(255,43,43,.018) 66%,
+          rgba(255,43,43,.016) 66%,
           transparent
         );
-      opacity: .9;
     }
 
     .hero-shell {
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 1600px;
+      max-width: 1450px;
       margin: 0 auto;
       display: grid;
       grid-template-columns:
-        minmax(0, 1.12fr)
-        minmax(300px, .88fr);
+        minmax(0, 1.25fr)
+        minmax(250px, .75fr);
       align-items: center;
-      gap: clamp(42px, 6vw, 110px);
+      gap: clamp(24px, 3.5vw, 58px);
     }
 
     .hero-copy {
@@ -357,21 +353,16 @@
     }
 
     .hero-title {
-      font-size:
-        clamp(
-          82px,
-          11.2vw,
-          190px
-        );
+      font-size: clamp(78px, 10.6vw, 175px);
       line-height: .79;
       letter-spacing: -.015em;
-      max-width: 950px;
+      max-width: 900px;
       text-shadow:
         0 4px 30px rgba(0,0,0,.25);
     }
 
     .hero-subtitle {
-      margin-top: 38px;
+      margin-top: 32px;
       font-size: 14px;
       text-transform: uppercase;
       letter-spacing: .14em;
@@ -381,63 +372,32 @@
 
     .hero-showreel {
       position: relative;
-      width: min(100%, 410px);
+      width: min(100%, 310px);
       justify-self: end;
-      padding-bottom: 26px;
+      padding-bottom: 24px;
     }
 
     .hero-showreel-card {
       position: relative;
-      isolation: isolate;
       width: 100%;
       aspect-ratio: 9 / 16;
-      max-height: calc(100svh - 170px);
-      overflow: visible;
-      padding: 8px;
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,.20);
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.10),
-          rgba(255,43,43,.045) 46%,
-          rgba(5,5,5,.72)
-        );
-      backdrop-filter: blur(20px) saturate(115%);
-      -webkit-backdrop-filter: blur(20px) saturate(115%);
+      padding: 2px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.025);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.14),
-        inset 0 -1px 0 rgba(255,43,43,.10),
-        0 28px 80px rgba(0,0,0,.42),
-        0 0 60px rgba(255,43,43,.055);
-    }
-
-    .hero-showreel-card::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      z-index: -1;
-      border-radius: inherit;
-      pointer-events: none;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,255,255,.34),
-          transparent 20%,
-          rgba(255,43,43,.20) 52%,
-          transparent 76%,
-          rgba(255,255,255,.13)
-        );
-      opacity: .48;
-      filter: blur(.2px);
+        0 22px 58px rgba(0,0,0,.34),
+        0 0 28px rgba(255,43,43,.035);
+      overflow: visible;
     }
 
     .hero-showreel-media {
       position: relative;
       width: 100%;
       height: 100%;
+      aspect-ratio: 9 / 16;
       overflow: hidden;
-      border-radius: 23px;
+      border-radius: 20px;
       background: #000;
     }
 
@@ -459,60 +419,16 @@
       background:
         linear-gradient(
           180deg,
-          rgba(0,0,0,.18) 0%,
-          rgba(0,0,0,.04) 42%,
-          rgba(0,0,0,.50) 100%
-        ),
-        linear-gradient(
-          90deg,
-          rgba(0,0,0,.18),
-          transparent 42%,
-          rgba(255,43,43,.035)
+          rgba(0,0,0,.15),
+          rgba(0,0,0,.05) 48%,
+          rgba(0,0,0,.28)
         );
-    }
-
-    .hero-showreel-label {
-      position: absolute;
-      top: 22px;
-      left: 22px;
-      z-index: 4;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: rgba(255,255,255,.78);
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      pointer-events: none;
-    }
-
-    .hero-showreel-label::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--red);
-      box-shadow: 0 0 12px rgba(255,43,43,.55);
-    }
-
-    .hero-showreel-year {
-      position: absolute;
-      right: 20px;
-      bottom: 24px;
-      z-index: 4;
-      color: rgba(255,255,255,.36);
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 42px;
-      line-height: 1;
-      letter-spacing: .02em;
-      pointer-events: none;
     }
 
     .hero-showreel-action {
       position: absolute;
       left: 50%;
-      bottom: -24px;
+      bottom: -22px;
       z-index: 8;
       transform: translateX(-50%);
       white-space: nowrap;
@@ -522,14 +438,11 @@
       margin-top: 0;
     }
 
-    /* =========================================================
-       SHOWREEL 2026 — HOT CTA
-    ========================================================= */
-
     .showreel-button {
       position: relative;
       isolation: isolate;
       overflow: hidden;
+      margin-top: 45px;
       width: fit-content;
       padding: 15px 30px;
       border: 1px solid rgba(255,255,255,.26);
@@ -558,160 +471,271 @@
         box-shadow .35s ease;
     }
 
-    .showreel-hot {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      padding: 16px 24px;
-      border: 1px solid rgba(255,80,70,.62);
-      background:
-        linear-gradient(
-          115deg,
-          rgba(255,255,255,.10),
-          rgba(255,43,43,.16) 42%,
-          rgba(8,8,8,.82)
-        );
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.18),
-        inset 0 -1px 0 rgba(255,43,43,.22),
-        0 0 0 rgba(255,43,43,0),
-        0 12px 35px rgba(0,0,0,.34);
-      animation:
-        showreelHotPulse 2.8s ease-in-out infinite;
-    }
+    /* =========================================================
+   SHOWREEL 2026 — HOT CTA
+========================================================= */
 
-    .showreel-hot::after {
-      content: "";
-      position: absolute;
-      top: -40%;
-      left: -35%;
-      width: 35%;
-      height: 180%;
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(255,255,255,.24),
-          transparent
-        );
-      transform: skewX(-18deg);
-      pointer-events: none;
-      animation:
-        showreelHotSweep 3.4s ease-in-out infinite;
-    }
+.showreel-hot {
+  position: relative;
 
-    .showreel-hot-dot {
-      width: 7px;
-      height: 7px;
-      flex-shrink: 0;
-      border-radius: 50%;
-      background: var(--red);
-      box-shadow:
-        0 0 0 0 rgba(255,43,43,.55);
-      animation:
-        showreelDotPulse 1.8s ease-out infinite;
-    }
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
 
-    .showreel-hot-text {
-      position: relative;
-      z-index: 2;
-    }
+  padding:
+    16px
+    24px;
 
-    .showreel-hot-arrow {
-      position: relative;
-      z-index: 2;
-      width: 16px;
-      height: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition:
-        transform .35s var(--ease);
-    }
+  border:
+    1px solid
+    rgba(255, 80, 70, 0.62);
 
-    .showreel-hot-arrow svg {
-      width: 100%;
-      height: 100%;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,.10),
+      rgba(255,43,43,.16) 42%,
+      rgba(8,8,8,.72)
+    );
 
-    .showreel-hot:hover {
-      border-color: rgba(255,110,100,.95);
-      transform:
-        translateY(-4px)
-        scale(1.025);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.22),
-        inset 0 -1px 0 rgba(255,43,43,.28),
-        0 0 30px rgba(255,43,43,.16),
-        0 16px 42px rgba(0,0,0,.34);
-    }
+  box-shadow:
+    inset 0 1px 0
+    rgba(255,255,255,.18),
 
-    .showreel-hot:hover .showreel-hot-arrow {
-      transform: translate(3px,-3px);
-    }
+    inset 0 -1px 0
+    rgba(255,43,43,.22),
 
-    @keyframes showreelHotPulse {
-      0%,
-      100% {
-        box-shadow:
-          inset 0 1px 0 rgba(255,255,255,.18),
-          inset 0 -1px 0 rgba(255,43,43,.20),
-          0 0 0 rgba(255,43,43,0),
-          0 12px 35px rgba(0,0,0,.34);
-      }
+    0 0 0
+    rgba(255,43,43,0),
 
-      50% {
-        box-shadow:
-          inset 0 1px 0 rgba(255,255,255,.22),
-          inset 0 -1px 0 rgba(255,43,43,.28),
-          0 0 28px rgba(255,43,43,.16),
-          0 14px 38px rgba(0,0,0,.36);
-      }
-    }
+    0 12px 35px
+    rgba(0,0,0,.28);
 
-    @keyframes showreelHotSweep {
-      0% {
-        left: -40%;
-        opacity: 0;
-      }
+  animation:
+    showreelHotPulse
+    2.8s
+    ease-in-out
+    infinite;
+}
 
-      15% {
-        opacity: 1;
-      }
 
-      45% {
-        left: 115%;
-        opacity: 0;
-      }
+/* BALAYAGE LUMINEUX */
 
-      100% {
-        left: 115%;
-        opacity: 0;
-      }
-    }
+.showreel-hot::after {
+  content: "";
 
-    @keyframes showreelDotPulse {
-      0% {
-        box-shadow:
-          0 0 0 0 rgba(255,43,43,.55);
-      }
+  position: absolute;
 
-      70% {
-        box-shadow:
-          0 0 0 7px rgba(255,43,43,0);
-      }
+  top: -40%;
+  left: -35%;
 
-      100% {
-        box-shadow:
-          0 0 0 0 rgba(255,43,43,0);
-      }
-    }
+  width: 35%;
+  height: 180%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.24),
+      transparent
+    );
+
+  transform:
+    skewX(-18deg);
+
+  pointer-events:
+    none;
+
+  animation:
+    showreelHotSweep
+    3.4s
+    ease-in-out
+    infinite;
+}
+
+
+/* POINT ROUGE */
+
+.showreel-hot-dot {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    var(--red);
+
+  box-shadow:
+    0 0 0 0
+    rgba(255,43,43,.55);
+
+  animation:
+    showreelDotPulse
+    1.8s
+    ease-out
+    infinite;
+}
+
+
+/* TEXTE */
+
+.showreel-hot-text {
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* FLECHE */
+
+.showreel-hot-arrow {
+  position: relative;
+
+  z-index: 2;
+
+  width: 16px;
+  height: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform .35s
+    var(--ease);
+}
+
+.showreel-hot-arrow svg {
+  width: 100%;
+  height: 100%;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* HOVER */
+
+.showreel-hot:hover {
+  border-color:
+    rgba(255,110,100,.95);
+
+  transform:
+    translateY(-4px)
+    scale(1.025);
+
+  box-shadow:
+    inset 0 1px 0
+    rgba(255,255,255,.22),
+
+    inset 0 -1px 0
+    rgba(255,43,43,.28),
+
+    0 0 30px
+    rgba(255,43,43,.16),
+
+    0 16px 42px
+    rgba(0,0,0,.34);
+}
+
+.showreel-hot:hover
+.showreel-hot-arrow {
+  transform:
+    translate(
+      3px,
+      -3px
+    );
+}
+
+
+/* ANIMATIONS */
+
+@keyframes showreelHotPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      inset 0 1px 0
+      rgba(255,255,255,.18),
+
+      inset 0 -1px 0
+      rgba(255,43,43,.20),
+
+      0 0 0
+      rgba(255,43,43,0),
+
+      0 12px 35px
+      rgba(0,0,0,.28);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 1px 0
+      rgba(255,255,255,.22),
+
+      inset 0 -1px 0
+      rgba(255,43,43,.28),
+
+      0 0 24px
+      rgba(255,43,43,.14),
+
+      0 14px 38px
+      rgba(0,0,0,.30);
+  }
+
+}
+
+
+@keyframes showreelHotSweep {
+
+  0% {
+    left: -40%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  45% {
+    left: 115%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 115%;
+    opacity: 0;
+  }
+
+}
+
+
+@keyframes showreelDotPulse {
+
+  0% {
+    box-shadow:
+      0 0 0 0
+      rgba(255,43,43,.55);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 7px
+      rgba(255,43,43,0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0
+      rgba(255,43,43,0);
+  }
+
+}
 
     .showreel-button::before {
       content: "";
@@ -735,9 +759,117 @@
         transform .45s var(--ease);
     }
 
+    .showreel-button:hover {
+      border-color: var(--glass-border-hot);
+      transform:
+        translateY(-3px)
+        scale(1.015);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.18),
+        inset 0 -1px 0 rgba(255,43,43,.20),
+        0 12px 34px rgba(255,43,43,.15);
+    }
+
     .showreel-button:hover::before {
       opacity: .9;
       transform: translateX(3%);
+    }
+
+    /* =========================================================
+       SHOWREEL 2026 — FLOATING CAPSULE
+    ========================================================= */
+
+    .floating-showreel {
+      position: fixed;
+      top: 50%;
+      right: -16px;
+      z-index: 900;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 20px 13px 15px;
+      border: 1px solid rgba(255,80,70,.48);
+      border-right: 0;
+      border-radius: 999px 0 0 999px;
+      background:
+        linear-gradient(
+          115deg,
+          rgba(255,255,255,.09),
+          rgba(255,43,43,.14) 45%,
+          rgba(8,8,8,.88)
+        );
+      backdrop-filter: blur(16px) saturate(112%);
+      -webkit-backdrop-filter: blur(16px) saturate(112%);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(115%, -50%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.14),
+        inset 0 -1px 0 rgba(255,43,43,.16),
+        0 12px 34px rgba(0,0,0,.34);
+      transition:
+        opacity .4s ease,
+        visibility .4s ease,
+        transform .5s var(--ease),
+        right .35s var(--ease),
+        border-color .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .floating-showreel.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(0, -50%);
+    }
+
+    .floating-showreel:hover {
+      right: 0;
+      border-color: rgba(255,110,100,.82);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.18),
+        inset 0 -1px 0 rgba(255,43,43,.22),
+        0 0 26px rgba(255,43,43,.12),
+        0 14px 38px rgba(0,0,0,.38);
+    }
+
+    .floating-showreel-dot {
+      width: 6px;
+      height: 6px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 12px rgba(255,43,43,.55);
+      animation: showreelDotPulse 1.8s ease-out infinite;
+    }
+
+    .floating-showreel-arrow {
+      width: 14px;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform .35s var(--ease);
+    }
+
+    .floating-showreel-arrow svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .floating-showreel:hover .floating-showreel-arrow {
+      transform: translate(2px, -2px);
     }
 
     .scroll-indicator {
@@ -1336,29 +1468,35 @@
     }
 
     .featured-cta-arrow {
-      width: 14px;
-      height: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition:
-        transform .35s var(--ease);
-    }
+  width: 14px;
+  height: 14px;
 
-    .featured-cta-arrow svg {
-      width: 100%;
-      height: 100%;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    .project-featured:hover .featured-cta-arrow {
-      transform: translate(2px, -2px);
-    }
+  flex-shrink: 0;
+
+  transition:
+    transform .35s
+    var(--ease);
+}
+
+.featured-cta-arrow svg {
+  width: 100%;
+  height: 100%;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.project-featured:hover .featured-cta-arrow {
+  transform:
+    translate(2px, -2px);
+}
 
     .project-featured:hover .featured-cta {
       opacity: 1;
@@ -1372,13 +1510,13 @@
     }
 
     .featured-info {
-      display: block;
-      margin-top: 22px;
-    }
+  display: block;
+  margin-top: 22px;
+}
 
-    .featured-tag {
-      margin-top: 12px;
-    }
+.featured-tag {
+  margin-top: 12px;
+}
 
     .featured-info-main {
       min-width: 0;
@@ -1393,6 +1531,7 @@
     .project-featured .project-client {
       margin-top: 10px;
     }
+
 
     .project-tag {
       display: inline-block;
@@ -1590,7 +1729,8 @@
       display: flex;
       gap: 25px;
     }
-        .social-link {
+
+    .social-link {
       color: #fff;
       text-decoration: none;
       transition: color .3s ease;
@@ -1603,7 +1743,8 @@
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.94);
+      background:
+        rgba(0,0,0,.94);
       z-index: 2000;
       display: flex;
       align-items: center;
@@ -1622,7 +1763,11 @@
     }
 
     .modal-content {
-      width: min(1100px, 100%);
+      width:
+        min(
+          1100px,
+          100%
+        );
       position: relative;
     }
 
@@ -1646,7 +1791,10 @@
     .close-modal {
       position: absolute;
       right: 0;
-      bottom: calc(100% + 15px);
+      bottom:
+        calc(
+          100% + 15px
+        );
       width: 42px;
       height: 42px;
       border:
@@ -1674,7 +1822,8 @@
     .close-modal:hover {
       border-color:
         var(--glass-border-hot);
-      transform: scale(1.06);
+      transform:
+        scale(1.06);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.13),
         0 8px 24px rgba(255,43,43,.12);
@@ -1718,59 +1867,39 @@
       }
 
       .hero {
-        height: auto;
         min-height: 100svh;
         padding:
-          105px
+          96px
           20px
-          105px;
+          94px;
       }
 
       .hero-shell {
         grid-template-columns: 1fr;
-        gap: 38px;
-      }
-
-      .hero-copy {
-        text-align: left;
+        gap: 26px;
       }
 
       .hero-showreel {
-        width: min(64vw, 250px);
+        width: min(58vw, 220px);
         justify-self: center;
-        padding-bottom: 28px;
+        padding-bottom: 24px;
       }
 
       .hero-showreel-card {
-        max-height: none;
-        padding: 6px;
-        border-radius: 24px;
+        padding: 2px;
+        border-radius: 20px;
       }
 
       .hero-showreel-media {
-        border-radius: 19px;
-      }
-
-      .hero-showreel-label {
-        top: 16px;
-        left: 16px;
-        font-size: 8px;
-      }
-
-      .hero-showreel-year {
-        right: 15px;
-        bottom: 18px;
-        font-size: 34px;
+        border-radius: 18px;
       }
 
       .hero-showreel-action {
-        bottom: -22px;
+        bottom: -20px;
       }
 
       .showreel-hot {
-        padding:
-          14px
-          18px;
+        padding: 14px 18px;
         gap: 9px;
       }
 
@@ -1783,17 +1912,23 @@
         height: 14px;
       }
 
-      .hero-title,
-      .new-drop-title,
-      .section-title,
-      .footer-title {
-        font-size:
-          clamp(
-            75px,
-            22vw,
-            150px
-          );
+      .floating-showreel {
+        top: auto;
+        right: -10px;
+        bottom: 22px;
+        padding: 11px 16px 11px 13px;
+        font-size: 8px;
+        transform: translateX(115%);
       }
+
+      .floating-showreel.visible {
+        transform: translateX(0);
+      }
+
+      .hero-title {
+        font-size: clamp(66px, 19vw, 112px);
+      }
+
 
       .hero-subtitle {
         font-size: 12px;
@@ -1808,30 +1943,28 @@
       }
 
       .new-drop-title {
-        font-size: clamp(
-          58px,
-          18vw,
-          110px
-        );
+    font-size: clamp(
+      58px,
+      18vw,
+      110px
+    );
 
-        margin-bottom: 45px;
-      }
-
-      .section-title {
-        font-size: clamp(
-          58px,
-          18vw,
-          110px
-        );
-      }
-
+    margin-bottom: 45px;
+  }
+.section-title {
+    font-size: clamp(
+      58px,
+      18vw,
+      110px
+    );
+  }
       .footer-title {
-        font-size: clamp(
-          58px,
-          18vw,
-          110px
-        );
-      }
+    font-size: clamp(
+      58px,
+      18vw,
+      110px
+    );
+  }
 
       .new-drop-grid {
         gap: 14px;
@@ -1890,6 +2023,8 @@
         width: 48px;
       }
 
+      
+
       .project-featured .project-title {
         font-size:
           clamp(42px, 14vw, 70px);
@@ -1929,7 +2064,6 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-
       html {
         scroll-behavior: auto;
       }
@@ -1990,13 +2124,11 @@
               height="18"
               rx="5"
             />
-
             <circle
               cx="12"
               cy="12"
               r="4"
             />
-
             <circle
               cx="17.5"
               cy="6.5"
@@ -2017,7 +2149,6 @@
             viewBox="0 0 24 24"
             aria-hidden="true"
           >
-
             <rect
               x="3"
               y="3"
@@ -2025,32 +2156,27 @@
               height="18"
               rx="2"
             />
-
             <line
               x1="8"
               y1="10"
               x2="8"
               y2="17"
             />
-
             <circle
               cx="8"
               cy="7"
               r="1"
               class="linkedin-dot"
             />
-
             <path
               d="M12 17v-4c0-2 1-3 3-3s3 1.2 3 3v4"
             />
-
             <line
               x1="18"
               y1="13"
               x2="18"
               y2="17"
             />
-
           </svg>
         </a>
 
@@ -2059,7 +2185,6 @@
     </div>
 
   </header>
-
 
   <main>
 
@@ -2091,20 +2216,12 @@
             <div class="hero-showreel-media">
 
               <iframe
-                src="https://www.youtube.com/embed/8zoBIHigQSQ?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist=8zoBIHigQSQ&amp;playsinline=1&amp;rel=0&amp;modestbranding=1"
+                src="https://www.youtube.com/embed/KCNUTSjrXQ?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist=KCNUTSjrXQ&amp;playsinline=1&amp;rel=0&amp;modestbranding=1"
                 title="Teaser Showreel 2026"
                 allow="autoplay; encrypted-media; picture-in-picture"
                 tabindex="-1"
                 aria-hidden="true"
               ></iframe>
-
-              <span class="hero-showreel-label">
-                Teaser · Showreel
-              </span>
-
-              <span class="hero-showreel-year">
-                2026
-              </span>
 
             </div>
 
@@ -2113,7 +2230,7 @@
 
               <button
                 class="showreel-button showreel-hot"
-                onclick="openVideo('8zoBIHigQSQ')"
+                onclick="openVideo('KCNUTSjrXQ')"
               >
 
                 <span class="showreel-hot-dot"></span>
@@ -2156,9 +2273,7 @@
             viewBox="0 0 30 54"
             aria-hidden="true"
           >
-
             <defs>
-
               <linearGradient
                 id="scrollGradient"
                 x1="0%"
@@ -2166,7 +2281,6 @@
                 x2="100%"
                 y2="100%"
               >
-
                 <stop offset="0%">
                   <animate
                     attributeName="stop-color"
@@ -2193,11 +2307,8 @@
                     repeatCount="indefinite"
                   />
                 </stop>
-
               </linearGradient>
-
             </defs>
-
 
             <rect
               class="scroll-outline"
@@ -2228,7 +2339,6 @@
               rx="14"
               ry="14"
             />
-
           </svg>
 
           <span class="scroll-line"></span>
@@ -2243,6 +2353,30 @@
 
     </section>
 
+
+    <button
+      class="floating-showreel"
+      id="floatingShowreel"
+      type="button"
+      onclick="openVideo('KCNUTSjrXQ')"
+      aria-label="Voir le Showreel 2026"
+    >
+
+      <span class="floating-showreel-dot"></span>
+
+      <span>Showreel 2026</span>
+
+      <span
+        class="floating-showreel-arrow"
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M7 17L17 7"/>
+          <path d="M9 7h8v8"/>
+        </svg>
+      </span>
+
+    </button>
 
     <section
       class="new-drop"
@@ -2263,7 +2397,6 @@
         <span>P</span>
       </h2>
 
-
       <div class="new-drop-carousel">
 
         <button
@@ -2279,7 +2412,6 @@
             <path d="M15 5l-7 7 7 7"/>
           </svg>
         </button>
-
 
         <div
           class="new-drop-grid"
@@ -2297,7 +2429,6 @@
               alt="Petzl — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
@@ -2314,7 +2445,6 @@
               alt="Petzl — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
@@ -2331,7 +2461,6 @@
               alt="TBS — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
@@ -2348,7 +2477,6 @@
               alt="TBS — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
@@ -2365,7 +2493,6 @@
               alt="À La Lyonnaise — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
@@ -2382,7 +2509,6 @@
               alt="À La Lyonnaise — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
@@ -2399,7 +2525,6 @@
               alt="À La Lyonnaise — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
@@ -2416,7 +2541,6 @@
               alt="Supernatifs — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
@@ -2433,7 +2557,6 @@
               alt="Supernatifs — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
@@ -2450,7 +2573,6 @@
               alt="Supernatifs — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
@@ -2467,14 +2589,12 @@
               alt="Supernatifs — Instagram"
               loading="lazy"
             >
-
             <span class="new-drop-instagram">
               Voir sur Instagram
             </span>
           </a>
 
         </div>
-
 
         <button
           class="new-drop-arrow right"
@@ -2494,8 +2614,7 @@
 
     </section>
 
-
-    <section
+        <section
       class="projects"
       id="realisations"
     >
@@ -2540,7 +2659,6 @@
 
         </article>
 
-
         <article
           class="project"
           onclick="openVideo('r4-cx2gnhwU')"
@@ -2574,7 +2692,6 @@
           </div>
 
         </article>
-
 
         <article
           class="project"
@@ -2610,7 +2727,6 @@
 
         </article>
 
-
         <article
           class="project"
           onclick="openVideo('87RnFxTAbqk')"
@@ -2645,7 +2761,6 @@
 
         </article>
 
-
         <article
           class="project project-featured"
           onclick="openVideo('8zoBIHigQSQ')"
@@ -2666,44 +2781,38 @@
             >
 
             <span class="featured-cta">
+  <span>Voir le showreel</span>
 
-              <span>
-                Voir le showreel
-              </span>
-
-              <span
-                class="featured-cta-arrow"
-                aria-hidden="true"
-              >
-                <svg viewBox="0 0 24 24">
-                  <path d="M7 17L17 7"/>
-                  <path d="M9 7h8v8"/>
-                </svg>
-              </span>
-
-            </span>
+  <span class="featured-cta-arrow" aria-hidden="true">
+    <svg viewBox="0 0 24 24">
+      <path d="M7 17L17 7"/>
+      <path d="M9 7h8v8"/>
+    </svg>
+  </span>
+</span>
 
           </div>
 
+       <div class="project-info featured-info">
 
-          <div class="project-info featured-info">
+  <div class="featured-info-main">
 
-            <div class="featured-info-main">
+    <div class="project-title">
+      ShowReel 2024
+    </div>
 
-              <div class="project-title">
-                ShowReel 2024
-              </div>
+    <div class="project-tag featured-tag">
+      Motion Design · Tournage · Montage
+    </div>
 
-              <div class="project-tag featured-tag">
-                Motion Design · Tournage · Montage
-              </div>
+  </div>
 
-            </div>
+</div>
 
-          </div>
+
+      
 
         </article>
-
 
         <article
           class="project"
@@ -2738,7 +2847,6 @@
           </div>
 
         </article>
-
 
         <article
           class="project"
@@ -2780,7 +2888,6 @@
 
   </main>
 
-
   <footer>
 
     <a
@@ -2814,7 +2921,6 @@
       </span>
 
     </a>
-
 
     <div class="footer-bottom">
 
@@ -2851,7 +2957,6 @@
 
   </footer>
 
-
   <div
     class="modal"
     id="videoModal"
@@ -2884,7 +2989,6 @@
 
   </div>
 
-
   <script>
 
     const modal =
@@ -2896,7 +3000,6 @@
       document.getElementById(
         "youtubePlayer"
       );
-
 
     function openVideo(videoId) {
 
@@ -2910,7 +3013,6 @@
       document.body.style.overflow =
         "hidden";
     }
-
 
     function closeVideo(event) {
 
@@ -2930,7 +3032,6 @@
       document.body.style.overflow = "";
     }
 
-
     document.addEventListener(
       "keydown",
       function(event) {
@@ -2943,7 +3044,6 @@
 
       }
     );
-
 
     function scrollToNewDrop() {
 
@@ -2979,7 +3079,6 @@
           "smooth"
       });
     }
-
 
     const projects =
       document.querySelectorAll(
@@ -3018,7 +3117,6 @@
 
       );
 
-
     projects.forEach(
       function(project) {
 
@@ -3029,12 +3127,10 @@
       }
     );
 
-
     const siteHeader =
       document.querySelector(
         ".site-header"
       );
-
 
     function updateHeader() {
 
@@ -3045,7 +3141,6 @@
 
     }
 
-
     window.addEventListener(
       "scroll",
       updateHeader,
@@ -3054,8 +3149,54 @@
       }
     );
 
-
     updateHeader();
+
+
+    /* =========================================================
+       FLOATING SHOWREEL — AFTER HERO
+    ========================================================= */
+
+    const heroSection =
+      document.getElementById(
+        "home"
+      );
+
+    const floatingShowreel =
+      document.getElementById(
+        "floatingShowreel"
+      );
+
+    if (heroSection && floatingShowreel) {
+
+      const heroObserver =
+        new IntersectionObserver(
+
+          function(entries) {
+
+            entries.forEach(
+              function(entry) {
+
+                floatingShowreel.classList.toggle(
+                  "visible",
+                  !entry.isIntersecting
+                );
+
+              }
+            );
+
+          },
+
+          {
+            threshold: 0.12
+          }
+
+        );
+
+      heroObserver.observe(
+        heroSection
+      );
+
+    }
 
 
     const newDropGrid =
@@ -3072,7 +3213,6 @@
       document.getElementById(
         "newDropNext"
       );
-
 
     function updateNewDropArrows() {
 
@@ -3102,7 +3242,6 @@
         );
     }
 
-
     function getNewDropStep() {
 
       const card =
@@ -3130,7 +3269,6 @@
       );
     }
 
-
     newDropPrev.addEventListener(
       "click",
       function() {
@@ -3144,7 +3282,6 @@
 
       }
     );
-
 
     newDropNext.addEventListener(
       "click",
@@ -3160,7 +3297,6 @@
       }
     );
 
-
     newDropGrid.addEventListener(
       "scroll",
       updateNewDropArrows,
@@ -3169,17 +3305,14 @@
       }
     );
 
-
     window.addEventListener(
       "resize",
       updateNewDropArrows
     );
 
-
     let isDragging = false;
     let dragStartX = 0;
     let dragScrollLeft = 0;
-
 
     newDropGrid.addEventListener(
       "mousedown",
@@ -3201,18 +3334,15 @@
       }
     );
 
-
     newDropGrid.addEventListener(
       "mouseleave",
       stopDragging
     );
 
-
     newDropGrid.addEventListener(
       "mouseup",
       stopDragging
     );
-
 
     function stopDragging() {
 
@@ -3222,7 +3352,6 @@
         "dragging"
       );
     }
-
 
     newDropGrid.addEventListener(
       "mousemove",
@@ -3250,7 +3379,6 @@
 
       }
     );
-
 
     updateNewDropArrows();
 
