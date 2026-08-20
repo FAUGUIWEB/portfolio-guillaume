@@ -353,7 +353,7 @@
     }
 
     .hero-title {
-      font-size: clamp(106px, 13.9vw, 230px);
+      font-size: clamp(112px, 15vw, 250px);
       line-height: .76;
       letter-spacing: -.018em;
       max-width: 1180px;
@@ -378,9 +378,45 @@
       position: relative;
       width: min(100%, 315px);
       justify-self: start;
-      transform: translateX(-64px);
+      transform: translateX(-105px);
       padding-bottom: 32px;
       perspective: 1400px;
+    }
+
+    .hero-showreel::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 145%;
+      height: 105%;
+      left: -30%;
+      top: 3%;
+      border-radius: 50%;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(255,43,43,.19) 0%,
+          rgba(255,43,43,.09) 34%,
+          rgba(255,43,43,.025) 58%,
+          transparent 74%
+        );
+      filter: blur(34px);
+      opacity: .9;
+      transform: translate3d(0, 0, 0) scale(.94);
+      animation: heroRedAura 5.4s ease-in-out infinite;
+    }
+
+    @keyframes heroRedAura {
+      0%, 100% {
+        opacity: .68;
+        transform: translate3d(-5px, 7px, 0) scale(.92);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translate3d(8px, -5px, 0) scale(1.06);
+      }
     }
 
     .hero-showreel-tilt {
@@ -404,11 +440,11 @@
       background: rgba(255,255,255,.015);
       box-shadow:
         14px 28px 64px rgba(0,0,0,.36),
-        -5px 0 26px rgba(255,43,43,.025);
+        -10px 4px 38px rgba(255,43,43,.08);
       overflow: visible;
       transform-style: preserve-3d;
       animation:
-        heroShowreelFloat 5.8s ease-in-out infinite;
+        heroShowreelFloat 4.8s ease-in-out infinite;
       will-change: transform;
     }
 
@@ -418,7 +454,7 @@
       }
 
       50% {
-        transform: translate3d(0, -7px, 0);
+        transform: translate3d(3px, -14px, 8px) rotateZ(.35deg);
       }
     }
 
@@ -468,7 +504,7 @@
         rotateY(1deg);
       white-space: nowrap;
       animation:
-        heroButtonFloat 4.7s ease-in-out infinite;
+        heroButtonFloat 3.9s ease-in-out infinite;
       filter:
         drop-shadow(0 14px 18px rgba(0,0,0,.34));
       will-change: transform;
@@ -483,7 +519,7 @@
 
       50% {
         transform:
-          translate3d(-50%, -6px, 86px)
+          translate3d(-50%, -11px, 96px)
           rotateY(1deg);
       }
     }
@@ -3260,10 +3296,10 @@
             rect.height;
 
           const rotateY =
-            -7 + ((x - .5) * 7);
+            -8 + ((x - .5) * 10);
 
           const rotateX =
-            1.5 - ((y - .5) * 5);
+            2 - ((y - .5) * 7);
 
           heroShowreelTilt.style.setProperty(
             "--hero-ry",
@@ -3284,12 +3320,12 @@
 
           heroShowreelTilt.style.setProperty(
             "--hero-ry",
-            "-7deg"
+            "-8deg"
           );
 
           heroShowreelTilt.style.setProperty(
             "--hero-rx",
-            "1.5deg"
+            "2deg"
           );
 
         }
