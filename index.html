@@ -426,6 +426,7 @@
 
     .hero-showreel-card {
       position: relative;
+      cursor: pointer;
       width: 100%;
       aspect-ratio: 9 / 16;
       padding: 1px;
@@ -508,6 +509,7 @@
 
     .hero-showreel-action {
       position: absolute;
+      pointer-events: auto;
       left: -20%;
       top: 55%;
       bottom: auto;
@@ -521,7 +523,19 @@
       filter:
         drop-shadow(0 14px 18px rgba(0,0,0,.34));
       will-change: transform;
+      
     }
+    
+    .hero-showreel-action,
+.hero-showreel-action * {
+  pointer-events: auto;
+}
+
+.showreel-button {
+  position: relative;
+  z-index: 50;
+  pointer-events: auto;
+}
 
     @keyframes heroButtonFloat {
       0%, 100% {
@@ -2319,7 +2333,12 @@
 
           <div class="hero-showreel-tilt" id="heroShowreelTilt">
 
-            <div class="hero-showreel-card">
+            <div
+  class="hero-showreel-card"
+  onclick="openVideo('yKCNUTSjrXQ')"
+  role="button"
+  aria-label="Voir le Showreel 2026"
+>
 
             <div class="hero-showreel-media">
 
