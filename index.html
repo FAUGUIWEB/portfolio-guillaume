@@ -391,6 +391,256 @@
         box-shadow .35s ease;
     }
 
+    /* =========================================================
+   SHOWREEL 2026 — HOT CTA
+========================================================= */
+
+.showreel-hot {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+
+  padding:
+    16px
+    24px;
+
+  border:
+    1px solid
+    rgba(255, 80, 70, 0.62);
+
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,.10),
+      rgba(255,43,43,.16) 42%,
+      rgba(8,8,8,.72)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+    rgba(255,255,255,.18),
+
+    inset 0 -1px 0
+    rgba(255,43,43,.22),
+
+    0 0 0
+    rgba(255,43,43,0),
+
+    0 12px 35px
+    rgba(0,0,0,.28);
+
+  animation:
+    showreelHotPulse
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+
+/* BALAYAGE LUMINEUX */
+
+.showreel-hot::after {
+  content: "";
+
+  position: absolute;
+
+  top: -40%;
+  left: -35%;
+
+  width: 35%;
+  height: 180%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.24),
+      transparent
+    );
+
+  transform:
+    skewX(-18deg);
+
+  pointer-events:
+    none;
+
+  animation:
+    showreelHotSweep
+    3.4s
+    ease-in-out
+    infinite;
+}
+
+
+/* POINT ROUGE */
+
+.showreel-hot-dot {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    var(--red);
+
+  box-shadow:
+    0 0 0 0
+    rgba(255,43,43,.55);
+
+  animation:
+    showreelDotPulse
+    1.8s
+    ease-out
+    infinite;
+}
+
+
+/* TEXTE */
+
+.showreel-hot-text {
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* FLECHE */
+
+.showreel-hot-arrow {
+  position: relative;
+
+  z-index: 2;
+
+  font-size: 15px;
+
+  transition:
+    transform .35s
+    var(--ease);
+}
+
+
+/* HOVER */
+
+.showreel-hot:hover {
+  border-color:
+    rgba(255,110,100,.95);
+
+  transform:
+    translateY(-4px)
+    scale(1.025);
+
+  box-shadow:
+    inset 0 1px 0
+    rgba(255,255,255,.22),
+
+    inset 0 -1px 0
+    rgba(255,43,43,.28),
+
+    0 0 30px
+    rgba(255,43,43,.16),
+
+    0 16px 42px
+    rgba(0,0,0,.34);
+}
+
+.showreel-hot:hover
+.showreel-hot-arrow {
+  transform:
+    translate(
+      3px,
+      -3px
+    );
+}
+
+
+/* ANIMATIONS */
+
+@keyframes showreelHotPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      inset 0 1px 0
+      rgba(255,255,255,.18),
+
+      inset 0 -1px 0
+      rgba(255,43,43,.20),
+
+      0 0 0
+      rgba(255,43,43,0),
+
+      0 12px 35px
+      rgba(0,0,0,.28);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 1px 0
+      rgba(255,255,255,.22),
+
+      inset 0 -1px 0
+      rgba(255,43,43,.28),
+
+      0 0 24px
+      rgba(255,43,43,.14),
+
+      0 14px 38px
+      rgba(0,0,0,.30);
+  }
+
+}
+
+
+@keyframes showreelHotSweep {
+
+  0% {
+    left: -40%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  45% {
+    left: 115%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 115%;
+    opacity: 0;
+  }
+
+}
+
+
+@keyframes showreelDotPulse {
+
+  0% {
+    box-shadow:
+      0 0 0 0
+      rgba(255,43,43,.55);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 7px
+      rgba(255,43,43,0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0
+      rgba(255,43,43,0);
+  }
+
+}
+
     .showreel-button::before {
       content: "";
       position: absolute;
@@ -1036,12 +1286,13 @@
     }
 
     .featured-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 30px;
-      margin-top: 22px;
-    }
+  display: block;
+  margin-top: 22px;
+}
+
+.featured-tag {
+  margin-top: 12px;
+}
 
     .featured-info-main {
       min-width: 0;
@@ -1057,10 +1308,6 @@
       margin-top: 10px;
     }
 
-    .featured-info .project-tag {
-      margin-top: 3px;
-      flex-shrink: 0;
-    }
 
     .project-tag {
       display: inline-block;
@@ -1497,10 +1744,7 @@
         width: 48px;
       }
 
-      .featured-info {
-        display: block;
-        margin-top: 18px;
-      }
+      
 
       .project-featured .project-title {
         font-size:
@@ -1699,11 +1943,19 @@
         </p>
 
         <button
-          class="showreel-button"
-          onclick="openVideo('8zoBIHigQSQ')"
-        >
-          SHOWREEL
-        </button>
+  class="showreel-button showreel-hot"
+  onclick="openVideo('8zoBIHigQSQ')"
+>
+  <span class="showreel-hot-dot"></span>
+
+  <span class="showreel-hot-text">
+    SHOWREEL 2026
+  </span>
+
+  <span class="showreel-hot-arrow">
+    ↗
+  </span>
+</button>
 
       </div>
 
@@ -2208,19 +2460,21 @@
 
           </div>
 
-          <div class="project-info featured-info">
+       <div class="project-info featured-info">
 
-            <div class="featured-info-main">
+  <div class="featured-info-main">
 
-              <div class="project-title">
-                ShowReel 2024
-              </div>
+    <div class="project-title">
+      ShowReel 2024
+    </div>
 
-              <div class="project-client">
-                Personnel
-              </div>
+    <div class="project-tag featured-tag">
+      Motion Design · Tournage · Montage
+    </div>
 
-            </div>
+  </div>
+
+</div>
 
             <div class="project-tag">
               Motion Design · Tournage · Montage
