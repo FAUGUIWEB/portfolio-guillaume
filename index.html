@@ -2976,8 +2976,7 @@
 
          <article
           class="project"
-          data-category="motion"
-           data-category="video"
+          data-category="motion video"
           onclick="openVideo('8zoBIHigQSQ')"
         >
 
@@ -3357,10 +3356,10 @@
                   project.dataset.category;
 
 
-                if (
-                  selectedFilter === "all" ||
-                  selectedFilter === category
-                ) {
+              if (
+  selectedFilter === "all" ||
+  category.split(" ").includes(selectedFilter)
+) {
 
                   project.classList.remove(
                     "hidden"
