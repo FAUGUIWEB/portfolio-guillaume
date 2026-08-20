@@ -426,7 +426,6 @@
 
     .hero-showreel-card {
       position: relative;
-      cursor: pointer;
       width: 100%;
       aspect-ratio: 9 / 16;
       padding: 1px;
@@ -507,62 +506,48 @@
       50% { opacity: .82; filter: brightness(1.18); }
     }
 
-   .hero-showreel-action {
-  position: absolute;
+    .hero-showreel-action {
+      position: absolute;
+      left: -20%;
+      top: 55%;
+      bottom: auto;
+      z-index: 500;
+      transform:
+        translateY(-50%)
+        translateZ(150px);
+      white-space: nowrap;
+      pointer-events: auto;
+    }
 
-  left: -20%;
-  top: 55%;
-  bottom: auto;
+    .hero-showreel-card {
+      pointer-events: none;
+    }
 
-  z-index: 200;
+    .hero-showreel-media {
+      pointer-events: auto;
+      cursor: pointer;
+    }
 
-  white-space: nowrap;
+    .hero-showreel-media video,
+    .hero-showreel-media::before,
+    .hero-showreel-media::after,
+    .hero-showreel-card::before,
+    .hero-showreel-card::after {
+      pointer-events: none;
+    }
 
-  pointer-events: auto;
+    .hero-showreel-action .showreel-button {
+      position: relative;
+      z-index: 501;
+      display: inline-flex;
+      pointer-events: auto;
+      cursor: pointer;
+    }
 
-  /* IMPORTANT :
-     pas d'animation 3D sur le conteneur cliquable */
-  transform: translateY(-50%);
-}
+    .hero-showreel-action .showreel-button > * {
+      pointer-events: none;
+    }
 
-
-/* Le bouton est réellement au-dessus de tout */
-
-.hero-showreel-action .showreel-button {
-  position: relative;
-
-  z-index: 201;
-
-  pointer-events: auto;
-
-  cursor: pointer;
-
-  animation:
-    showreelHotPulse 2.8s ease-in-out infinite,
-    heroButtonFloat 3.9s ease-in-out infinite;
-
-  filter:
-    drop-shadow(
-      0 14px 18px
-      rgba(0,0,0,.34)
-    );
-
-  will-change: transform;
-}
-    .hero-showreel-media,
-.hero-showreel-media video,
-.hero-showreel-media::before,
-.hero-showreel-media::after,
-.hero-showreel-card::before,
-.hero-showreel-card::after {
-  pointer-events: none;
-}
-
-.showreel-button {
-  position: relative;
-  z-index: 50;
-  pointer-events: auto;
-}
 
     @keyframes heroButtonFloat {
       0%, 100% {
@@ -2360,14 +2345,14 @@
 
           <div class="hero-showreel-tilt" id="heroShowreelTilt">
 
-            <div
-  class="hero-showreel-card"
-  onclick="openVideo('yKCNUTSjrXQ')"
-  role="button"
-  aria-label="Voir le Showreel 2026"
->
+            <div class="hero-showreel-card">
 
-            <div class="hero-showreel-media">
+            <div
+              class="hero-showreel-media"
+              onclick="openVideo('yKCNUTSjrXQ')"
+              role="button"
+              aria-label="Voir le Showreel 2026"
+            >
 
               <video
                 autoplay
@@ -2389,23 +2374,28 @@
             <div class="hero-showreel-action">
 
               <button
-  type="button"
-  class="showreel-button showreel-hot"
-  onclick="event.stopPropagation(); openVideo('yKCNUTSjrXQ')"
->
-  <span class="showreel-hot-dot"></span>
+                type="button"
+                class="showreel-button showreel-hot"
+                onclick="event.stopPropagation(); openVideo('yKCNUTSjrXQ')"
+              >
 
-  <span class="showreel-hot-text">
-    SHOWREEL 2026
-  </span>
+                <span class="showreel-hot-dot"></span>
 
-  <span class="showreel-hot-arrow" aria-hidden="true">
-    <svg viewBox="0 0 24 24">
-      <path d="M7 17L17 7"/>
-      <path d="M9 7h8v8"/>
-    </svg>
-  </span>
-</button>
+                <span class="showreel-hot-text">
+                  SHOWREEL 2026
+                </span>
+
+                <span
+                  class="showreel-hot-arrow"
+                  aria-hidden="true"
+                >
+                  <svg viewBox="0 0 24 24">
+                    <path d="M7 17L17 7"/>
+                    <path d="M9 7h8v8"/>
+                  </svg>
+                </span>
+
+              </button>
 
             </div>
 
