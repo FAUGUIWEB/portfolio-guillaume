@@ -331,10 +331,10 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns:
-        minmax(0, 1.25fr)
-        minmax(250px, .75fr);
+        minmax(0, 1.42fr)
+        minmax(250px, .58fr);
       align-items: center;
-      gap: clamp(24px, 3.5vw, 58px);
+      gap: clamp(18px, 2vw, 34px);
     }
 
     .hero-copy {
@@ -353,10 +353,10 @@
     }
 
     .hero-title {
-      font-size: clamp(78px, 10.6vw, 175px);
+      font-size: clamp(92px, 12.2vw, 205px);
       line-height: .79;
       letter-spacing: -.015em;
-      max-width: 900px;
+      max-width: 1050px;
       text-shadow:
         0 4px 30px rgba(0,0,0,.25);
     }
@@ -373,7 +373,8 @@
     .hero-showreel {
       position: relative;
       width: min(100%, 310px);
-      justify-self: end;
+      justify-self: start;
+      transform: translateX(-18px);
       padding-bottom: 24px;
     }
 
@@ -401,7 +402,7 @@
       background: #000;
     }
 
-    .hero-showreel-media iframe {
+    .hero-showreel-media video {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -1882,6 +1883,7 @@
       .hero-showreel {
         width: min(58vw, 220px);
         justify-self: center;
+        transform: none;
         padding-bottom: 24px;
       }
 
@@ -2215,12 +2217,19 @@
 
             <div class="hero-showreel-media">
 
-           <iframe
-  src="https://www.youtube.com/embed/KCNUTSjrXQ"
-  title="Showreel 2026"
-  allow="autoplay; encrypted-media; picture-in-picture"
-  allowfullscreen
-></iframe>
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-hidden="true"
+              >
+                <source
+                  src="Showreel_2026_10S.mp4"
+                  type="video/mp4"
+                >
+              </video>
 
             </div>
 
