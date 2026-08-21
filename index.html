@@ -407,14 +407,14 @@
 
     .hero-cassette-layer {
       position: absolute;
-      left: 49%;
-      top: 49%;
+      left: 46%;
+      top: 50%;
       z-index: 2;
-      width: clamp(260px, 39vw, 610px);
+      width: clamp(165px, 15vw, 255px);
       pointer-events: none;
       transform-origin: center center;
       animation:
-        cassetteFloat 6.8s
+        cassetteFloat 7.4s
         cubic-bezier(.45,.05,.55,.95)
         infinite;
       will-change: transform;
@@ -427,27 +427,52 @@
       object-fit: contain;
       transform:
         translate3d(-50%, -50%, 0)
-        rotate(-7deg)
-        rotateX(3deg)
-        rotateY(-7deg);
+        rotate(-8deg)
+        rotateX(4deg)
+        rotateY(-10deg);
       filter:
-        drop-shadow(0 24px 26px rgba(0,0,0,.56))
-        drop-shadow(-10px 12px 26px rgba(255,43,43,.10));
+        drop-shadow(0 18px 22px rgba(0,0,0,.50))
+        drop-shadow(-7px 9px 18px rgba(255,43,43,.08));
     }
 
-    .hero-title-outline {
-      position: absolute !important;
-      inset: 0 auto auto 0;
+    /*
+      Contour avant : SVG au lieu d'un deuxième H1.
+      Cela évite le rendu multiple de -webkit-text-stroke sur le texte dupliqué.
+    */
+    .hero-title-outline-svg {
+      position: absolute;
+      inset: 0;
       z-index: 3;
       width: 100%;
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke:
-        1.25px
-        rgba(255,255,255,.92);
-      text-shadow: none;
+      height: 100%;
+      overflow: visible;
       pointer-events: none;
+
+      /* Le contour n'apparaît que dans la petite zone traversée par la cassette. */
+      clip-path:
+        polygon(
+          34% 27%,
+          60% 31%,
+          58% 73%,
+          32% 69%
+        );
     }
+
+    .hero-title-outline-svg text {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(112px, 15vw, 250px);
+      font-weight: 400;
+      letter-spacing: -.018em;
+      text-transform: uppercase;
+      fill: none;
+      stroke: rgba(255,255,255,.96);
+      stroke-width: 1.15px;
+      vector-effect: non-scaling-stroke;
+      paint-order: stroke;
+    }
+
+
+
 
     @keyframes cassetteFloat {
       0%,
@@ -2553,27 +2578,39 @@
       }
 
       .hero-cassette-layer {
-        left: 57%;
-        top: 48%;
-        width: clamp(190px, 58vw, 270px);
+        left: 54%;
+        top: 50%;
+        width: clamp(125px, 31vw, 165px);
       }
 
       .hero-cassette {
         transform:
           translate3d(-50%, -50%, 0)
           rotate(-8deg)
-          rotateX(2deg)
-          rotateY(-5deg);
+          rotateX(3deg)
+          rotateY(-8deg);
         filter:
-          drop-shadow(0 14px 18px rgba(0,0,0,.52))
-          drop-shadow(-6px 7px 16px rgba(255,43,43,.08));
+          drop-shadow(0 12px 15px rgba(0,0,0,.48))
+          drop-shadow(-4px 6px 12px rgba(255,43,43,.07));
       }
 
-      .hero-title-outline {
-        -webkit-text-stroke:
-          .85px
-          rgba(255,255,255,.92);
+      .hero-title-outline-svg {
+        clip-path:
+          polygon(
+            39% 27%,
+            72% 31%,
+            69% 72%,
+            37% 68%
+          );
       }
+
+      .hero-title-outline-svg text {
+        font-size: clamp(72px, 20.5vw, 124px);
+        stroke-width: .9px;
+      }
+
+
+
 
 
       html,
@@ -3052,18 +3089,29 @@
             >
               <img
                 class="hero-cassette"
-                src="Cassette.png"
+                src="cassette.png"
                 alt=""
               >
             </div>
 
-            <h1
-              class="hero-title hero-title-outline"
+            <svg
+              class="hero-title-outline-svg"
               aria-hidden="true"
             >
-              Guillaume<br>
-              Faucompré
-            </h1>
+              <text
+                x="0"
+                y="46%"
+              >
+                Guillaume
+              </text>
+
+              <text
+                x="0"
+                y="96%"
+              >
+                Faucompré
+              </text>
+            </svg>
 
           </div>
 
