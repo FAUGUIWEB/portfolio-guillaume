@@ -383,6 +383,88 @@
         0 4px 30px rgba(0,0,0,.25);
     }
 
+    /* =========================================================
+       HERO — TYPOGRAPHY DEPTH + CASSETTE
+    ========================================================= */
+
+    .hero-title-stage {
+      position: relative;
+      width: min(100%, 1180px);
+      isolation: isolate;
+      perspective: 1200px;
+    }
+
+    .hero-title-stage .hero-title {
+      position: relative;
+      margin: 0;
+      max-width: none;
+    }
+
+    .hero-title-fill {
+      z-index: 1;
+      color: #fff;
+    }
+
+    .hero-cassette-layer {
+      position: absolute;
+      left: 49%;
+      top: 49%;
+      z-index: 2;
+      width: clamp(260px, 39vw, 610px);
+      pointer-events: none;
+      transform-origin: center center;
+      animation:
+        cassetteFloat 6.8s
+        cubic-bezier(.45,.05,.55,.95)
+        infinite;
+      will-change: transform;
+    }
+
+    .hero-cassette {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      transform:
+        translate3d(-50%, -50%, 0)
+        rotate(-7deg)
+        rotateX(3deg)
+        rotateY(-7deg);
+      filter:
+        drop-shadow(0 24px 26px rgba(0,0,0,.56))
+        drop-shadow(-10px 12px 26px rgba(255,43,43,.10));
+    }
+
+    .hero-title-outline {
+      position: absolute !important;
+      inset: 0 auto auto 0;
+      z-index: 3;
+      width: 100%;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke:
+        1.25px
+        rgba(255,255,255,.92);
+      text-shadow: none;
+      pointer-events: none;
+    }
+
+    @keyframes cassetteFloat {
+      0%,
+      100% {
+        transform:
+          translate3d(0, 0, 0)
+          rotateZ(0deg);
+      }
+
+      50% {
+        transform:
+          translate3d(4px, -10px, 18px)
+          rotateZ(.8deg);
+      }
+    }
+
+
     .hero-role {
       margin-top: 34px;
       display: flex;
@@ -2040,118 +2122,100 @@
     }
 
     @keyframes captureFlash {
+      0% {
+        opacity: 0;
+        color: #fff;
+        transform: scale(.82);
+        filter:
+          blur(3px)
+          brightness(1.1);
+      }
 
-  0% {
-    opacity: 0;
-    color: #fff;
+      28% {
+        opacity: 1;
+        color: #fff;
+        transform: scale(1.08);
+        filter:
+          blur(0)
+          brightness(1.9)
+          drop-shadow(
+            0 0 20px
+            rgba(255,255,255,.55)
+          );
+      }
 
-    transform: scale(.82);
+      48% {
+        color: #fff;
+        transform: scale(1);
+        filter:
+          brightness(2.2)
+          drop-shadow(
+            0 0 28px
+            rgba(255,255,255,.75)
+          );
+      }
 
-    filter:
-      blur(3px)
-      brightness(1.1);
-  }
+      70% {
+        color: var(--red);
+        filter:
+          brightness(1.4)
+          drop-shadow(
+            0 0 22px
+            rgba(255,43,43,.55)
+          );
+      }
 
-  28% {
-    opacity: 1;
-    color: #fff;
+      100% {
+        opacity: 1;
+        color: var(--red);
+        transform: scale(1);
+        filter:
+          brightness(1.15)
+          drop-shadow(
+            0 0 8px
+            rgba(255,43,43,.75)
+          )
+          drop-shadow(
+            0 0 22px
+            rgba(255,43,43,.45)
+          )
+          drop-shadow(
+            0 0 42px
+            rgba(255,43,43,.18)
+          );
+      }
+    }
 
-    transform: scale(1.08);
-
-    filter:
-      blur(0)
-      brightness(1.9)
-      drop-shadow(
-        0 0 20px
-        rgba(255,255,255,.55)
-      );
-  }
-
-  48% {
-    color: #fff;
-
-    transform: scale(1);
-
-    filter:
-      brightness(2.2)
-      drop-shadow(
-        0 0 28px
-        rgba(255,255,255,.75)
-      );
-  }
-
-  70% {
-    color: var(--red);
-
-    filter:
-      brightness(1.4)
-      drop-shadow(
-        0 0 22px
-        rgba(255,43,43,.55)
-      );
-  }
-
-  100% {
-    opacity: 1;
-
-    color: var(--red);
-
-    transform: scale(1);
-
-    filter:
-      brightness(1.15)
-      drop-shadow(
-        0 0 8px
-        rgba(255,43,43,.75)
-      )
-      drop-shadow(
-        0 0 22px
-        rgba(255,43,43,.45)
-      )
-      drop-shadow(
-        0 0 42px
-        rgba(255,43,43,.18)
-      );
-  }
-
-}
-   .about.is-visible .about-word-move {
-  animation:
-    moveReveal 2.6s
-    cubic-bezier(.05, .82, .12, 1)
-    .65s
-    forwards;
-}
+    .about.is-visible .about-word-move {
+      animation:
+        moveReveal 2.6s
+        cubic-bezier(.05, .82, .12, 1)
+        .65s
+        forwards;
+    }
 
     @keyframes moveReveal {
+      0% {
+        opacity: 0;
+        transform:
+          translate3d(-220px, 0, 0)
+          scaleX(1.18);
+        filter: blur(22px);
+      }
 
-  0% {
-    opacity: 0;
+      18% {
+        opacity: .8;
+        filter: blur(12px);
+      }
 
-    transform:
-      translate3d(-220px, 0, 0)
-      scaleX(1.18);
-
-    filter: blur(22px);
-  }
-
-  18% {
-    opacity: .8;
-
-    filter: blur(12px);
-  }
-
-  100% {
-    opacity: 1;
-
-    transform:
-      translate3d(0, 0, 0)
-      scaleX(1);
-
-    filter: blur(0);
-  }
-
-}
+      100% {
+        opacity: 1;
+        transform:
+          translate3d(0, 0, 0)
+          scaleX(1);
+        filter: blur(0);
+      }
+    }
 
 
     .about-copy {
@@ -2483,6 +2547,34 @@
     }
 
     @media (max-width: 800px) {
+
+      .hero-title-stage {
+        width: 100%;
+      }
+
+      .hero-cassette-layer {
+        left: 57%;
+        top: 48%;
+        width: clamp(190px, 58vw, 270px);
+      }
+
+      .hero-cassette {
+        transform:
+          translate3d(-50%, -50%, 0)
+          rotate(-8deg)
+          rotateX(2deg)
+          rotateY(-5deg);
+        filter:
+          drop-shadow(0 14px 18px rgba(0,0,0,.52))
+          drop-shadow(-6px 7px 16px rgba(255,43,43,.08));
+      }
+
+      .hero-title-outline {
+        -webkit-text-stroke:
+          .85px
+          rgba(255,255,255,.92);
+      }
+
 
       html,
       body {
@@ -2947,10 +3039,33 @@
 
         <div class="hero-copy">
 
-          <h1 class="hero-title">
-            Guillaume<br>
-            Faucompré
-          </h1>
+          <div class="hero-title-stage">
+
+            <h1 class="hero-title hero-title-fill">
+              Guillaume<br>
+              Faucompré
+            </h1>
+
+            <div
+              class="hero-cassette-layer"
+              aria-hidden="true"
+            >
+              <img
+                class="hero-cassette"
+                src="cassette.png"
+                alt=""
+              >
+            </div>
+
+            <h1
+              class="hero-title hero-title-outline"
+              aria-hidden="true"
+            >
+              Guillaume<br>
+              Faucompré
+            </h1>
+
+          </div>
 
           <div class="hero-role">
             <span class="hero-role-index">01</span>
