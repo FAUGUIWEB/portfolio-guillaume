@@ -384,39 +384,105 @@
     }
 
     /* =========================================================
-       HERO — TYPOGRAPHY DEPTH + CASSETTE
+       HERO — 3 DEPTH PLANES
+       GUILLAUME / CASSETTE / FAUCOMPRÉ
     ========================================================= */
 
     .hero-title-stage {
       position: relative;
       width: min(100%, 1180px);
       isolation: isolate;
-      perspective: 1200px;
+      perspective: 1350px;
+
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(112px, 15vw, 250px);
+      line-height: .76;
+      letter-spacing: -.018em;
+      text-transform: uppercase;
     }
 
-    .hero-title-stage .hero-title {
+    .hero-title-line {
+      display: block;
       position: relative;
-      margin: 0;
-      max-width: none;
+      width: fit-content;
+      color: #fff;
+      white-space: nowrap;
+      text-shadow:
+        0 4px 30px rgba(0,0,0,.25);
+      will-change: transform;
     }
 
-    .hero-title-fill {
+    /* Arrière-plan : mouvement ample avec la souris. */
+    .hero-title-guillaume {
       z-index: 1;
-      color: #fff;
+      transform:
+        translate3d(
+          var(--guillaume-x, 0px),
+          var(--guillaume-y, 0px),
+          0
+        );
+      transition:
+        transform .28s
+        cubic-bezier(.18,.78,.22,1);
+    }
+
+    /* Premier plan : mouvement inverse pour créer la profondeur. */
+    .hero-title-faucompre {
+      z-index: 4;
+      transform:
+        translate3d(
+          var(--faucompre-x, 0px),
+          var(--faucompre-y, 0px),
+          58px
+        );
+      transition:
+        transform .28s
+        cubic-bezier(.18,.78,.22,1);
     }
 
     .hero-cassette-layer {
       position: absolute;
-      left: 47%;
-      top: 49%;
+      left: 48%;
+      top: 50%;
       z-index: 2;
-      width: clamp(235px, 18vw, 300px);
+
+      width:
+        clamp(
+          275px,
+          22vw,
+          365px
+        );
+
       pointer-events: none;
-      transform-origin: center center;
+      transform-style: preserve-3d;
+
+      transform:
+        translate3d(
+          var(--cassette-x, 0px),
+          var(--cassette-y, 0px),
+          28px
+        )
+        rotateX(var(--cassette-rx, 0deg))
+        rotateY(var(--cassette-ry, 0deg));
+
+      transition:
+        transform .24s
+        cubic-bezier(.16,.78,.2,1);
+
+      will-change: transform;
+    }
+
+    .hero-cassette-float {
+      position: relative;
+      width: 100%;
+
       animation:
-        cassetteFloat 7.4s
-        cubic-bezier(.45,.05,.55,.95)
+        cassetteFloat
+        5.8s
+        ease-in-out
         infinite;
+
+      transform-style: preserve-3d;
       will-change: transform;
     }
 
@@ -425,43 +491,21 @@
       width: 100%;
       height: auto;
       object-fit: contain;
+
       transform:
         translate3d(-50%, -50%, 0)
         rotate(-7deg)
-        rotateX(3deg)
-        rotateY(-8deg);
+        rotateX(4deg)
+        rotateY(-10deg);
+
       filter:
-        drop-shadow(0 18px 22px rgba(0,0,0,.50))
-        drop-shadow(-7px 9px 18px rgba(255,43,43,.08));
-    }
-
-    .hero-title-outline {
-      position: absolute !important;
-      inset: 0 auto auto 0;
-      z-index: 3;
-      width: 100%;
-      margin: 0;
-
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke:
-        .7px
-        rgba(255,255,255,.96);
-
-      text-shadow: none;
-      filter: none;
-      transform: none !important;
-      animation: none !important;
-      will-change: auto;
-      pointer-events: none;
-
-      /* Only reveal the outline where the cassette overlaps. */
-      clip-path:
-        polygon(
-          34% 25%,
-          61% 29%,
-          59% 74%,
-          32% 69%
+        drop-shadow(
+          0 24px 24px
+          rgba(0,0,0,.54)
+        )
+        drop-shadow(
+          -9px 11px 22px
+          rgba(255,43,43,.10)
         );
     }
 
@@ -475,8 +519,8 @@
 
       50% {
         transform:
-          translate3d(4px, -10px, 18px)
-          rotateZ(.8deg);
+          translate3d(8px, -16px, 26px)
+          rotateZ(1.2deg);
       }
     }
 
@@ -704,6 +748,10 @@
       display: inline-flex;
       pointer-events: auto;
       cursor: pointer;
+
+      animation:
+        showreelHotPulse 2.8s ease-in-out infinite,
+        heroButtonFloat 3.7s ease-in-out infinite;
     }
 
     .hero-showreel-action .showreel-button > * {
@@ -2566,38 +2614,58 @@
 
       .hero-title-stage {
         width: 100%;
+        font-size:
+          clamp(
+            75px,
+            22vw,
+            150px
+          );
+      }
+
+      .hero-title-line {
+        transition: none;
+      }
+
+      .hero-title-guillaume,
+      .hero-title-faucompre {
+        transform: none;
+      }
+
+
+      .hero-title-stage {
+        width: 100%;
       }
 
       .hero-cassette-layer {
-        left: 55%;
-        top: 48%;
-        width: clamp(150px, 43vw, 210px);
+        left: 56%;
+        top: 49%;
+        width: clamp(190px, 47vw, 245px);
+
+        transform:
+          translate3d(0, 0, 18px)
+          rotateX(0)
+          rotateY(0);
       }
 
       .hero-cassette {
         transform:
           translate3d(-50%, -50%, 0)
-          rotate(-8deg)
+          rotate(-7deg)
           rotateX(3deg)
-          rotateY(-8deg);
+          rotateY(-7deg);
+
         filter:
-          drop-shadow(0 12px 15px rgba(0,0,0,.48))
-          drop-shadow(-4px 6px 12px rgba(255,43,43,.07));
-      }
-
-      .hero-title-outline {
-        -webkit-text-stroke:
-          .75px
-          rgba(255,255,255,.94);
-
-        clip-path:
-          polygon(
-            34% 19%,
-            76% 25%,
-            72% 76%,
-            31% 70%
+          drop-shadow(
+            0 14px 18px
+            rgba(0,0,0,.50)
+          )
+          drop-shadow(
+            -5px 7px 14px
+            rgba(255,43,43,.08)
           );
       }
+
+
 
 
       html,
@@ -2931,9 +2999,14 @@
 
     @media (prefers-reduced-motion: reduce) {
 
-      .hero-title-outline {
-        transform: none !important;
+      .hero-title-guillaume,
+      .hero-title-faucompre,
+      .hero-cassette-layer {
+        transition: none !important;
       }
+
+
+
 
       html {
         scroll-behavior: auto;
@@ -3068,33 +3141,40 @@
 
         <div class="hero-copy">
 
-          <div class="hero-title-stage">
+          <h1
+            class="hero-title-stage"
+            id="heroTitleStage"
+          >
 
-            <h1 class="hero-title hero-title-fill">
-              Guillaume<br>
-              Faucompré
-            </h1>
+            <span
+              class="hero-title-line hero-title-guillaume"
+              id="heroTitleGuillaume"
+            >
+              Guillaume
+            </span>
 
-            <div
+            <span
               class="hero-cassette-layer"
+              id="heroCassetteLayer"
               aria-hidden="true"
             >
-              <img
-                class="hero-cassette"
-                src="Cassette.png"
-                alt=""
-              >
-            </div>
+              <span class="hero-cassette-float">
+                <img
+                  class="hero-cassette"
+                  src="Cassette.png"
+                  alt=""
+                >
+              </span>
+            </span>
 
-            <h1
-              class="hero-title hero-title-outline"
-              aria-hidden="true"
+            <span
+              class="hero-title-line hero-title-faucompre"
+              id="heroTitleFaucompre"
             >
-              Guillaume<br>
               Faucompré
-            </h1>
+            </span>
 
-          </div>
+          </h1>
 
           <div class="hero-role">
             <span class="hero-role-index">01</span>
@@ -4136,6 +4216,163 @@
 
 
     /* =========================================================
+       HERO — STRONG 3-PLANE PARALLAX
+    ========================================================= */
+
+    const heroParallaxArea =
+      document.getElementById(
+        "home"
+      );
+
+    const heroTitleGuillaume =
+      document.getElementById(
+        "heroTitleGuillaume"
+      );
+
+    const heroTitleFaucompre =
+      document.getElementById(
+        "heroTitleFaucompre"
+      );
+
+    const heroCassetteLayer =
+      document.getElementById(
+        "heroCassetteLayer"
+      );
+
+    const canUseMainHeroParallax =
+      window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+      );
+
+    if (
+      heroParallaxArea &&
+      heroTitleGuillaume &&
+      heroTitleFaucompre &&
+      heroCassetteLayer &&
+      canUseMainHeroParallax.matches
+    ) {
+
+      heroParallaxArea.addEventListener(
+        "mousemove",
+        function(event) {
+
+          const rect =
+            heroParallaxArea
+              .getBoundingClientRect();
+
+          const nx =
+            (
+              (event.clientX - rect.left) /
+              rect.width
+            ) - .5;
+
+          const ny =
+            (
+              (event.clientY - rect.top) /
+              rect.height
+            ) - .5;
+
+
+          /* Plan arrière — ample et lent */
+          heroTitleGuillaume.style.setProperty(
+            "--guillaume-x",
+            `${nx * 34}px`
+          );
+
+          heroTitleGuillaume.style.setProperty(
+            "--guillaume-y",
+            `${ny * 18}px`
+          );
+
+
+          /* Plan milieu — déplacement le plus visible */
+          heroCassetteLayer.style.setProperty(
+            "--cassette-x",
+            `${nx * 72}px`
+          );
+
+          heroCassetteLayer.style.setProperty(
+            "--cassette-y",
+            `${ny * 40}px`
+          );
+
+          heroCassetteLayer.style.setProperty(
+            "--cassette-ry",
+            `${nx * 11}deg`
+          );
+
+          heroCassetteLayer.style.setProperty(
+            "--cassette-rx",
+            `${ny * -8}deg`
+          );
+
+
+          /* Premier plan — mouvement inverse */
+          heroTitleFaucompre.style.setProperty(
+            "--faucompre-x",
+            `${nx * -26}px`
+          );
+
+          heroTitleFaucompre.style.setProperty(
+            "--faucompre-y",
+            `${ny * -14}px`
+          );
+
+        }
+      );
+
+
+      heroParallaxArea.addEventListener(
+        "mouseleave",
+        function() {
+
+          heroTitleGuillaume.style.setProperty(
+            "--guillaume-x",
+            "0px"
+          );
+
+          heroTitleGuillaume.style.setProperty(
+            "--guillaume-y",
+            "0px"
+          );
+
+          heroCassetteLayer.style.setProperty(
+            "--cassette-x",
+            "0px"
+          );
+
+          heroCassetteLayer.style.setProperty(
+            "--cassette-y",
+            "0px"
+          );
+
+          heroCassetteLayer.style.setProperty(
+            "--cassette-ry",
+            "0deg"
+          );
+
+          heroCassetteLayer.style.setProperty(
+            "--cassette-rx",
+            "0deg"
+          );
+
+          heroTitleFaucompre.style.setProperty(
+            "--faucompre-x",
+            "0px"
+          );
+
+          heroTitleFaucompre.style.setProperty(
+            "--faucompre-y",
+            "0px"
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
        HERO SHOWREEL — SUBTLE 3D PARALLAX
     ========================================================= */
 
@@ -4176,10 +4413,10 @@
             rect.height;
 
           const rotateY =
-            -8 + ((x - .5) * 10);
+            -7 + ((x - .5) * 3.2);
 
           const rotateX =
-            2 - ((y - .5) * 7);
+            1.5 - ((y - .5) * 2.4);
 
           heroShowreelTilt.style.setProperty(
             "--hero-ry",
