@@ -388,6 +388,35 @@
        GUILLAUME / CASSETTE / FAUCOMPRÉ
     ========================================================= */
 
+    .hero-identity {
+      position: relative;
+      width: min(100%, 1180px);
+    }
+
+    .hero-realname {
+      margin-bottom: 10px;
+
+      color: var(--red);
+
+      font-size:
+        clamp(
+          10px,
+          .82vw,
+          14px
+        );
+
+      font-weight: 300;
+
+      text-transform: uppercase;
+
+      letter-spacing:
+        .42em;
+
+      white-space: nowrap;
+
+      opacity: .88;
+    }
+
     .hero-title-stage {
       position: relative;
       width: min(100%, 1180px);
@@ -395,8 +424,14 @@
       perspective: 1350px;
 
       font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(112px, 15vw, 250px);
-      line-height: .76;
+      font-size:
+        clamp(
+          180px,
+          22vw,
+          360px
+        );
+
+      line-height: .67;
       letter-spacing: -.018em;
       text-transform: uppercase;
     }
@@ -410,6 +445,15 @@
       text-shadow:
         0 4px 30px rgba(0,0,0,.25);
       will-change: transform;
+    }
+
+    .hero-title-guillaume {
+      margin-left: 0;
+    }
+
+    .hero-title-faucompre {
+      margin-left: .03em;
+      margin-top: .02em;
     }
 
     /* Arrière-plan : mouvement ample avec la souris. */
@@ -442,15 +486,15 @@
 
     .hero-cassette-layer {
       position: absolute;
-      left: 48%;
-      top: 50%;
+      left: 54%;
+      top: 46%;
       z-index: 2;
 
       width:
         clamp(
-          275px,
-          22vw,
-          365px
+          285px,
+          23vw,
+          380px
         );
 
       pointer-events: none;
@@ -2612,6 +2656,38 @@
 
     @media (max-width: 800px) {
 
+      .hero-identity {
+        width: 100%;
+      }
+
+      .hero-realname {
+        margin-bottom: 8px;
+
+        font-size: 9px;
+
+        letter-spacing: .28em;
+
+        white-space: normal;
+      }
+
+      .hero-title-stage {
+        width: 100%;
+
+        font-size:
+          clamp(
+            120px,
+            34vw,
+            210px
+          );
+
+        line-height: .69;
+      }
+
+      .hero-title-faucompre {
+        margin-left: .02em;
+      }
+
+
       .hero-title-stage {
         width: 100%;
         font-size:
@@ -2637,9 +2713,14 @@
       }
 
       .hero-cassette-layer {
-        left: 56%;
-        top: 49%;
-        width: clamp(190px, 47vw, 245px);
+        left: 58%;
+        top: 46%;
+        width:
+          clamp(
+            190px,
+            49vw,
+            250px
+          );
 
         transform:
           translate3d(0, 0, 18px)
@@ -3141,40 +3222,49 @@
 
         <div class="hero-copy">
 
-          <h1
-            class="hero-title-stage"
-            id="heroTitleStage"
-          >
+          <div class="hero-identity">
 
-            <span
-              class="hero-title-line hero-title-guillaume"
-              id="heroTitleGuillaume"
-            >
-              Guillaume
-            </span>
+            <div class="hero-realname">
+              GUILLAUME FAUCOMPRÉ
+            </div>
 
-            <span
-              class="hero-cassette-layer"
-              id="heroCassetteLayer"
-              aria-hidden="true"
+            <h1
+              class="hero-title-stage"
+              id="heroTitleStage"
+              aria-label="Gui dot mov"
             >
-              <span class="hero-cassette-float">
-                <img
-                  class="hero-cassette"
-                  src="Cassette.png"
-                  alt=""
-                >
+
+              <span
+                class="hero-title-line hero-title-guillaume"
+                id="heroTitleGuillaume"
+              >
+                GUI
               </span>
-            </span>
 
-            <span
-              class="hero-title-line hero-title-faucompre"
-              id="heroTitleFaucompre"
-            >
-              Faucompré
-            </span>
+              <span
+                class="hero-cassette-layer"
+                id="heroCassetteLayer"
+                aria-hidden="true"
+              >
+                <span class="hero-cassette-float">
+                  <img
+                    class="hero-cassette"
+                    src="Cassette.png"
+                    alt=""
+                  >
+                </span>
+              </span>
 
-          </h1>
+              <span
+                class="hero-title-line hero-title-faucompre"
+                id="heroTitleFaucompre"
+              >
+                .MOV
+              </span>
+
+            </h1>
+
+          </div>
 
           <div class="hero-role">
             <span class="hero-role-index">01</span>
