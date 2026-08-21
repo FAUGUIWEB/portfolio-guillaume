@@ -390,38 +390,14 @@
 
     .hero-identity {
       position: relative;
+
       width: min(100%, 1180px);
-      transform: translateX(10vw);
+
+      transform:
+        translateX(10vw)
+        translateY(-8px);
     }
 
-    .hero-realname {
-      position: relative;
-      z-index: 8;
-
-      margin-bottom: 24px;
-
-      color: var(--red);
-
-      font-size:
-        clamp(
-          10px,
-          .82vw,
-          14px
-        );
-
-      font-weight: 300;
-
-      text-transform: uppercase;
-
-      letter-spacing:
-        .46em;
-
-      white-space: nowrap;
-
-      opacity: .96;
-
-      transform: translateY(-8px);
-    }
 
     .hero-title-stage {
       position: relative;
@@ -583,10 +559,15 @@
 
     .hero-role {
       margin-top: 34px;
+
       display: flex;
       align-items: center;
-      gap: 14px;
-      width: fit-content;  transform: translateX(9vw);
+
+      gap: 12px;
+
+      width: fit-content;
+
+      transform: translateX(9vw);
     }
 
     .hero-role-index {
@@ -624,6 +605,29 @@
       color: rgba(255,255,255,.72);
       white-space: nowrap;
     }
+
+    .hero-role-name {
+      color: var(--red);
+
+      font-size: 10px;
+
+      font-weight: 300;
+
+      text-transform: uppercase;
+
+      letter-spacing: .20em;
+
+      white-space: nowrap;
+    }
+
+    .hero-role-separator {
+      color: rgba(255,255,255,.28);
+
+      font-size: 10px;
+
+      font-weight: 400;
+    }
+
 
     @keyframes heroRoleLine {
       0% { transform: translateX(-110%); opacity: .25; }
@@ -2669,29 +2673,30 @@
     @media (max-width: 800px) {
 
       .hero-role {
+        margin-top: 26px;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        gap:
+          8px
+          9px;
+
+        width: 100%;
+
         transform: none;
       }
 
 
       .hero-identity {
         width: 100%;
-        transform: translateX(2vw);
+
+        transform:
+          translateX(2vw)
+          translateY(0);
       }
 
-      .hero-realname {
-        position: relative;
-        z-index: 8;
-
-        margin-bottom: 12px;
-
-        font-size: 9px;
-
-        letter-spacing: .28em;
-
-        white-space: normal;
-
-        transform: none;
-      }
 
       .hero-title-stage {
         width: 100%;
@@ -2974,6 +2979,17 @@
         letter-spacing: .13em;
       }
 
+      .hero-role-name {
+        font-size: 8px;
+
+        letter-spacing: .15em;
+      }
+
+      .hero-role-separator {
+        font-size: 8px;
+      }
+
+
       .new-drop {
         padding:
           100px
@@ -3247,11 +3263,6 @@
         <div class="hero-copy">
 
           <div class="hero-identity">
-
-            <div class="hero-realname">
-              GUILLAUME FAUCOMPRÉ
-            </div>
-
             <h1
               class="hero-title-stage"
               id="heroTitleStage"
@@ -3291,9 +3302,28 @@
           </div>
 
           <div class="hero-role">
-            <span class="hero-role-index">01</span>
+
+            <span class="hero-role-index">
+              01
+            </span>
+
             <span class="hero-role-line"></span>
-            <span class="hero-role-text">Vidéaste · Motion Designer</span>
+
+            <span class="hero-role-name">
+              Guillaume Faucompré
+            </span>
+
+            <span
+              class="hero-role-separator"
+              aria-hidden="true"
+            >
+              /
+            </span>
+
+            <span class="hero-role-text">
+              Vidéaste · Motion Designer
+            </span>
+
           </div>
 
         </div>
