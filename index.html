@@ -398,6 +398,16 @@
         translateY(-8px);
     }
 
+    .hero-identity,
+    .hero-title-stage,
+    .hero-title-line,
+    .hero-cassette-layer,
+    .hero-cassette-float,
+    .hero-cassette {
+      pointer-events: none;
+    }
+
+
 
     .hero-title-stage {
       position: relative;
@@ -510,7 +520,7 @@
 
       animation:
         cassetteFloat
-        5.8s
+        4.9s
         ease-in-out
         infinite;
 
@@ -549,10 +559,16 @@
           rotateZ(0deg);
       }
 
-      50% {
+      35% {
         transform:
-          translate3d(8px, -16px, 26px)
-          rotateZ(1.2deg);
+          translate3d(-5px, -10px, 20px)
+          rotateZ(-.8deg);
+      }
+
+      68% {
+        transform:
+          translate3d(9px, -22px, 34px)
+          rotateZ(1.4deg);
       }
     }
 
@@ -642,6 +658,7 @@
 
     .hero-showreel {
       position: relative;
+      z-index: 40;
       width: min(100%, 315px);
       justify-self: start;
       transform: translateX(-105px);
@@ -681,6 +698,7 @@
 
     .hero-showreel-tilt {
       position: relative;
+      z-index: 41;
       width: 100%;
       transform-style: preserve-3d;
       transform:
@@ -777,7 +795,7 @@
       left: -20%;
       top: 55%;
       bottom: auto;
-      z-index: 500;
+      z-index: 1000;
       transform:
         translateY(-50%)
         translateZ(150px);
@@ -790,6 +808,8 @@
     }
 
     .hero-showreel-media {
+      position: relative;
+      z-index: 60;
       pointer-events: auto;
       cursor: pointer;
     }
@@ -804,7 +824,7 @@
 
     .hero-showreel-action .showreel-button {
       position: relative;
-      z-index: 501;
+      z-index: 1001;
       display: inline-flex;
       pointer-events: auto;
       cursor: pointer;
@@ -2673,7 +2693,7 @@
     @media (max-width: 800px) {
 
       .hero-role {
-        margin-top: 26px;
+        margin-top: 30px;
 
         display: flex;
         flex-wrap: wrap;
@@ -2693,7 +2713,7 @@
         width: 100%;
 
         transform:
-          translateX(2vw)
+          translateX(4vw)
           translateY(0);
       }
 
@@ -2703,12 +2723,12 @@
 
         font-size:
           clamp(
-            116px,
-            34vw,
-            200px
+            145px,
+            42vw,
+            245px
           );
 
-        line-height: .68;
+        line-height: .66;
       }
 
       .hero-title-faucompre {
@@ -2741,14 +2761,14 @@
       }
 
       .hero-cassette-layer {
-        left: 50%;
+        left: 54%;
         top: 50%;
 
         width:
           clamp(
-            135px,
-            34vw,
-            175px
+            170px,
+            42vw,
+            220px
           );
 
         transform:
