@@ -2117,8 +2117,8 @@
 }
    .about.is-visible .about-word-move {
   animation:
-    moveReveal 2.2s
-    cubic-bezier(.16,.65,.22,1)
+    moveReveal 2.6s
+    cubic-bezier(.05, .82, .12, 1)
     .65s
     forwards;
 }
@@ -2129,76 +2129,26 @@
     opacity: 0;
 
     transform:
-      translateX(-160px)
-      scaleX(1.12)
-      skewX(-10deg);
+      translate3d(-220px, 0, 0)
+      scaleX(1.18);
 
-    filter:
-      blur(18px);
-
-    letter-spacing: .04em;
+    filter: blur(22px);
   }
 
-  25% {
-    opacity: .35;
+  18% {
+    opacity: .8;
 
-    transform:
-      translateX(-100px)
-      scaleX(1.09)
-      skewX(-8deg);
-
-    filter:
-      blur(14px);
-  }
-
-  50% {
-    opacity: .7;
-
-    transform:
-      translateX(-45px)
-      scaleX(1.05)
-      skewX(-4deg);
-
-    filter:
-      blur(8px);
-  }
-
-  72% {
-    opacity: .92;
-
-    transform:
-      translateX(8px)
-      scaleX(1.015)
-      skewX(1deg);
-
-    filter:
-      blur(3px);
-  }
-
-  86% {
-    opacity: 1;
-
-    transform:
-      translateX(-3px)
-      scaleX(1)
-      skewX(0);
-
-    filter:
-      blur(.8px);
+    filter: blur(12px);
   }
 
   100% {
     opacity: 1;
 
     transform:
-      translateX(0)
-      scaleX(1)
-      skewX(0);
+      translate3d(0, 0, 0)
+      scaleX(1);
 
-    filter:
-      blur(0);
-
-    letter-spacing: normal;
+    filter: blur(0);
   }
 
 }
