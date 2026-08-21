@@ -391,10 +391,11 @@
     .hero-identity {
       position: relative;
       width: min(100%, 1180px);
+      transform: translateX(7vw);
     }
 
     .hero-realname {
-      margin-bottom: 10px;
+      margin-bottom: 18px;
 
       color: var(--red);
 
@@ -410,11 +411,11 @@
       text-transform: uppercase;
 
       letter-spacing:
-        .42em;
+        .46em;
 
       white-space: nowrap;
 
-      opacity: .88;
+      opacity: .92;
     }
 
     .hero-title-stage {
@@ -426,13 +427,13 @@
       font-family: "Bebas Neue", sans-serif;
       font-size:
         clamp(
-          180px,
-          22vw,
-          360px
+          220px,
+          27vw,
+          430px
         );
 
-      line-height: .67;
-      letter-spacing: -.018em;
+      line-height: .64;
+      letter-spacing: -.02em;
       text-transform: uppercase;
     }
 
@@ -453,7 +454,7 @@
 
     .hero-title-faucompre {
       margin-left: .03em;
-      margin-top: .02em;
+      margin-top: .08em;
     }
 
     /* Arrière-plan : mouvement ample avec la souris. */
@@ -486,15 +487,15 @@
 
     .hero-cassette-layer {
       position: absolute;
-      left: 54%;
-      top: 46%;
+      left: 43%;
+      top: 51%;
       z-index: 2;
 
       width:
         clamp(
-          285px,
-          23vw,
-          380px
+          300px,
+          24vw,
+          400px
         );
 
       pointer-events: none;
@@ -574,7 +575,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      width: fit-content;
+      width: fit-content;  transform: translateX(7vw);
     }
 
     .hero-role-index {
@@ -2656,16 +2657,22 @@
 
     @media (max-width: 800px) {
 
+      .hero-role {
+        transform: none;
+      }
+
+
       .hero-identity {
         width: 100%;
+        transform: none;
       }
 
       .hero-realname {
-        margin-bottom: 8px;
+        margin-bottom: 10px;
 
         font-size: 9px;
 
-        letter-spacing: .28em;
+        letter-spacing: .30em;
 
         white-space: normal;
       }
@@ -2675,12 +2682,12 @@
 
         font-size:
           clamp(
-            120px,
-            34vw,
-            210px
+            132px,
+            38vw,
+            230px
           );
 
-        line-height: .69;
+        line-height: .67;
       }
 
       .hero-title-faucompre {
@@ -2713,13 +2720,13 @@
       }
 
       .hero-cassette-layer {
-        left: 58%;
-        top: 46%;
+        left: 53%;
+        top: 49%;
         width:
           clamp(
-            190px,
-            49vw,
-            250px
+            205px,
+            52vw,
+            265px
           );
 
         transform:
