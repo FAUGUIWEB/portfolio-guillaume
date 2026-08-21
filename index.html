@@ -2040,45 +2040,80 @@
     }
 
     @keyframes captureFlash {
-      0% {
-        opacity: 0;
-        color: var(--red);
-        filter:
-          blur(4px)
-          brightness(1.2);
-        transform: scale(.98);
-      }
 
-      35% {
-        opacity: 1;
-        color: var(--red);
-        filter:
-          blur(0)
-          brightness(1.4)
-          drop-shadow(
-            0 0 18px
-            rgba(255,43,43,.45)
-          );
-        transform: scale(1.01);
-      }
+  0% {
+    opacity: 0;
 
-      55% {
-        color: #fff;
-        filter:
-          brightness(1.8)
-          drop-shadow(
-            0 0 22px
-            rgba(255,255,255,.52)
-          );
-      }
+    color: #fff;
 
-      100% {
-        opacity: 1;
-        color: #fff;
-        filter: none;
-        transform: scale(1);
-      }
-    }
+    transform:
+      scale(.82);
+
+    filter:
+      blur(3px)
+      brightness(1.1);
+  }
+
+  28% {
+    opacity: 1;
+
+    color: #fff;
+
+    transform:
+      scale(1.08);
+
+    filter:
+      blur(0)
+      brightness(1.9)
+      drop-shadow(
+        0 0 20px
+        rgba(255,255,255,.55)
+      );
+  }
+
+  48% {
+    color: #fff;
+
+    transform:
+      scale(1);
+
+    filter:
+      brightness(2.2)
+      drop-shadow(
+        0 0 28px
+        rgba(255,255,255,.75)
+      );
+  }
+
+  70% {
+    color:
+      var(--red);
+
+    filter:
+      brightness(1.4)
+      drop-shadow(
+        0 0 22px
+        rgba(255,43,43,.55)
+      );
+  }
+
+  100% {
+    opacity: 1;
+
+    color:
+      var(--red);
+
+    transform:
+      scale(1);
+
+    filter:
+      drop-shadow(
+        0 0 12px
+        rgba(255,43,43,.28)
+      );
+  }
+
+}
 
     .about.is-visible .about-word-move {
       animation:
