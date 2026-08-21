@@ -2043,11 +2043,9 @@
 
   0% {
     opacity: 0;
-
     color: #fff;
 
-    transform:
-      scale(.82);
+    transform: scale(.82);
 
     filter:
       blur(3px)
@@ -2056,11 +2054,9 @@
 
   28% {
     opacity: 1;
-
     color: #fff;
 
-    transform:
-      scale(1.08);
+    transform: scale(1.08);
 
     filter:
       blur(0)
@@ -2074,8 +2070,7 @@
   48% {
     color: #fff;
 
-    transform:
-      scale(1);
+    transform: scale(1);
 
     filter:
       brightness(2.2)
@@ -2086,8 +2081,7 @@
   }
 
   70% {
-    color:
-      var(--red);
+    color: var(--red);
 
     filter:
       brightness(1.4)
@@ -2100,21 +2094,27 @@
   100% {
     opacity: 1;
 
-    color:
-      var(--red);
+    color: var(--red);
 
-    transform:
-      scale(1);
+    transform: scale(1);
 
     filter:
+      brightness(1.15)
       drop-shadow(
-        0 0 12px
-        rgba(255,43,43,.28)
+        0 0 8px
+        rgba(255,43,43,.75)
+      )
+      drop-shadow(
+        0 0 22px
+        rgba(255,43,43,.45)
+      )
+      drop-shadow(
+        0 0 42px
+        rgba(255,43,43,.18)
       );
   }
 
 }
-
     .about.is-visible .about-word-move {
       animation:
         moveReveal 1.25s
