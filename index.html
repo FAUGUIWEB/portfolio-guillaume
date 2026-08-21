@@ -407,10 +407,10 @@
 
     .hero-cassette-layer {
       position: absolute;
-      left: 46%;
-      top: 50%;
+      left: 47%;
+      top: 49%;
       z-index: 2;
-      width: clamp(165px, 15vw, 255px);
+      width: clamp(235px, 18vw, 300px);
       pointer-events: none;
       transform-origin: center center;
       animation:
@@ -427,52 +427,43 @@
       object-fit: contain;
       transform:
         translate3d(-50%, -50%, 0)
-        rotate(-8deg)
-        rotateX(4deg)
-        rotateY(-10deg);
+        rotate(-7deg)
+        rotateX(3deg)
+        rotateY(-8deg);
       filter:
         drop-shadow(0 18px 22px rgba(0,0,0,.50))
         drop-shadow(-7px 9px 18px rgba(255,43,43,.08));
     }
 
-    /*
-      Contour avant : SVG au lieu d'un deuxième H1.
-      Cela évite le rendu multiple de -webkit-text-stroke sur le texte dupliqué.
-    */
-    .hero-title-outline-svg {
-      position: absolute;
-      inset: 0;
+    .hero-title-outline {
+      position: absolute !important;
+      inset: 0 auto auto 0;
       z-index: 3;
       width: 100%;
-      height: 100%;
-      overflow: visible;
+      margin: 0;
+
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke:
+        .7px
+        rgba(255,255,255,.96);
+
+      text-shadow: none;
+      filter: none;
+      transform: none !important;
+      animation: none !important;
+      will-change: auto;
       pointer-events: none;
 
-      /* Le contour n'apparaît que dans la petite zone traversée par la cassette. */
+      /* Only reveal the outline where the cassette overlaps. */
       clip-path:
         polygon(
-          34% 27%,
-          60% 31%,
-          58% 73%,
+          34% 25%,
+          61% 29%,
+          59% 74%,
           32% 69%
         );
     }
-
-    .hero-title-outline-svg text {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(112px, 15vw, 250px);
-      font-weight: 400;
-      letter-spacing: -.018em;
-      text-transform: uppercase;
-      fill: none;
-      stroke: rgba(255,255,255,.96);
-      stroke-width: 1.15px;
-      vector-effect: non-scaling-stroke;
-      paint-order: stroke;
-    }
-
-
-
 
     @keyframes cassetteFloat {
       0%,
@@ -2578,9 +2569,9 @@
       }
 
       .hero-cassette-layer {
-        left: 54%;
-        top: 50%;
-        width: clamp(125px, 31vw, 165px);
+        left: 55%;
+        top: 48%;
+        width: clamp(150px, 43vw, 210px);
       }
 
       .hero-cassette {
@@ -2594,23 +2585,19 @@
           drop-shadow(-4px 6px 12px rgba(255,43,43,.07));
       }
 
-      .hero-title-outline-svg {
+      .hero-title-outline {
+        -webkit-text-stroke:
+          .75px
+          rgba(255,255,255,.94);
+
         clip-path:
           polygon(
-            39% 27%,
-            72% 31%,
-            69% 72%,
-            37% 68%
+            34% 19%,
+            76% 25%,
+            72% 76%,
+            31% 70%
           );
       }
-
-      .hero-title-outline-svg text {
-        font-size: clamp(72px, 20.5vw, 124px);
-        stroke-width: .9px;
-      }
-
-
-
 
 
       html,
@@ -2943,6 +2930,11 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+
+      .hero-title-outline {
+        transform: none !important;
+      }
+
       html {
         scroll-behavior: auto;
       }
@@ -3094,24 +3086,13 @@
               >
             </div>
 
-            <svg
-              class="hero-title-outline-svg"
+            <h1
+              class="hero-title hero-title-outline"
               aria-hidden="true"
             >
-              <text
-                x="0"
-                y="46%"
-              >
-                Guillaume
-              </text>
-
-              <text
-                x="0"
-                y="96%"
-              >
-                Faucompré
-              </text>
-            </svg>
+              Guillaume<br>
+              Faucompré
+            </h1>
 
           </div>
 
