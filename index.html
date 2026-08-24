@@ -705,6 +705,52 @@
       z-index: 3;
     }
 
+
+    @media (min-width: 801px) {
+      .hero-cassette-layer::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 0;
+
+        width: 100%;
+        aspect-ratio: 1.45 / 1;
+
+        pointer-events: none;
+
+        background: #050505;
+
+        -webkit-mask:
+          url("Cassette.png")
+          center / contain
+          no-repeat;
+
+        mask:
+          url("Cassette.png")
+          center / contain
+          no-repeat;
+
+        transform:
+          translate3d(-50%, -50%, 0)
+          rotate(-7deg)
+          rotateX(4deg)
+          rotateY(-10deg);
+
+        transform-origin: center;
+      }
+
+      .hero-cassette {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-title-outline .hero-title-line {
+        -webkit-text-stroke:
+          1px rgba(255,255,255,.84);
+      }
+    }
+
     /* =========================================================
        HERO SHOWREEL — 3D OBJECT
     ========================================================= */
@@ -2766,22 +2812,22 @@
         width: 100%;
 
         transform:
-          translateX(4vw)
+          translateX(1vw)
           translateY(0);
       }
 
 
       .hero-title-stage {
-        width: 100%;
+        width: 118%;
 
         font-size:
           clamp(
-            145px,
-            42vw,
-            245px
+            165px,
+            50vw,
+            285px
           );
 
-        line-height: .66;
+        line-height: .64;
       }
 
       .hero-title-faucompre {
@@ -2790,13 +2836,16 @@
 
 
       .hero-title-stage {
-        width: 100%;
+        width: 118%;
+
         font-size:
           clamp(
-            75px,
-            22vw,
-            150px
+            165px,
+            50vw,
+            285px
           );
+
+        line-height: .64;
       }
 
       .hero-title-line {
@@ -2811,7 +2860,7 @@
 
       .hero-title-outline .hero-title-line {
         -webkit-text-stroke:
-          1px rgba(255,255,255,.86);
+          .6px rgba(255,255,255,.80);
       }
 
       .hero-title-guillaume,
@@ -2821,18 +2870,27 @@
 
 
       .hero-title-stage {
-        width: 100%;
+        width: 118%;
+
+        font-size:
+          clamp(
+            165px,
+            50vw,
+            285px
+          );
+
+        line-height: .64;
       }
 
       .hero-cassette-layer {
-        left: 54%;
+        left: 47%;
         top: 50%;
 
         width:
           clamp(
-            170px,
-            42vw,
-            220px
+            185px,
+            46vw,
+            245px
           );
 
         transform:
