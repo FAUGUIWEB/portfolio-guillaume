@@ -1,19 +1,20 @@
 name: Patch layered GUI MOV hero
 
-# trigger v2
 on:
-  push:
-    paths:
-      - '.github/workflows/patch-hero-layered-outline.yml'
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
 
 jobs:
   patch:
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
       - name: Patch hero only
         run: |
           python3 - <<'PY'
@@ -31,7 +32,6 @@ jobs:
           s = s.replace(old, new, 1)
 
           anchor = '''    /* =========================================================\n       HERO SHOWREEL — 3D OBJECT\n    ========================================================= */'''
-
           css = r'''    /* =========================================================
        HERO — FULL TYPE / CASSETTE / OUTLINE TYPE
     ========================================================= */
@@ -54,9 +54,7 @@ jobs:
       pointer-events: none;
     }
 
-    .hero-title-back {
-      z-index: 1;
-    }
+    .hero-title-back { z-index: 1; }
 
     .hero-title-outline {
       position: absolute;
@@ -76,14 +74,11 @@ jobs:
     .hero-title-outline .hero-title-line {
       color: transparent;
       -webkit-text-fill-color: transparent;
-      -webkit-text-stroke:
-        1.25px rgba(255,255,255,.88);
+      -webkit-text-stroke: 1.25px rgba(255,255,255,.88);
       text-shadow: none;
     }
 
-    .hero-cassette-layer {
-      z-index: 3;
-    }
+    .hero-cassette-layer { z-index: 3; }
 
 '''
           if anchor not in s:
@@ -91,30 +86,30 @@ jobs:
           s = s.replace(anchor, css + anchor, 1)
 
           needle = '''          /* Plan arrière — ample et lent */\n          heroTitleGuillaume.style.setProperty('''
-          insert = '''          /* Texte plein + contour restent parfaitement alignés */\n          const heroTitleStage =\n            document.getElementById(\n              "heroTitleStage"\n            );\n\n          if (heroTitleStage) {\n            heroTitleStage.style.setProperty(\n              "--hero-text-x",\n              `${nx * 12}px`\n            );\n\n            heroTitleStage.style.setProperty(\n              "--hero-text-y",\n              `${ny * 7}px`\n            );\n          }\n\n\n          /* Plan arrière — ample et lent */\n          heroTitleGuillaume.style.setProperty('''
+          insert = '''          /* Texte plein + contour restent parfaitement alignés */\n          const heroTitleStage = document.getElementById("heroTitleStage");\n          if (heroTitleStage) {\n            heroTitleStage.style.setProperty("--hero-text-x", `${nx * 12}px`);\n            heroTitleStage.style.setProperty("--hero-text-y", `${ny * 7}px`);\n          }\n\n          /* Plan arrière — ample et lent */\n          heroTitleGuillaume.style.setProperty('''
           if needle not in s:
               raise SystemExit('JS mousemove anchor not found')
           s = s.replace(needle, insert, 1)
 
           needle2 = '''        function() {\n\n          heroTitleGuillaume.style.setProperty('''
-          insert2 = '''        function() {\n\n          const heroTitleStage =\n            document.getElementById(\n              "heroTitleStage"\n            );\n\n          if (heroTitleStage) {\n            heroTitleStage.style.setProperty(\n              "--hero-text-x",\n              "0px"\n            );\n\n            heroTitleStage.style.setProperty(\n              "--hero-text-y",\n              "0px"\n            );\n          }\n\n          heroTitleGuillaume.style.setProperty('''
+          insert2 = '''        function() {\n\n          const heroTitleStage = document.getElementById("heroTitleStage");\n          if (heroTitleStage) {\n            heroTitleStage.style.setProperty("--hero-text-x", "0px");\n            heroTitleStage.style.setProperty("--hero-text-y", "0px");\n          }\n\n          heroTitleGuillaume.style.setProperty('''
           if needle2 not in s:
               raise SystemExit('JS mouseleave anchor not found')
           s = s.replace(needle2, insert2, 1)
 
-          mobile_anchor = '''      .hero-title-line {\n        transition: none;\n      }'''
-          mobile_add = '''      .hero-title-line {\n        transition: none;\n      }\n\n      .hero-title-back,\n      .hero-title-outline {\n        transform: none;\n        transition: none;\n      }\n\n      .hero-title-outline .hero-title-line {\n        -webkit-text-stroke:\n          1px rgba(255,255,255,.86);\n      }'''
-          if mobile_anchor not in s:
+          mobile = '''      .hero-title-line {\n        transition: none;\n      }'''
+          mobile2 = '''      .hero-title-line {\n        transition: none;\n      }\n\n      .hero-title-back,\n      .hero-title-outline {\n        transform: none;\n        transition: none;\n      }\n\n      .hero-title-outline .hero-title-line {\n        -webkit-text-stroke: 1px rgba(255,255,255,.86);\n      }'''
+          if mobile not in s:
               raise SystemExit('mobile anchor not found')
-          s = s.replace(mobile_anchor, mobile_add, 1)
+          s = s.replace(mobile, mobile2, 1)
 
           p.write_text(s)
           PY
 
-      - name: Commit hero patch
+      - name: Commit hero patch to PR branch
         run: |
           git config user.name "chatgpt"
           git config user.email "119681016+chatgpt@users.noreply.github.com"
           git add index.html
           git commit -m "Layer GUI.MOV with cassette and registered outline"
-          git push
+          git push origin HEAD:${{ github.head_ref }}
