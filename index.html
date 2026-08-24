@@ -412,6 +412,8 @@
     .hero-title-stage {
       position: relative;
       width: min(100%, 1180px);
+      min-height: 1.38em;
+
       isolation: isolate;
       perspective: 1350px;
 
@@ -425,21 +427,66 @@
         );
 
       line-height: .65;
-
       letter-spacing: -.02em;
-
       text-transform: uppercase;
+
+      transform:
+        translate3d(
+          var(--hero-text-x, 0px),
+          var(--hero-text-y, 0px),
+          0
+        );
+
+      transition:
+        transform .28s
+        cubic-bezier(.18,.78,.22,1);
+
+      will-change: transform;
+    }
+
+    .hero-title-stack {
+      position: absolute;
+      inset: 0 auto auto 0;
+
+      width: fit-content;
+
+      pointer-events: none;
+    }
+
+    .hero-title-full {
+      z-index: 1;
+    }
+
+    .hero-title-outline {
+      z-index: 3;
     }
 
     .hero-title-line {
       display: block;
       position: relative;
+
       width: fit-content;
-      color: #fff;
+
       white-space: nowrap;
+
+      pointer-events: none;
+    }
+
+    .hero-title-full .hero-title-line {
+      color: #fff;
+
       text-shadow:
         0 4px 30px rgba(0,0,0,.25);
-      will-change: transform;
+    }
+
+    .hero-title-outline .hero-title-line {
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+
+      -webkit-text-stroke:
+        1px rgba(255,255,255,.82);
+
+      text-shadow: none;
     }
 
     .hero-title-guillaume {
@@ -449,34 +496,6 @@
     .hero-title-faucompre {
       margin-left: .03em;
       margin-top: .08em;
-    }
-
-    /* Arrière-plan : mouvement ample avec la souris. */
-    .hero-title-guillaume {
-      z-index: 1;
-      transform:
-        translate3d(
-          var(--guillaume-x, 0px),
-          var(--guillaume-y, 0px),
-          0
-        );
-      transition:
-        transform .28s
-        cubic-bezier(.18,.78,.22,1);
-    }
-
-    /* Premier plan : mouvement inverse pour créer la profondeur. */
-    .hero-title-faucompre {
-      z-index: 4;
-      transform:
-        translate3d(
-          var(--faucompre-x, 0px),
-          var(--faucompre-y, 0px),
-          58px
-        );
-      transition:
-        transform .28s
-        cubic-bezier(.18,.78,.22,1);
     }
 
     .hero-cassette-layer {
@@ -711,46 +730,6 @@
     /* Desktop: a soft dark occlusion sits just behind the transparent
        cassette. It suppresses the filled letters through the plastic
        without introducing a second mask edge. */
-    @media (min-width: 801px) {
-      .hero-cassette-layer::before {
-        content: "";
-
-        position: absolute;
-        left: 50%;
-        top: 50%;
-
-        z-index: -1;
-
-        width: 84%;
-        height: 67%;
-
-        pointer-events: none;
-
-        border-radius: 28% 34% 30% 36%;
-
-        background:
-          radial-gradient(
-            ellipse at center,
-            rgba(5,5,5,.98) 0%,
-            rgba(5,5,5,.92) 56%,
-            rgba(5,5,5,.66) 74%,
-            rgba(5,5,5,0) 100%
-          );
-
-        filter: blur(10px);
-
-        transform:
-          translate(-50%, -50%)
-          rotate(-7deg)
-          scale(1.08);
-      }
-
-      .hero-title-back .hero-title-line::after {
-        -webkit-text-stroke:
-          1px rgba(255,255,255,.74);
-      }
-    }
-
     /* =========================================================
        HERO SHOWREEL — 3D OBJECT
     ========================================================= */
@@ -2819,6 +2798,7 @@
 
       .hero-title-stage {
         width: 118%;
+        min-height: 1.38em;
 
         font-size:
           clamp(
@@ -2828,6 +2808,9 @@
           );
 
         line-height: .64;
+
+        transform: none;
+        transition: none;
       }
 
       .hero-title-faucompre {
@@ -2837,6 +2820,7 @@
 
       .hero-title-stage {
         width: 118%;
+        min-height: 1.38em;
 
         font-size:
           clamp(
@@ -2846,10 +2830,18 @@
           );
 
         line-height: .64;
+
+        transform: none;
+        transition: none;
       }
 
       .hero-title-line {
         transition: none;
+      }
+
+      .hero-title-outline .hero-title-line {
+        -webkit-text-stroke:
+          1px rgba(255,255,255,.68);
       }
 
       .hero-title-back {
@@ -2862,14 +2854,11 @@
           1px rgba(255,255,255,.58);
       }
 
-      .hero-title-guillaume,
-      .hero-title-faucompre {
-        transform: none;
-      }
 
 
       .hero-title-stage {
         width: 118%;
+        min-height: 1.38em;
 
         font-size:
           clamp(
@@ -2879,6 +2868,9 @@
           );
 
         line-height: .64;
+
+        transform: none;
+        transition: none;
       }
 
       .hero-cassette-layer {
@@ -3261,8 +3253,7 @@
 
     @media (prefers-reduced-motion: reduce) {
 
-      .hero-title-guillaume,
-      .hero-title-faucompre,
+      .hero-title-stage,
       .hero-cassette-layer {
         transition: none !important;
       }
@@ -3411,22 +3402,14 @@
             >
 
               <span
-                class="hero-title-back"
-                id="heroTitleBack"
+                class="hero-title-stack hero-title-full"
+                id="heroTitleFull"
               >
-                <span
-                  class="hero-title-line hero-title-guillaume"
-                  id="heroTitleGuillaume"
-                  data-text="GUI"
-                >
+                <span class="hero-title-line hero-title-guillaume">
                   GUI
                 </span>
 
-                <span
-                  class="hero-title-line hero-title-faucompre"
-                  id="heroTitleFaucompre"
-                  data-text=".MOV"
-                >
+                <span class="hero-title-line hero-title-faucompre">
                   .MOV
                 </span>
               </span>
@@ -3442,6 +3425,20 @@
                     src="Cassette.png"
                     alt=""
                   >
+                </span>
+              </span>
+
+              <span
+                class="hero-title-stack hero-title-outline"
+                id="heroTitleOutline"
+                aria-hidden="true"
+              >
+                <span class="hero-title-line hero-title-guillaume">
+                  GUI
+                </span>
+
+                <span class="hero-title-line hero-title-faucompre">
+                  .MOV
                 </span>
               </span>
 
@@ -4493,14 +4490,9 @@
         "home"
       );
 
-    const heroTitleGuillaume =
+    const heroTitleStage =
       document.getElementById(
-        "heroTitleGuillaume"
-      );
-
-    const heroTitleFaucompre =
-      document.getElementById(
-        "heroTitleFaucompre"
+        "heroTitleStage"
       );
 
     const heroCassetteLayer =
@@ -4515,8 +4507,7 @@
 
     if (
       heroParallaxArea &&
-      heroTitleGuillaume &&
-      heroTitleFaucompre &&
+      heroTitleStage &&
       heroCassetteLayer &&
       canUseMainHeroParallax.matches
     ) {
@@ -4542,34 +4533,15 @@
             ) - .5;
 
 
-          /* Texte plein + contour restent parfaitement alignés */
-          const heroTitleStage =
-            document.getElementById(
-              "heroTitleStage"
-            );
-
-          if (heroTitleStage) {
-            heroTitleStage.style.setProperty(
-              "--hero-text-x",
-              `${nx * 12}px`
-            );
-
-            heroTitleStage.style.setProperty(
-              "--hero-text-y",
-              `${ny * 7}px`
-            );
-          }
-
-
-          /* Plan arrière — ample et lent */
-          heroTitleGuillaume.style.setProperty(
-            "--guillaume-x",
-            `${nx * 34}px`
+          /* Un seul mouvement pour le texte plein + le contour */
+          heroTitleStage.style.setProperty(
+            "--hero-text-x",
+            `${nx * 12}px`
           );
 
-          heroTitleGuillaume.style.setProperty(
-            "--guillaume-y",
-            `${ny * 18}px`
+          heroTitleStage.style.setProperty(
+            "--hero-text-y",
+            `${ny * 7}px`
           );
 
 
@@ -4595,17 +4567,6 @@
           );
 
 
-          /* Premier plan — mouvement inverse */
-          heroTitleFaucompre.style.setProperty(
-            "--faucompre-x",
-            `${nx * -26}px`
-          );
-
-          heroTitleFaucompre.style.setProperty(
-            "--faucompre-y",
-            `${ny * -14}px`
-          );
-
         }
       );
 
@@ -4614,30 +4575,13 @@
         "mouseleave",
         function() {
 
-          const heroTitleStage =
-            document.getElementById(
-              "heroTitleStage"
-            );
-
-          if (heroTitleStage) {
-            heroTitleStage.style.setProperty(
-              "--hero-text-x",
-              "0px"
-            );
-
-            heroTitleStage.style.setProperty(
-              "--hero-text-y",
-              "0px"
-            );
-          }
-
-          heroTitleGuillaume.style.setProperty(
-            "--guillaume-x",
+          heroTitleStage.style.setProperty(
+            "--hero-text-x",
             "0px"
           );
 
-          heroTitleGuillaume.style.setProperty(
-            "--guillaume-y",
+          heroTitleStage.style.setProperty(
+            "--hero-text-y",
             "0px"
           );
 
@@ -4659,16 +4603,6 @@
           heroCassetteLayer.style.setProperty(
             "--cassette-rx",
             "0deg"
-          );
-
-          heroTitleFaucompre.style.setProperty(
-            "--faucompre-x",
-            "0px"
-          );
-
-          heroTitleFaucompre.style.setProperty(
-            "--faucompre-y",
-            "0px"
           );
 
         }
