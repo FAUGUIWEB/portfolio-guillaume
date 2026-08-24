@@ -1,5 +1,6 @@
 name: Patch layered GUI MOV hero
 
+# trigger v2
 on:
   push:
     paths:
@@ -17,7 +18,6 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
 
           p = Path('index.html')
           s = p.read_text()
@@ -34,9 +34,6 @@ jobs:
 
           css = r'''    /* =========================================================
        HERO — FULL TYPE / CASSETTE / OUTLINE TYPE
-       The back and outline copies move together so the stroke
-       stays perfectly registered while the cassette carries
-       the stronger parallax.
     ========================================================= */
 
     .hero-title-back,
@@ -89,13 +86,10 @@ jobs:
     }
 
 '''
-
           if anchor not in s:
               raise SystemExit('CSS anchor not found')
           s = s.replace(anchor, css + anchor, 1)
 
-          # Add one shared text-parallax variable update. Existing per-line
-          # variable writes remain harmless because transforms are overridden.
           needle = '''          /* Plan arrière — ample et lent */\n          heroTitleGuillaume.style.setProperty('''
           insert = '''          /* Texte plein + contour restent parfaitement alignés */\n          const heroTitleStage =\n            document.getElementById(\n              "heroTitleStage"\n            );\n\n          if (heroTitleStage) {\n            heroTitleStage.style.setProperty(\n              "--hero-text-x",\n              `${nx * 12}px`\n            );\n\n            heroTitleStage.style.setProperty(\n              "--hero-text-y",\n              `${ny * 7}px`\n            );\n          }\n\n\n          /* Plan arrière — ample et lent */\n          heroTitleGuillaume.style.setProperty('''
           if needle not in s:
@@ -108,7 +102,6 @@ jobs:
               raise SystemExit('JS mouseleave anchor not found')
           s = s.replace(needle2, insert2, 1)
 
-          # Mobile: keep registered outline and slightly lighter stroke.
           mobile_anchor = '''      .hero-title-line {\n        transition: none;\n      }'''
           mobile_add = '''      .hero-title-line {\n        transition: none;\n      }\n\n      .hero-title-back,\n      .hero-title-outline {\n        transform: none;\n        transition: none;\n      }\n\n      .hero-title-outline .hero-title-line {\n        -webkit-text-stroke:\n          1px rgba(255,255,255,.86);\n      }'''
           if mobile_anchor not in s:
