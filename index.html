@@ -653,101 +653,101 @@
     }
 
     /* =========================================================
-       HERO — FULL TYPE / CASSETTE / OUTLINE TYPE
+       HERO — FULL TYPE / CASSETTE / SINGLE GENERATED OUTLINE
+       One real text layer; each line generates its own registered
+       outline with ::after. The cassette carries the stronger depth.
     ========================================================= */
 
-    .hero-title-back,
-    .hero-title-outline {
+    .hero-title-back {
       display: block;
       position: relative;
       width: fit-content;
+
       transform:
         translate3d(
           var(--hero-text-x, 0px),
           var(--hero-text-y, 0px),
           0
         );
+
       transition:
         transform .30s
         cubic-bezier(.18,.78,.22,1);
+
       will-change: transform;
       pointer-events: none;
     }
 
-    .hero-title-back {
-      z-index: 1;
-    }
-
-    .hero-title-outline {
-      position: absolute;
-      inset: 0 auto auto 0;
-      z-index: 5;
-    }
-
-    .hero-title-back .hero-title-guillaume,
-    .hero-title-back .hero-title-faucompre,
-    .hero-title-outline .hero-title-guillaume,
-    .hero-title-outline .hero-title-faucompre {
+    .hero-title-back .hero-title-line {
       transform: none;
       transition: none;
       z-index: auto;
+      isolation: auto;
     }
 
-    .hero-title-outline .hero-title-line {
+    /* Single outline paint generated from the exact same glyph box. */
+    .hero-title-back .hero-title-line::after {
+      content: attr(data-text);
+
+      position: absolute;
+      inset: 0;
+
+      z-index: 5;
+
       color: transparent;
       -webkit-text-fill-color: transparent;
       -webkit-text-stroke:
-        1.25px rgba(255,255,255,.88);
+        1px rgba(255,255,255,.76);
+
       text-shadow: none;
+
+      pointer-events: none;
     }
 
     .hero-cassette-layer {
       z-index: 3;
     }
 
-
+    /* Desktop: a soft dark occlusion sits just behind the transparent
+       cassette. It suppresses the filled letters through the plastic
+       without introducing a second mask edge. */
     @media (min-width: 801px) {
       .hero-cassette-layer::before {
         content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 0;
 
-        width: 100%;
-        aspect-ratio: 1.45 / 1;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+
+        z-index: -1;
+
+        width: 84%;
+        height: 67%;
 
         pointer-events: none;
 
-        background: #050505;
+        border-radius: 28% 34% 30% 36%;
 
-        -webkit-mask:
-          url("Cassette.png")
-          center / contain
-          no-repeat;
+        background:
+          radial-gradient(
+            ellipse at center,
+            rgba(5,5,5,.98) 0%,
+            rgba(5,5,5,.92) 56%,
+            rgba(5,5,5,.66) 74%,
+            rgba(5,5,5,0) 100%
+          );
 
-        mask:
-          url("Cassette.png")
-          center / contain
-          no-repeat;
+        filter: blur(10px);
 
         transform:
-          translate3d(-50%, -50%, 0)
+          translate(-50%, -50%)
           rotate(-7deg)
-          rotateX(4deg)
-          rotateY(-10deg);
-
-        transform-origin: center;
+          scale(1.08);
       }
 
-      .hero-cassette {
-        position: relative;
-        z-index: 1;
-      }
-
-      .hero-title-outline .hero-title-line {
+      .hero-title-back .hero-title-line::after {
         -webkit-text-stroke:
-          1px rgba(255,255,255,.84);
+          1px rgba(255,255,255,.74);
       }
     }
 
@@ -2852,15 +2852,14 @@
         transition: none;
       }
 
-      .hero-title-back,
-      .hero-title-outline {
+      .hero-title-back {
         transform: none;
         transition: none;
       }
 
-      .hero-title-outline .hero-title-line {
+      .hero-title-back .hero-title-line::after {
         -webkit-text-stroke:
-          .6px rgba(255,255,255,.80);
+          1px rgba(255,255,255,.58);
       }
 
       .hero-title-guillaume,
@@ -3418,6 +3417,7 @@
                 <span
                   class="hero-title-line hero-title-guillaume"
                   id="heroTitleGuillaume"
+                  data-text="GUI"
                 >
                   GUI
                 </span>
@@ -3425,6 +3425,7 @@
                 <span
                   class="hero-title-line hero-title-faucompre"
                   id="heroTitleFaucompre"
+                  data-text=".MOV"
                 >
                   .MOV
                 </span>
@@ -3441,20 +3442,6 @@
                     src="Cassette.png"
                     alt=""
                   >
-                </span>
-              </span>
-
-              <span
-                class="hero-title-outline"
-                id="heroTitleOutline"
-                aria-hidden="true"
-              >
-                <span class="hero-title-line hero-title-guillaume">
-                  GUI
-                </span>
-
-                <span class="hero-title-line hero-title-faucompre">
-                  .MOV
                 </span>
               </span>
 
