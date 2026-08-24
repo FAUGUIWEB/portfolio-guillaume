@@ -653,6 +653,59 @@
     }
 
     /* =========================================================
+       HERO — FULL TYPE / CASSETTE / OUTLINE TYPE
+    ========================================================= */
+
+    .hero-title-back,
+    .hero-title-outline {
+      display: block;
+      position: relative;
+      width: fit-content;
+      transform:
+        translate3d(
+          var(--hero-text-x, 0px),
+          var(--hero-text-y, 0px),
+          0
+        );
+      transition:
+        transform .30s
+        cubic-bezier(.18,.78,.22,1);
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    .hero-title-back {
+      z-index: 1;
+    }
+
+    .hero-title-outline {
+      position: absolute;
+      inset: 0 auto auto 0;
+      z-index: 5;
+    }
+
+    .hero-title-back .hero-title-guillaume,
+    .hero-title-back .hero-title-faucompre,
+    .hero-title-outline .hero-title-guillaume,
+    .hero-title-outline .hero-title-faucompre {
+      transform: none;
+      transition: none;
+      z-index: auto;
+    }
+
+    .hero-title-outline .hero-title-line {
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke:
+        1.25px rgba(255,255,255,.88);
+      text-shadow: none;
+    }
+
+    .hero-cassette-layer {
+      z-index: 3;
+    }
+
+    /* =========================================================
        HERO SHOWREEL — 3D OBJECT
     ========================================================= */
 
@@ -2750,6 +2803,17 @@
         transition: none;
       }
 
+      .hero-title-back,
+      .hero-title-outline {
+        transform: none;
+        transition: none;
+      }
+
+      .hero-title-outline .hero-title-line {
+        -webkit-text-stroke:
+          1px rgba(255,255,255,.86);
+      }
+
       .hero-title-guillaume,
       .hero-title-faucompre {
         transform: none;
@@ -3290,10 +3354,22 @@
             >
 
               <span
-                class="hero-title-line hero-title-guillaume"
-                id="heroTitleGuillaume"
+                class="hero-title-back"
+                id="heroTitleBack"
               >
-                GUI
+                <span
+                  class="hero-title-line hero-title-guillaume"
+                  id="heroTitleGuillaume"
+                >
+                  GUI
+                </span>
+
+                <span
+                  class="hero-title-line hero-title-faucompre"
+                  id="heroTitleFaucompre"
+                >
+                  .MOV
+                </span>
               </span>
 
               <span
@@ -3311,10 +3387,17 @@
               </span>
 
               <span
-                class="hero-title-line hero-title-faucompre"
-                id="heroTitleFaucompre"
+                class="hero-title-outline"
+                id="heroTitleOutline"
+                aria-hidden="true"
               >
-                .MOV
+                <span class="hero-title-line hero-title-guillaume">
+                  GUI
+                </span>
+
+                <span class="hero-title-line hero-title-faucompre">
+                  .MOV
+                </span>
               </span>
 
             </h1>
@@ -3918,34 +4001,34 @@
         </article>
 
         <article
-      class="project"
-      onclick="openVideo('8zoBIHigQSQ')"
-    >
-
-      <div class="thumbnail-wrapper">
-
-        <img
-          class="thumbnail"
-          src="MiniaFeatured.png"
-          alt="ShowReel 2024"
-          loading="lazy"
+          class="project"
+          onclick="openVideo('8zoBIHigQSQ')"
         >
 
-      </div>
+          <div class="thumbnail-wrapper">
 
-      <div class="project-info">
+            <img
+              class="thumbnail"
+              src="MiniaFeatured.png"
+              alt="ShowReel 2024"
+              loading="lazy"
+            >
 
-        <div class="project-title">
-          ShowReel 2024
-        </div>
+          </div>
 
-        <div class="project-tag">
-          Motion Design · Tournage · Montage
-        </div>
+          <div class="project-info">
 
-      </div>
+            <div class="project-title">
+              ShowReel 2024
+            </div>
 
-    </article>
+            <div class="project-tag">
+              Motion Design · Tournage · Montage
+            </div>
+
+          </div>
+
+        </article>
 
         <article
           class="project"
@@ -4414,6 +4497,25 @@
             ) - .5;
 
 
+          /* Texte plein + contour restent parfaitement alignés */
+          const heroTitleStage =
+            document.getElementById(
+              "heroTitleStage"
+            );
+
+          if (heroTitleStage) {
+            heroTitleStage.style.setProperty(
+              "--hero-text-x",
+              `${nx * 12}px`
+            );
+
+            heroTitleStage.style.setProperty(
+              "--hero-text-y",
+              `${ny * 7}px`
+            );
+          }
+
+
           /* Plan arrière — ample et lent */
           heroTitleGuillaume.style.setProperty(
             "--guillaume-x",
@@ -4466,6 +4568,23 @@
       heroParallaxArea.addEventListener(
         "mouseleave",
         function() {
+
+          const heroTitleStage =
+            document.getElementById(
+              "heroTitleStage"
+            );
+
+          if (heroTitleStage) {
+            heroTitleStage.style.setProperty(
+              "--hero-text-x",
+              "0px"
+            );
+
+            heroTitleStage.style.setProperty(
+              "--hero-text-y",
+              "0px"
+            );
+          }
 
           heroTitleGuillaume.style.setProperty(
             "--guillaume-x",
