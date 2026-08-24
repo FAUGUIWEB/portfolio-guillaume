@@ -1,0 +1,127 @@
+name: Patch layered GUI MOV hero
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-hero-layered-outline.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch hero only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('index.html')
+          s = p.read_text()
+
+          old = '''            >\n\n              <span\n                class="hero-title-line hero-title-guillaume"\n                id="heroTitleGuillaume"\n              >\n                GUI\n              </span>\n\n              <span\n                class="hero-cassette-layer"\n                id="heroCassetteLayer"\n                aria-hidden="true"\n              >\n                <span class="hero-cassette-float">\n                  <img\n                    class="hero-cassette"\n                    src="Cassette.png"\n                    alt=""\n                  >\n                </span>\n              </span>\n\n              <span\n                class="hero-title-line hero-title-faucompre"\n                id="heroTitleFaucompre"\n              >\n                .MOV\n              </span>\n\n            </h1>'''
+
+          new = '''            >\n\n              <span\n                class="hero-title-back"\n                id="heroTitleBack"\n              >\n                <span\n                  class="hero-title-line hero-title-guillaume"\n                  id="heroTitleGuillaume"\n                >\n                  GUI\n                </span>\n\n                <span\n                  class="hero-title-line hero-title-faucompre"\n                  id="heroTitleFaucompre"\n                >\n                  .MOV\n                </span>\n              </span>\n\n              <span\n                class="hero-cassette-layer"\n                id="heroCassetteLayer"\n                aria-hidden="true"\n              >\n                <span class="hero-cassette-float">\n                  <img\n                    class="hero-cassette"\n                    src="Cassette.png"\n                    alt=""\n                  >\n                </span>\n              </span>\n\n              <span\n                class="hero-title-outline"\n                id="heroTitleOutline"\n                aria-hidden="true"\n              >\n                <span class="hero-title-line hero-title-guillaume">\n                  GUI\n                </span>\n\n                <span class="hero-title-line hero-title-faucompre">\n                  .MOV\n                </span>\n              </span>\n\n            </h1>'''
+
+          if old not in s:
+              raise SystemExit('hero HTML target not found')
+          s = s.replace(old, new, 1)
+
+          anchor = '''    /* =========================================================\n       HERO SHOWREEL — 3D OBJECT\n    ========================================================= */'''
+
+          css = r'''    /* =========================================================
+       HERO — FULL TYPE / CASSETTE / OUTLINE TYPE
+       The back and outline copies move together so the stroke
+       stays perfectly registered while the cassette carries
+       the stronger parallax.
+    ========================================================= */
+
+    .hero-title-back,
+    .hero-title-outline {
+      display: block;
+      position: relative;
+      width: fit-content;
+      transform:
+        translate3d(
+          var(--hero-text-x, 0px),
+          var(--hero-text-y, 0px),
+          0
+        );
+      transition:
+        transform .30s
+        cubic-bezier(.18,.78,.22,1);
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    .hero-title-back {
+      z-index: 1;
+    }
+
+    .hero-title-outline {
+      position: absolute;
+      inset: 0 auto auto 0;
+      z-index: 5;
+    }
+
+    .hero-title-back .hero-title-guillaume,
+    .hero-title-back .hero-title-faucompre,
+    .hero-title-outline .hero-title-guillaume,
+    .hero-title-outline .hero-title-faucompre {
+      transform: none;
+      transition: none;
+      z-index: auto;
+    }
+
+    .hero-title-outline .hero-title-line {
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke:
+        1.25px rgba(255,255,255,.88);
+      text-shadow: none;
+    }
+
+    .hero-cassette-layer {
+      z-index: 3;
+    }
+
+'''
+
+          if anchor not in s:
+              raise SystemExit('CSS anchor not found')
+          s = s.replace(anchor, css + anchor, 1)
+
+          # Add one shared text-parallax variable update. Existing per-line
+          # variable writes remain harmless because transforms are overridden.
+          needle = '''          /* Plan arrière — ample et lent */\n          heroTitleGuillaume.style.setProperty('''
+          insert = '''          /* Texte plein + contour restent parfaitement alignés */\n          const heroTitleStage =\n            document.getElementById(\n              "heroTitleStage"\n            );\n\n          if (heroTitleStage) {\n            heroTitleStage.style.setProperty(\n              "--hero-text-x",\n              `${nx * 12}px`\n            );\n\n            heroTitleStage.style.setProperty(\n              "--hero-text-y",\n              `${ny * 7}px`\n            );\n          }\n\n\n          /* Plan arrière — ample et lent */\n          heroTitleGuillaume.style.setProperty('''
+          if needle not in s:
+              raise SystemExit('JS mousemove anchor not found')
+          s = s.replace(needle, insert, 1)
+
+          needle2 = '''        function() {\n\n          heroTitleGuillaume.style.setProperty('''
+          insert2 = '''        function() {\n\n          const heroTitleStage =\n            document.getElementById(\n              "heroTitleStage"\n            );\n\n          if (heroTitleStage) {\n            heroTitleStage.style.setProperty(\n              "--hero-text-x",\n              "0px"\n            );\n\n            heroTitleStage.style.setProperty(\n              "--hero-text-y",\n              "0px"\n            );\n          }\n\n          heroTitleGuillaume.style.setProperty('''
+          if needle2 not in s:
+              raise SystemExit('JS mouseleave anchor not found')
+          s = s.replace(needle2, insert2, 1)
+
+          # Mobile: keep registered outline and slightly lighter stroke.
+          mobile_anchor = '''      .hero-title-line {\n        transition: none;\n      }'''
+          mobile_add = '''      .hero-title-line {\n        transition: none;\n      }\n\n      .hero-title-back,\n      .hero-title-outline {\n        transform: none;\n        transition: none;\n      }\n\n      .hero-title-outline .hero-title-line {\n        -webkit-text-stroke:\n          1px rgba(255,255,255,.86);\n      }'''
+          if mobile_anchor not in s:
+              raise SystemExit('mobile anchor not found')
+          s = s.replace(mobile_anchor, mobile_add, 1)
+
+          p.write_text(s)
+          PY
+
+      - name: Commit hero patch
+        run: |
+          git config user.name "chatgpt"
+          git config user.email "119681016+chatgpt@users.noreply.github.com"
+          git add index.html
+          git commit -m "Layer GUI.MOV with cassette and registered outline"
+          git push
