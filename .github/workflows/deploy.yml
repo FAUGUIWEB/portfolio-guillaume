@@ -17,16 +17,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Optimize New Drop soul animation
-        if: ${{ hashFiles('optimize_new_drop_soul.py') != '' }}
+      - name: Apply ultra smooth New Drop
+        if: ${{ hashFiles('ultra_smooth_new_drop.py') != '' }}
         shell: bash
         run: |
-          python3 optimize_new_drop_soul.py
-          rm -f optimize_new_drop_soul.py
+          python3 ultra_smooth_new_drop.py
+          rm -f ultra_smooth_new_drop.py optimize_new_drop_soul.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Optimize New Drop soul animation performance"
+          git commit -m "Make New Drop soul animation ultra smooth"
           git push
 
       - name: Deploy to OVH
