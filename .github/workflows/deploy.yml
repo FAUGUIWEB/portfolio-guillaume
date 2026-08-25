@@ -17,16 +17,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Apply New Drop soul stretch
-        if: ${{ hashFiles('apply_new_drop_soul_stretch.py') != '' }}
+      - name: Tune New Drop soul stretch
+        if: ${{ hashFiles('tune_new_drop_soul_smooth.py') != '' }}
         shell: bash
         run: |
-          python3 apply_new_drop_soul_stretch.py
-          rm -f apply_new_drop_soul_stretch.py
+          python3 tune_new_drop_soul_smooth.py
+          rm -f tune_new_drop_soul_smooth.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Add elastic soul stretch to New Drop"
+          git commit -m "Smooth and extend New Drop soul stretch"
           git push
 
       - name: Deploy to OVH
