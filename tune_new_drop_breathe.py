@@ -28,11 +28,17 @@ for old, new in replacements.items():
         raise SystemExit(f'Missing expected rule: {old}')
     css = css.replace(old, new, 1)
 
-old_keyframes = '''@keyframes newDropHorizontalBreathe{\n  0%,18%,100%{transform:translateX(0) scaleX(1)}\n  38%{transform:translateX(var(--shift,0)) scaleX(1.22)}\n  58%,82%{transform:translateX(0) scaleX(1)}\n}'''
-new_keyframes = '''@keyframes newDropHorizontalBreathe{\n  0%,10%,100%{transform:translateX(0) scaleX(1)}\n  30%{transform:translateX(var(--shift,0)) scaleX(1.22)}\n  52%{transform:translateX(0) scaleX(1)}\n}'''
-if old_keyframes not in css:
+pattern = re.compile(
+    r'@keyframes\s+newDropHorizontalBreathe\s*\{\s*'
+    r'0%,18%,100%\s*\{\s*transform:translateX\(0\)\s+scaleX\(1\)\s*\}\s*'
+    r'38%\s*\{\s*transform:translateX\(var\(--shift,0\)\)\s+scaleX\(1\.22\)\s*\}\s*'
+    r'58%,82%\s*\{\s*transform:translateX\(0\)\s+scaleX\(1\)\s*\}\s*\}'
+)
+new_keyframes = '@keyframes newDropHorizontalBreathe{0%,10%,100%{transform:translateX(0) scaleX(1)}30%{transform:translateX(var(--shift,0)) scaleX(1.22)}52%{transform:translateX(0) scaleX(1)}}'
+css, count = pattern.subn(new_keyframes, css, count=1)
+if count != 1:
     raise SystemExit('Missing expected New Drop keyframes')
-css = css.replace(old_keyframes, new_keyframes, 1)
+
 css_path.write_text(css, encoding='utf-8')
 
 index_path = Path('index.html')
