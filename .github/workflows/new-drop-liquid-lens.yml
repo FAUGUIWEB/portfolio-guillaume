@@ -48,7 +48,6 @@ jobs:
 @keyframes newDropCoreFloat{0%{transform:translate3d(-5%,2%,0) scale(.96)}100%{transform:translate3d(6%,-4%,0) scale(1.06)}}
 '''
           css = css[:start] + clean + css[end:]
-          css = re.sub(r'@media \(prefers-reduced-motion:reduce\)\{\.hero-title-stage,\.hero-cassette-layer\{transition:none !important;\}html\{scroll-behavior:auto;\}\*,\*::before,\*::after\{animation-duration:\.01ms !important;animation-iteration-count:1 !important;transition-duration:\.01ms !important;\}\.wave-title,\.wave-title span\{animation:none !important;transform:none !important;\}\}', '@media (prefers-reduced-motion:reduce){.hero-title-stage,.hero-cassette-layer{transition:none !important;}html{scroll-behavior:auto;}*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}.new-drop-lens,.new-drop-magnified{animation:none !important;}.new-drop-lens{display:none;}.new-drop-magnified{display:none;}}', css)
           css_path.write_text(css, encoding='utf-8')
 
           index_path = Path('index.html')
@@ -70,3 +69,4 @@ jobs:
           git add styles.css index.html
           git commit -m "Replace New Drop flip with liquid glass lens"
           git push
+# trigger
