@@ -1,46 +1,124 @@
 name: Fix New Drop Readability
+
 on:
   push:
     paths:
-      - .github/workflows/fix-new-drop-readable.yml
+      - '.github/workflows/fix-new-drop-readable.yml'
+
 permissions:
   contents: write
+
 jobs:
   fix:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Patch CSS
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p = Path("styles.css")
-          s = p.read_text()
-          marker = "/* NEW DROP — independent 3D letter flips to the right */"
-          if marker in s:
-              s = s.split(marker, 1)[0].rstrip() + "\n\n"
-          css = """/* NEW DROP — readable independent flip, always front-facing */
-.wave-title{animation:none!important;color:var(--red);filter:none;perspective:1000px;transform-style:preserve-3d;}
-.wave-title span{position:relative;display:inline-block;color:var(--red)!important;transform-origin:center center;transform-style:preserve-3d;backface-visibility:visible;-webkit-backface-visibility:visible;will-change:transform,color,text-shadow;animation:newDropReadableFlipV3 6s cubic-bezier(.55,.02,.18,.98) infinite!important;}
-.wave-title span::before,.wave-title span::after{content:none!important;display:none!important;}
-.wave-title span:nth-child(1){animation-delay:0s!important}.wave-title span:nth-child(2){animation-delay:.09s!important}.wave-title span:nth-child(3){animation-delay:.18s!important}.wave-title span:nth-child(4){animation-delay:.27s!important}.wave-title span:nth-child(5){animation-delay:.36s!important}.wave-title span:nth-child(6){animation-delay:.45s!important}.wave-title span:nth-child(7){animation-delay:.54s!important}.wave-title span:nth-child(8){animation-delay:.63s!important}
-@keyframes newDropReadableFlipV3{0%,24%{transform:rotateY(0deg);color:var(--red);text-shadow:0 0 15px rgba(255,43,43,.58),0 0 34px rgba(255,43,43,.26);}34%{transform:rotateY(-89deg);color:var(--red);text-shadow:0 0 4px rgba(255,43,43,.16);}34.01%{transform:rotateY(89deg);color:#fff;text-shadow:none;}44%,60%{transform:rotateY(0deg);color:#fff;text-shadow:none;}70%{transform:rotateY(-89deg);color:#fff;text-shadow:none;}70.01%{transform:rotateY(89deg);color:var(--red);text-shadow:0 0 4px rgba(255,43,43,.16);}80%,100%{transform:rotateY(0deg);color:var(--red);text-shadow:0 0 15px rgba(255,43,43,.58),0 0 34px rgba(255,43,43,.26);}}
-.wave-title::after{background:var(--red);box-shadow:0 0 18px rgba(255,43,43,.38);}
-"""
-          p.write_text(s + css)
+        with:
+          fetch-depth: 0
 
-          ip = Path("index.html")
-          h = ip.read_text()
-          h = h.replace("styles.css?v=20260825-2", "styles.css?v=20260825-3")
-          ip.write_text(h)
-          PY
-      - name: Remove workflow and commit
+      - name: Fix readable New Drop flip
         shell: bash
         run: |
-          rm .github/workflows/fix-new-drop-readable.yml
+          python - <<'PY'
+          from pathlib import Path
+
+          root = Path('.')
+          p = root / 'styles.css'
+          css = p.read_text(encoding='utf-8')
+
+          marker = '/* NEW DROP — independent 3D letter flips to the right */'
+          if marker in css:
+              css = css.split(marker, 1)[0].rstrip() + '\n\n'
+
+          css += r'''
+          /* NEW DROP — readable independent flip, always front-facing */
+          .wave-title{
+            animation:none!important;
+            color:var(--red);
+            filter:none;
+            perspective:1000px;
+            transform-style:preserve-3d;
+          }
+          .wave-title span{
+            position:relative;
+            display:inline-block;
+            color:var(--red)!important;
+            transform-origin:center center;
+            transform-style:preserve-3d;
+            will-change:transform,color,text-shadow;
+            animation:newDropReadableFlipV3 6s cubic-bezier(.55,.02,.18,.98) infinite!important;
+          }
+          .wave-title span::before,
+          .wave-title span::after{
+            content:none!important;
+            display:none!important;
+          }
+          .wave-title span:nth-child(1){animation-delay:0s!important;}
+          .wave-title span:nth-child(2){animation-delay:.09s!important;}
+          .wave-title span:nth-child(3){animation-delay:.18s!important;}
+          .wave-title span:nth-child(4){animation-delay:.27s!important;}
+          .wave-title span:nth-child(5){animation-delay:.36s!important;}
+          .wave-title span:nth-child(6){animation-delay:.45s!important;}
+          .wave-title span:nth-child(7){animation-delay:.54s!important;}
+          .wave-title span:nth-child(8){animation-delay:.63s!important;}
+          @keyframes newDropReadableFlipV3{
+            0%,24%{
+              transform:rotateY(0deg);
+              color:var(--red);
+              text-shadow:0 0 15px rgba(255,43,43,.58),0 0 34px rgba(255,43,43,.26);
+            }
+            34%{
+              transform:rotateY(-89deg);
+              color:var(--red);
+              text-shadow:0 0 4px rgba(255,43,43,.16);
+            }
+            34.01%{
+              transform:rotateY(89deg);
+              color:#fff;
+              text-shadow:none;
+            }
+            44%,60%{
+              transform:rotateY(0deg);
+              color:#fff;
+              text-shadow:none;
+            }
+            70%{
+              transform:rotateY(-89deg);
+              color:#fff;
+              text-shadow:none;
+            }
+            70.01%{
+              transform:rotateY(89deg);
+              color:var(--red);
+              text-shadow:0 0 4px rgba(255,43,43,.16);
+            }
+            80%,100%{
+              transform:rotateY(0deg);
+              color:var(--red);
+              text-shadow:0 0 15px rgba(255,43,43,.58),0 0 34px rgba(255,43,43,.26);
+            }
+          }
+          .wave-title::after{
+            background:var(--red)!important;
+            box-shadow:0 0 18px rgba(255,43,43,.38)!important;
+            animation:none!important;
+          }
+          '''
+
+          p.write_text(css, encoding='utf-8')
+
+          index_path = root / 'index.html'
+          index = index_path.read_text(encoding='utf-8')
+          index = index.replace('styles.css?v=20260825-2', 'styles.css?v=20260825-3')
+          index_path.write_text(index, encoding='utf-8')
+          PY
+
+      - name: Commit New Drop fix
+        shell: bash
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Fix New Drop white readability" || exit 0
+          git rm .github/workflows/fix-new-drop-readable.yml
+          git add index.html styles.css
+          git commit -m "Fix New Drop white readability"
           git push
