@@ -6,9 +6,6 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,18 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Apply one-time New Drop spacing and timing tune
-        if: ${{ hashFiles('tune_new_drop_breathe.py') != '' }}
-        shell: bash
-        run: |
-          python3 tune_new_drop_breathe.py
-          rm -f tune_new_drop_breathe.py
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Tune New Drop spacing and repeat timing"
-          git push
 
       - name: Deploy to OVH
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
