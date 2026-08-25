@@ -65,7 +65,7 @@
       isolation: isolate;
       overflow: hidden;
       width: min(640px, calc(100vw - 32px));
-      min-height: 52px;
+      min-height: 58px;
       margin: 0 auto;
       padding: 6px 10px 6px 14px;
       display: flex;
@@ -243,8 +243,8 @@
     }
 
     .header-social {
-      width: 28px;
-      height: 28px;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -260,8 +260,8 @@
     }
 
     .header-social svg {
-      width: 17px;
-      height: 17px;
+      width: 23px;
+      height: 23px;
       fill: none;
       stroke: currentColor;
       stroke-width: 1.6;
@@ -642,6 +642,7 @@
     }
 
     .hero-role-name {
+      margin: 0;
       color: var(--red);
 
       font-size: 10px;
@@ -1807,7 +1808,7 @@
       padding:
         0
         5vw
-        180px;
+        90px;
       scroll-margin-top: 100px;
     }
 
@@ -2073,7 +2074,7 @@
       overflow: hidden;
       width: 100%;
       min-height: 720px;
-      padding: 150px 5vw 170px;
+      padding: 95px 5vw 170px;
       display: flex;
       align-items: center;
       background: #050505;
@@ -2278,6 +2279,33 @@
       width: 78px;
       height: 1px;
       background: linear-gradient(90deg, var(--red), rgba(255,255,255,.30));
+    }
+
+
+    .section-kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 34px;
+      color: #777;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    .section-kicker-index {
+      color: #fff;
+    }
+
+    .section-kicker-line {
+      width: 78px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--red), rgba(255,255,255,.30));
+    }
+
+    .section-kicker-label {
+      color: #777;
     }
 
     .about-grid {
@@ -2923,7 +2951,7 @@
 
       .about {
         min-height: auto;
-        padding: 110px 20px 120px;
+        padding: 62px 20px 120px;
       }
 
       .about-liquid {
@@ -2954,6 +2982,17 @@
         margin-bottom: 42px;
         gap: 10px;
         font-size: 9px;
+      }
+
+
+      .section-kicker {
+        margin-bottom: 24px;
+        gap: 10px;
+        font-size: 9px;
+      }
+
+      .section-kicker-line {
+        width: 52px;
       }
 
       .about-kicker-line {
@@ -3004,7 +3043,7 @@
 
       .header-glass {
         width: calc(100vw - 24px);
-        min-height: 48px;
+        min-height: 60px;
         padding: 5px 8px 5px 12px;
       }
 
@@ -3018,8 +3057,13 @@
       }
 
       .header-social {
-        width: 26px;
-        height: 26px;
+        width: 46px;
+        height: 46px;
+      }
+
+      .header-social svg {
+        width: 28px;
+        height: 28px;
       }
 
       .site-logo {
@@ -3033,6 +3077,11 @@
           96px
           20px
           94px;
+      }
+
+
+      .scroll-indicator {
+        display: none;
       }
 
       .hero-shell {
@@ -3184,7 +3233,7 @@
         padding:
           0
           20px
-          120px;
+          46px;
       }
 
       .grid {
@@ -3395,7 +3444,7 @@
         <div class="hero-copy">
 
           <div class="hero-identity">
-            <h1
+            <div
               class="hero-title-stage"
               id="heroTitleStage"
               aria-label="Gui dot mov"
@@ -3442,7 +3491,7 @@
                 </span>
               </span>
 
-            </h1>
+            </div>
 
           </div>
 
@@ -3454,9 +3503,9 @@
 
             <span class="hero-role-line"></span>
 
-            <span class="hero-role-name">
+            <h1 class="hero-role-name">
               Guillaume Faucompré
-            </span>
+            </h1>
 
             <span
               class="hero-role-separator"
@@ -3663,6 +3712,12 @@
       class="new-drop"
       id="new-drop"
     >
+
+      <div class="section-kicker">
+        <span class="section-kicker-index">02</span>
+        <span class="section-kicker-line"></span>
+        <span class="section-kicker-label">New Drop</span>
+      </div>
 
       <h2
         class="new-drop-title wave-title"
@@ -3899,6 +3954,12 @@
       class="projects"
       id="realisations"
     >
+
+      <div class="section-kicker">
+        <span class="section-kicker-index">03</span>
+        <span class="section-kicker-line"></span>
+        <span class="section-kicker-label">Réalisations</span>
+      </div>
 
       <h2 class="section-title">
         Réalisations
@@ -4163,7 +4224,7 @@
       <div class="about-inner">
 
         <div class="about-kicker">
-          <span class="about-kicker-index">06</span>
+          <span class="about-kicker-index">04</span>
           <span class="about-kicker-line"></span>
           <span>About</span>
         </div>
@@ -4200,7 +4261,7 @@
                   class="about-available-dot"
                   aria-hidden="true"
                 ></span>
-                <span>Available for projects</span>
+                <span>Disponible pour votre projet</span>
               </div>
 
             </div>
@@ -4216,6 +4277,12 @@
   </main>
 
   <footer>
+
+    <div class="section-kicker footer-kicker">
+      <span class="section-kicker-index">05</span>
+      <span class="section-kicker-line"></span>
+      <span class="section-kicker-label">On parle de votre projet ?</span>
+    </div>
 
     <a
       href="mailto:faucompre.guillaume@gmail.com"
