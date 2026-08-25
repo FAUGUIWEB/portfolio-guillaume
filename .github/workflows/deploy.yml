@@ -6,6 +6,9 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -13,6 +16,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Apply New Drop soul stretch
+        if: ${{ hashFiles('apply_new_drop_soul_stretch.py') != '' }}
+        shell: bash
+        run: |
+          python3 apply_new_drop_soul_stretch.py
+          rm -f apply_new_drop_soul_stretch.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add elastic soul stretch to New Drop"
+          git push
 
       - name: Deploy to OVH
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
