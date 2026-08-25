@@ -17,16 +17,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Apply ultra smooth New Drop
-        if: ${{ hashFiles('ultra_smooth_new_drop.py') != '' }}
+      - name: Add layered New Drop ghost trails
+        if: ${{ hashFiles('add_new_drop_ghost_layers.py') != '' }}
         shell: bash
         run: |
-          python3 ultra_smooth_new_drop.py
-          rm -f ultra_smooth_new_drop.py optimize_new_drop_soul.py
+          python3 add_new_drop_ghost_layers.py
+          rm -f add_new_drop_ghost_layers.py ultra_smooth_new_drop.py optimize_new_drop_soul.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Make New Drop soul animation ultra smooth"
+          git commit -m "Add smooth layered soul trails to New Drop"
           git push
 
       - name: Deploy to OVH
