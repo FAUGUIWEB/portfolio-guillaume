@@ -1,0 +1,139 @@
+name: Rebuild New Drop CSS
+
+on:
+  push:
+    paths:
+      - '.github/workflows/rebuild-new-drop-css.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove all New Drop overrides and rebuild one canonical animation
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          css_path = Path('styles.css')
+          css = css_path.read_text(encoding='utf-8')
+
+          # Remove every experimental override appended after the original stylesheet.
+          markers = [
+              '/* NEW DROP — independent 3D letter flips to the right */',
+              '/* NEW DROP — readable two-face 3D flip */',
+              '/* NEW DROP — single DOM text only',
+              '/* NEW DROP — clean canonical animation',
+              '/* NEW DROP — final',
+          ]
+          positions = [css.find(m) for m in markers if css.find(m) != -1]
+          if positions:
+              css = css[:min(positions)].rstrip() + '\n\n'
+
+          canonical = r'''/* NEW DROP — canonical single-text animation */
+.wave-title{
+  animation:none!important;
+  color:var(--red);
+  filter:none;
+  perspective:1000px;
+  transform-style:preserve-3d;
+}
+.wave-title span{
+  position:relative;
+  display:inline-block;
+  color:var(--red);
+  -webkit-text-fill-color:currentColor;
+  transform-origin:center center;
+  transform-style:preserve-3d;
+  backface-visibility:visible;
+  -webkit-backface-visibility:visible;
+  will-change:transform,color,text-shadow;
+  animation:newDropCanonicalFlip 6.4s cubic-bezier(.55,.02,.18,.98) infinite!important;
+}
+.wave-title span::before,
+.wave-title span::after{
+  content:none!important;
+  display:none!important;
+}
+.wave-title span:nth-child(1){animation-delay:0s!important}
+.wave-title span:nth-child(2){animation-delay:.09s!important}
+.wave-title span:nth-child(3){animation-delay:.18s!important}
+.wave-title span:nth-child(4){animation-delay:.27s!important}
+.wave-title span:nth-child(5){animation-delay:.36s!important}
+.wave-title span:nth-child(6){animation-delay:.45s!important}
+.wave-title span:nth-child(7){animation-delay:.54s!important}
+.wave-title span:nth-child(8){animation-delay:.63s!important}
+
+@keyframes newDropCanonicalFlip{
+  0%,24%{
+    transform:rotateY(0deg);
+    color:#ff2b2b;
+    text-shadow:0 0 15px rgba(255,43,43,.62),0 0 34px rgba(255,43,43,.28);
+  }
+  32%{
+    transform:rotateY(-88deg);
+    color:#ff2b2b;
+    text-shadow:0 0 4px rgba(255,43,43,.16);
+  }
+  32.01%{
+    transform:rotateY(88deg);
+    color:#fff;
+    text-shadow:none;
+  }
+  42%,60%{
+    transform:rotateY(0deg);
+    color:#fff;
+    text-shadow:none;
+  }
+  68%{
+    transform:rotateY(-88deg);
+    color:#fff;
+    text-shadow:none;
+  }
+  68.01%{
+    transform:rotateY(88deg);
+    color:#ff2b2b;
+    text-shadow:0 0 4px rgba(255,43,43,.16);
+  }
+  78%,100%{
+    transform:rotateY(0deg);
+    color:#ff2b2b;
+    text-shadow:0 0 15px rgba(255,43,43,.62),0 0 34px rgba(255,43,43,.28);
+  }
+}
+
+.wave-title::after{
+  background:var(--red)!important;
+  box-shadow:0 0 18px rgba(255,43,43,.38)!important;
+  animation:none!important;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .wave-title span{
+    animation:none!important;
+    transform:none!important;
+    color:var(--red);
+  }
+}
+'''
+          css_path.write_text(css + canonical, encoding='utf-8')
+
+          index_path = Path('index.html')
+          html = index_path.read_text(encoding='utf-8')
+          html = re.sub(r'styles\.css\?v=[^"\']+', 'styles.css?v=20260825-7', html)
+          index_path.write_text(html, encoding='utf-8')
+          PY
+      - name: Commit rebuilt CSS
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/rebuild-new-drop-css.yml
+          git add styles.css index.html
+          git commit -m "Rebuild New Drop CSS animation cleanly"
+          git push
