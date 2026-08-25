@@ -1,0 +1,79 @@
+name: Refine New Drop Timing
+
+on:
+  push:
+    paths:
+      - '.github/workflows/refine-new-drop-timing.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refine New Drop red-to-white sequence
+        shell: bash
+        run: |
+          cat >> styles.css <<'CSS'
+
+/* NEW DROP — red glow first, then white, with clear pauses */
+.wave-title span{
+  animation:newDropSingleTextFlipV2 6.4s cubic-bezier(.55,.02,.18,.98) infinite!important;
+}
+@keyframes newDropSingleTextFlipV2{
+  0%,30%{
+    transform:rotateY(0deg);
+    color:var(--red)!important;
+    text-shadow:0 0 15px rgba(255,43,43,.58),0 0 34px rgba(255,43,43,.26);
+  }
+  40%{
+    transform:rotateY(-89deg);
+    color:var(--red)!important;
+    text-shadow:0 0 4px rgba(255,43,43,.16);
+  }
+  40.01%{
+    transform:rotateY(89deg);
+    color:#fff!important;
+    text-shadow:none;
+  }
+  50%,68%{
+    transform:rotateY(0deg);
+    color:#fff!important;
+    text-shadow:none;
+  }
+  78%{
+    transform:rotateY(-89deg);
+    color:#fff!important;
+    text-shadow:none;
+  }
+  78.01%{
+    transform:rotateY(89deg);
+    color:var(--red)!important;
+    text-shadow:0 0 4px rgba(255,43,43,.16);
+  }
+  88%,100%{
+    transform:rotateY(0deg);
+    color:var(--red)!important;
+    text-shadow:0 0 15px rgba(255,43,43,.58),0 0 34px rgba(255,43,43,.26);
+  }
+}
+CSS
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          s=re.sub(r'styles\.css\?v=[^"\']+', 'styles.css?v=20260825-5', s)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit refinement
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/refine-new-drop-timing.yml
+          git add styles.css index.html
+          git commit -m "Refine New Drop red to white timing"
+          git push
