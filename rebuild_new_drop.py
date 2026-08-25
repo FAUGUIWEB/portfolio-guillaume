@@ -41,3 +41,5 @@ for old in [
 ]:
     if old.exists():
         old.unlink()
+
+# trigger rebuild
