@@ -17,16 +17,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Apply production finishing pass
-        if: ${{ hashFiles('finish_site.py') != '' }}
+      - name: Fix project video popups
+        if: ${{ hashFiles('fix_project_popups.py') != '' }}
         shell: bash
         run: |
-          python3 finish_site.py
-          rm -f finish_site.py
+          python3 fix_project_popups.py
+          rm -f fix_project_popups.py finish_site.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Polish SEO accessibility and performance"
+          git commit -m "Fix project video popup handlers"
           git push
 
       - name: Deploy to OVH
